@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { Container as MapDiv, NaverMap, useNavermaps, InfoWindow } from 'react-naver-maps';
+import { Container as MapDiv, NaverMap, useNavermaps, InfoWindow, Overlay } from 'react-naver-maps';
+import markicon from '../../icons/custom_marker.svg';
 
 export default function ShoppingScreen() {
   const navermaps = useNavermaps()
@@ -7,6 +8,10 @@ export default function ShoppingScreen() {
   // useRef 대신 useState를 통해 ref를 가져옵니다.
   const [map, setMap] = useState(null)
   const [infowindow, setInfoWindow] = useState(null)
+  const [MyMarker] = 
+//   for(var i = 0; i < 10; i++){
+//     console.log(i);
+//   }
 
   function onSuccessGeolocation(position) {
     if (!map || !infowindow) return
@@ -15,15 +20,23 @@ export default function ShoppingScreen() {
       position.coords.latitude,
       position.coords.longitude,
     )
+    if (!marker2Ref.current) {
+        marker2Ref.current = new navermaps.Marker({
+          position: { lat: 37.5657259, lng: 126.97547 },
+        })
+      }
+    console.log('Coordinates: ' + location.toString())
     map.setCenter(location)
     map.setZoom(16)
-    infowindow.setContent(
-      '<div style="padding:20px;">' +
-        '내 위치' +
-        '</div>',
-    )
+    marker.setPosition(location)
+    marker.setIcon({markicon})
+    
+    // infowindow.setContent(
+    //   '<div style="padding:20px;">' +
+    //     '내 위치' +
+    //     '</div>',
+    // )
     infowindow.open(map, location)
-    console.log('Coordinates: ' + location.toString())
   }
 
   function onErrorGeolocation() {
@@ -40,6 +53,7 @@ export default function ShoppingScreen() {
         '</div>',
     )
     infowindow.open(map, center)
+    window.open(map,center)
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -67,12 +81,13 @@ export default function ShoppingScreen() {
       )
     } else {
       var center = map.getCenter()
+
       infowindow.setContent(
         '<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5></div>',
       )
       infowindow.open(map, center)
     }
-  }, [map, infowindow])
+  }, [map, infowindow, marker])
 
   return (
     <MapDiv
@@ -88,7 +103,8 @@ export default function ShoppingScreen() {
         defaultMapTypeId={navermaps.MapTypeId.NORMAL}
         ref={setMap}
         >
-        <InfoWindow ref={setInfoWindow} />
+            <Overlay element = {marker}/>
+            <InfoWindow ref={setInfoWindow} />
         </NaverMap>
     </MapDiv>
   )
