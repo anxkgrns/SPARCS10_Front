@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import DrawerIcon from '../../assets/icons/custom_drawer.svg?react';
 import {EwooImage} from './ChatBotMapAnswerScreen';
+import {ChatInputField} from './util.jsx';
 
 const ChatBotMainScreen = () => {
   // const [messages, setMessages] = useState([]);
@@ -41,6 +42,7 @@ const ChatBotMainScreen = () => {
           </EwooChat>
         </EwooChatBox>
         </ChatCloudContainer>
+        <ChatInputField/>
     </div>
   );
 };
