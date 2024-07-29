@@ -1,5 +1,4 @@
-import TestView from "../../TestView";
-import '../../component/style.css'
+import '../component/style.css'
 
 export default function HomeScreen() {
   const text = "더 나은 \n내일의 우리를 위해"
@@ -7,7 +6,6 @@ export default function HomeScreen() {
   return (
     <div>
       <h1>Home Screen</h1>
-      {/* <TestView /> */}
       <h3 style = {{textAlign:"left",paddingLeft: 10,whiteSpace: "pre-wrap"}}>
         {text}
       </h3>

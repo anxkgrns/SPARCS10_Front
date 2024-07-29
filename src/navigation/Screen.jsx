@@ -1,11 +1,12 @@
 
-import HomeScreen from './screens/HomeScreen';
-import MyPage from './screens/MyPage';
-import Challenge from './screens/ChallengeScreen';
-import PlantScreen from './screens/PlantScreen';
-import ShoppingScreen from './screens/ShoppingScreen';
-import ChatBotScreen from './screens/ChatBotScreen';
-import TrashMapScreen from './screens/TrashMapScreen';
+import HomeScreen from '../screens/HomeScreen';
+import Challenge from '../screens/ChallengeScreen';
+import MyPage from '../screens/MyPage';
+import PlantScreen from '../screens/PlantScreen';
+import ShoppingScreen from '../screens/ShoppingScreen';
+import ChatBotScreen from '../screens/ChatBotScreen';
+import TrashMapScreen from '../screens/TrashMapScreen';
+import React from 'react';
 import AppNavi from './NaviBar';
 
 import { BrowserRouter, Route , Routes } from 'react-router-dom';

@@ -11,13 +11,13 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import './NaviBar.css'
 
-import HomeScreen from './screens/HomeScreen';
-import MyPage from './screens/MyPage';
-import Challenge from './screens/ChallengeScreen';
-import PlantScreen from './screens/PlantScreen';
-import ShoppingScreen from './screens/ShoppingScreen';
-import ChatBotScreen from './screens/ChatBotScreen';
-import TrashMapScreen from './screens/TrashMapScreen';
+import HomeScreen from '../screens/HomeScreen';
+import MyPage from '../screens/MyPage';
+import Challenge from '../screens/ChallengeScreen';
+import PlantScreen from '../screens/PlantScreen';
+import ShoppingScreen from '../screens/ShoppingScreen';
+import ChatBotScreen from '../screens/ChatBotScreen';
+import TrashMapScreen from '../screens/TrashMapScreen';
 
 export default function LabelBottomNavigation() {
   const [value, setValue] = React.useState('홈');
@@ -31,7 +31,7 @@ export default function LabelBottomNavigation() {
       <Box sx={{ pb: 7 }} >
         {value === '홈' && <HomeScreen />}
         {value === '식물원' && <PlantScreen />}
-        {value === '챌린지' && <Challenge />}
+        {value === '챗봇' && <ChatBotScreen />}
         {value === '쇼핑' && <ShoppingScreen />}
         {value === '마이' && <MyPage />
         }        
@@ -53,8 +53,8 @@ export default function LabelBottomNavigation() {
           // }}
         />
         <BottomNavigationAction
-          label="챌린지"
-          value="챌린지"
+          label="챗봇"
+          value="챗봇"
           icon={<EmojiEventsIcon 
           // sx={{color: 'black' }}
           />}
