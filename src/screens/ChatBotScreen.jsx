@@ -10,6 +10,7 @@ export default function ChatBotScreen() {
     const answerText = "가장 가까운 쓰레기통 위치에요. \n";
     const answerText2 = " 떨어져 있네요!";
     return (
+        <>
             <div style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -17,7 +18,6 @@ export default function ChatBotScreen() {
                 flexDirection: 'column',
                 boxSizing: 'border-box',
             }}>
-                {/* <h1>AI 챗봇과의 대화</h1> */}
                 <MapAnswer className="MapAnswer">
                     {/* <ChevronRight style={{
                         width: '1.5rem',
@@ -49,9 +49,33 @@ export default function ChatBotScreen() {
                         </NavigateText>
                     </NavigateToNaverMap>
                 </MapAnswer>
+                <CustomSpacer height="1.69rem"/>
+                <EwooContainer>
+                    <EwooImage src="/ewoo.png"/>
+                </EwooContainer>
             </div>
+        </>
     )
 }
+const EwooContainer = styled.div`
+align-items: right;
+width: 19.4375rem;
+height: 28.3125rem;
+
+display: flex;
+flex-direction: column;
+
+flex-shrink: 0;
+`;
+
+const EwooImage = styled.img`
+width: 7.625rem;
+height: 4.8125rem;
+flex-shrink: 0;
+
+align-self: end;
+object-fit: contain;
+`;
 
 const CustomSpacer = styled.div`
 height: ${props => props.height};
@@ -106,6 +130,7 @@ const MapAnswer = styled.div`
 `;
 
 const MapBox = styled.div`
+align-self: center;
 width: 16.1875rem;
 height: 14.1875rem;
 flex-shrink: 0;
