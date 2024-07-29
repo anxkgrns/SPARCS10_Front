@@ -2,7 +2,7 @@ import { IconButton,Button } from '@mui/material';
 import React from 'react';
 import RoomIcon from '@mui/icons-material/Room';
 import styled from 'styled-components';
-import ChatTail from '../assets/images/chatTail.svg?react';
+import ChatTail from '../../assets/images/chatTail.svg?react';
 // import { ReactComponent as ChevronRight } from '../../assets/ChevronRight.svg'
 
 

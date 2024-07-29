@@ -15,7 +15,7 @@ import HomeScreen from '../screens/HomeScreen';
 import MyPage from '../screens/MyPage';
 import PlantScreen from '../screens/PlantScreen';
 import ShoppingScreen from '../screens/ShoppingScreen';
-import ChatBotScreen from '../screens/chatbotScreen/ChatBotMainScreen';
+import ChatBotScreen from '../screens/chatbotScreen/ChatBotMapAnswerScreen';
 import TrashMapScreen from '../screens/TrashMapScreen';
 
 export default function LabelBottomNavigation() {
@@ -63,6 +63,7 @@ export default function LabelBottomNavigation() {
           label="쇼핑" 
           value="쇼핑" 
           icon={<ShoppingCartIcon />} 
+          
           // onClick={() => {
           //   location.href = '/shop';
           // }}

@@ -1,5 +1,5 @@
-import '../component/style.css'
 import styled from 'styled-components'
+
 
 export default function HomeScreen() {
   const text = "더 나은 \n내일의 우리를 위해"
@@ -9,28 +9,66 @@ export default function HomeScreen() {
   function handleClick() {console.log('Viewport width: ' + window.innerWidth);
   console.log('Viewport height: ' + window.innerHeight);
   }
+  var gap = "0.63rem";
     
   return (
-    <div style ={{color : '#BCBCBC'}}>
+    <>
       <HeadBox>
         <HeadDetail1 onClick = {handleClick}/>
+        <HeadDetail2 onClick = {handleClick}/>
+        <HeadDetail3 onClick = {handleClick}/>
       </HeadBox>
-      <Text1>
-        {text}
-      </Text1>
-      
-    </div>
+    <body>
+        <Text1>
+          {text}
+        </Text1>
+        
+        <CustomSpacer height="1.25rem"/>
+
+        <Body1>
+        </Body1>
+
+        <CustomSpacer height="0.63rem"/>
+
+        <Body2>
+        </Body2>
+
+        <CustomSpacer height="0.63rem"/>
+        
+        <Body3>
+        </Body3>
+
+        <CustomSpacer height="0.63rem"/>
+
+        <Body3>
+        </Body3>
+
+        <CustomSpacer height="0.63rem"/>
+
+        <Body3>
+        </Body3>
+
+        <CustomSpacer height="0.63rem"/>
+
+        <Body3>
+        </Body3>
+
+        <CustomSpacer height="0.63rem"/>
+
+        <Body3>
+        </Body3>
+      </body>
+    </>
   );
 }
 
-const HeadBox = styled.div`
-width: 412px;
-height: 109px;
+const HeadBox = styled.header`
+flex-direction: column;
 flex-shrink: 0;
+background: #FFF;
 `;
 
 const HeadDetail1 = styled.button`
-
 width: 77px;
 height: 24px;
 flex-shrink: 0;
@@ -38,23 +76,86 @@ border-radius: 25px;
 border: 1px solid #F4F4F4;
 background: #FFF;
 position: absolute;
-top : 58px;
+top : 29px;
 left : 310px;
 `;
 
-
-const Text1 = styled.div`
+const HeadDetail2 = styled.button`
+width: 79px;
+height: 24px;
+flex-shrink: 0;
+border-radius: 25px;
+border: 1px solid #F4F4F4;
+background: #FFF;
 position: absolute;
-top : 151px;
-left : 26px;
-right 154px;
-color: var(--black, #101210);
+top : 29px;
+left : 214px;
+`;
 
-font-family: AppleSDGothicNeoB00;
-font-size: 31.92px;
+const HeadDetail3 = styled.button`
+width: 40px;
+height: 40px;
+flex-shrink: 0;
+border-radius: 25px;
+border: 1px solid #F4F4F4;
+background: #D9D9D9;;
+position: absolute;
+top : 21px;
+left : 25px;
+`;
+
+
+const Text1 = styled.text`
+display: flex;
+align-self: start;
+margin-top: 1rem;
+margin-left: 1.62rem;
+margin-bottom: 1.5rem;
+
+flex-direction: column;
+color: var(--black, #101210);
+font-family: AppleSDGothicNeoB;
+font-size: 1.995rem;
 font-style: normal;
 font-weight: 400;
-line-height: 46px; /* 144.11% */
-letter-spacing: -0.638px;
+line-height: 2.875rem; /* 144.11% */
+letter-spacing: -0.03988rem;
 white-space: pre-wrap;
+`;
+
+const Body1 = styled.div`
+display: flex;
+flex-direction: column;
+
+width: 22.5rem;
+height: 9.5625rem;
+flex-shrink: 0;
+border-radius: 20px;
+background: #FFF;
+`;
+
+const Body2= styled.div`
+display: flex;
+flex-direction: column;
+
+width: 360px;
+height: 122px;
+flex-shrink: 0;
+border-radius: 20px;
+background: #FFF;
+`;
+
+const Body3 = styled.div`
+display: flex;
+flex-direction: column;
+
+width: 360px;
+height: 126px;
+flex-shrink: 0;
+border-radius: 20px;
+background: #FFF;
+`;
+
+const CustomSpacer = styled.div`
+height: ${props => props.height};
 `;
