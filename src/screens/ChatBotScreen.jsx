@@ -50,7 +50,6 @@ export default function ChatBotScreen() {
                         </NavigateText>
                     </NavigateToNaverMap>
                 </MapAnswer>
-                {/* <CustomSpacer height="1.69rem"/> */}
                 <EwooContainer>
                 <Tail className="Tail">
                     <ChatTail/>
