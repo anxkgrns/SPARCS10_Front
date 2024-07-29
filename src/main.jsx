@@ -17,5 +17,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       {/* <ChatBot/> */}
     </section>
     <NaviBar/>
-  </React.StrictMode>,
+  </React.StrictMode>
 )

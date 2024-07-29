@@ -6,7 +6,7 @@ import ChatTail from '../assets/images/chatTail.svg?react';
 // import { ReactComponent as ChevronRight } from '../../assets/ChevronRight.svg'
 
 
-export default function ChatBotScreen() {
+export default function ChatBotMapAnswerScreen() {
 
     const answerText = "가장 가까운 쓰레기통 위치에요. \n";
     const answerText2 = " 떨어져 있네요!";
