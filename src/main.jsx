@@ -11,7 +11,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   
   <React.StrictMode>
     <section>
-      <Screen />
+      
+      {/* <Screen /> */}
       {/* <Screen/> */}
       {/* <ChatBot/> */}
     </section>

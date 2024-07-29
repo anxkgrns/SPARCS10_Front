@@ -13,7 +13,6 @@ import './NaviBar.css'
 
 import HomeScreen from './screens/HomeScreen';
 import MyPage from './screens/MyPage';
-import Challenge from './screens/ChallengeScreen';
 import PlantScreen from './screens/PlantScreen';
 import ShoppingScreen from './screens/ShoppingScreen';
 import ChatBotScreen from './screens/ChatBotScreen';
@@ -28,14 +27,12 @@ export default function LabelBottomNavigation() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ pb: 7 }} >
-        {value === '홈' && <HomeScreen />}
-        {value === '식물원' && <PlantScreen />}
-        {value === '챌린지' && <Challenge />}
-        {value === '쇼핑' && <ShoppingScreen />}
-        {value === '마이' && <MyPage />
-        }        
-      </Box>
+
+      {value === '홈' && <HomeScreen />}
+      {value === '식물원' && <PlantScreen />}
+      {value === '챗봇' && <ChatBotScreen />}
+      {value === '쇼핑' && <ShoppingScreen />}
+      {value === '마이' && <MyPage />}   
       <footer>
       <BottomNavigation sx={{ width: 1 }} value={value} showLabels onChange={handleChange} >
         <BottomNavigationAction
@@ -53,8 +50,8 @@ export default function LabelBottomNavigation() {
           // }}
         />
         <BottomNavigationAction
-          label="챌린지"
-          value="챌린지"
+          label="챗봇"
+          value="챗봇"
           icon={<EmojiEventsIcon 
           // sx={{color: 'black' }}
           />}
