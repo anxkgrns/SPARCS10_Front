@@ -2,6 +2,7 @@ import { IconButton,Button } from '@mui/material';
 import React from 'react';
 import RoomIcon from '@mui/icons-material/Room';
 import styled from 'styled-components';
+import ChatTail from '../assets/images/chatTail.svg?react';
 // import { ReactComponent as ChevronRight } from '../../assets/ChevronRight.svg'
 
 
@@ -49,14 +50,26 @@ export default function ChatBotScreen() {
                         </NavigateText>
                     </NavigateToNaverMap>
                 </MapAnswer>
-                <CustomSpacer height="1.69rem"/>
+                {/* <CustomSpacer height="1.69rem"/> */}
                 <EwooContainer>
+                <Tail className="Tail">
+                    <ChatTail/>
+                </Tail>
                     <EwooImage src="/ewoo.png"/>
                 </EwooContainer>
             </div>
         </>
     )
 }
+
+const Tail = styled.div`
+width: 1.3125rem;
+height: 1.625rem;
+flex-shrink: 0;
+margin-right: 2.94rem;
+
+align-self: end;
+`;
 const EwooContainer = styled.div`
 align-items: right;
 width: 19.4375rem;
