@@ -4,7 +4,7 @@ import { useState } from 'react';
 import './ChatBot.css';
 
 
-export default function ChatBotScreen() {
+export default function ChatBotMainScreen() {
 
     const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
