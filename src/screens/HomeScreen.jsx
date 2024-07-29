@@ -1,7 +1,5 @@
-import TestView from "../../TestView";
-import '../../component/style.css'
+import '../component/style.css'
 import styled from 'styled-components'
-
 
 export default function HomeScreen() {
   const text = "더 나은 \n내일의 우리를 위해"

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import './ChatBot.css';
 
 
-export default function ChatBotScreen() {
+export default function ChatBotMainScreen() {
 
     const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
@@ -49,30 +49,4 @@ export default function ChatBotScreen() {
       </div>
     </div>
   );
-
-    return (
-        <>
-            <div>
-                <h1>ChatBot Screen</h1>
-            </div>
-            <div>  
-                <Button variant="contained" 
-                    endIcon={<RoomIcon/>}
-                    onClick={() => {
-                        location.href = "/trashmap";
-                    }}
-                    >
-                    {/* <RoomIcon color="action" fontSize="medium"/>
-                        <p style= {{fontSize: "15px"}}>
-                            쓰레기통 위치 찾기
-                        </p> */}
-                        
-                </Button>
-            </div>
-            <input type="text" placeholder="챗봇과 대화해보세요!">
-
-            </input>
-        </>
-
-    )
 }

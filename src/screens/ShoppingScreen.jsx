@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Container as MapDiv, NaverMap, useNavermaps, InfoWindow, Overlay } from 'react-naver-maps';
-import markicon from '../../icons/custom_marker.svg';
+import markicon from '../assets/icons/custom_marker.svg';
 
 export default function ShoppingScreen() {
   const navermaps = useNavermaps()

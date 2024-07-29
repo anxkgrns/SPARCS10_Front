@@ -11,12 +11,12 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import './NaviBar.css'
 
-import HomeScreen from './screens/HomeScreen';
-import MyPage from './screens/MyPage';
-import PlantScreen from './screens/PlantScreen';
-import ShoppingScreen from './screens/ShoppingScreen';
-import ChatBotScreen from './screens/ChatBotScreen';
-import TrashMapScreen from './screens/TrashMapScreen';
+import HomeScreen from '../screens/HomeScreen';
+import MyPage from '../screens/MyPage';
+import PlantScreen from '../screens/PlantScreen';
+import ShoppingScreen from '../screens/ShoppingScreen';
+import ChatBotScreen from '../screens/chatbotScreen/ChatBotMainScreen';
+import TrashMapScreen from '../screens/TrashMapScreen';
 
 export default function LabelBottomNavigation() {
   const [value, setValue] = React.useState('홈');
