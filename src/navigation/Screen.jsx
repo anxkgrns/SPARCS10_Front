@@ -1,7 +1,6 @@
 
 import HomeScreen from './screens/HomeScreen';
 import MyPage from './screens/MyPage';
-import Challenge from './screens/ChallengeScreen';
 import PlantScreen from './screens/PlantScreen';
 import ShoppingScreen from './screens/ShoppingScreen';
 import ChatBotScreen from './screens/ChatBotScreen';
