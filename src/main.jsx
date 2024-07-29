@@ -7,8 +7,8 @@ import GlobalStyle from './utils/global.ts'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   
-  <React.StrictMode>
-    
+  // <React.StrictMode>
+    <>
     <GlobalStyle />
     <section>
       
@@ -17,5 +17,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       {/* <ChatBot/> */}
     </section>
     <NaviBar/>
-  </React.StrictMode>
+    </>
+  // </React.StrictMode>
 )

@@ -2,7 +2,7 @@ import { IconButton,Button } from '@mui/material';
 import React from 'react';
 import RoomIcon from '@mui/icons-material/Room';
 import styled from 'styled-components';
-import ChatTail from '../assets/images/chatTail.svg?react';
+import ChatTail from '../../assets/images/chatTail.svg?react';
 // import { ReactComponent as ChevronRight } from '../../assets/ChevronRight.svg'
 
 
@@ -82,8 +82,8 @@ flex-shrink: 0;
 `;
 
 const EwooImage = styled.img`
-width: 7.625rem;
-height: 4.8125rem;
+width: 13.9375rem;
+height: 8.8125rem;
 flex-shrink: 0;
 
 align-self: end;
@@ -172,3 +172,5 @@ line-height: normal;
 letter-spacing: -0.01875rem;
 -webkit-text-size-adjust: auto;
 `;
+
+export {ChatBotMapAnswerScreen, EwooImage};

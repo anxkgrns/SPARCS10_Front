@@ -30,7 +30,6 @@ flex-shrink: 0;
 `;
 
 const HeadDetail1 = styled.button`
-
 width: 77px;
 height: 24px;
 flex-shrink: 0;
