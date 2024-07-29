@@ -1,0 +1,11 @@
+/* Frame 12 */
+.frame-12 {
+    position: absolute;
+    width: 344px;
+    height: 153px;
+    left: calc(50% - 344px/2);
+    top: 263px;
+
+    background: #FFFFFF;
+    border-radius: 20px;
+}

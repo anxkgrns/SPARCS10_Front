@@ -1,0 +1,49 @@
+.menu {
+    background-color: #f2f2f2;
+    padding: 0px;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    top:690px;
+    left: 0;
+  }
+  
+  .menu-details ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .menu-details ul li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .menu-details ul li a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  /* .MuiBottomNavigationAction-iconOnly.Mui-selected{
+    color: black;
+  } */
+  /* .MuiButtonBase-root{
+    color: black !important;
+  } */
+  .MuiBottomNavigationAction-root.Mui-selected{
+    color : black !important;
+  }
+
+  
+
+  .MuiBottomNavigationAction-root{
+    color : #959595 !important;
+    min-width: 0 !important;
+    padding: 7px 12px 0px !important;
+    max-width: 100%;
+  }
+  
+  .MuiBottomNavigation-root{
+    background-color: #E1E1E1 !important;
+  }
