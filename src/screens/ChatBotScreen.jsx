@@ -55,6 +55,7 @@ export default function ChatBotScreen() {
                 <Tail className="Tail">
                     <ChatTail/>
                 </Tail>
+                <CustomSpacer height="0.69rem"/>
                     <EwooImage src="/ewoo.png"/>
                 </EwooContainer>
             </div>
