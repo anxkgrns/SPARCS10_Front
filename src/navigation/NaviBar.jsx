@@ -31,7 +31,7 @@ export default function LabelBottomNavigation() {
     <>
       {value === '홈' && <HomeScreen />}
       {value === '식물원' && <PlantScreen />}
-      {value === '챗봇' && <ChatBotLoadScreen />}
+      {value === '챗봇' && <ChatBotMainScreen />}
       {value === '쇼핑' && <ShoppingScreen />}
       {value === '마이' && <MyPage />}   
       <NaviBarBottom> 

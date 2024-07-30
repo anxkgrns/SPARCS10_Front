@@ -58,4 +58,4 @@ margin-left: 1.06rem;
 const QuestionTypeTextStyle = styled.span`
 color: #6CAA06;
 `;
-export default ChatBotChatLoadScreen;
+export default ChatBotLoadScreen;
