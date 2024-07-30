@@ -20,7 +20,7 @@ const ChatBotMainScreen = () => {
       alignItems: 'center',
     }}>
     <HeaderBox>
-      <HeaderText> AI 챗봇과의 대화  </HeaderText>
+      <HeaderText> 이우랑 대화하기  </HeaderText>
       <MeatballContainer> <Meatball /> </MeatballContainer>
     </HeaderBox>
     <CustomSpacer height="2.31rem" /> {/* 나중에 수정 필요 */}
