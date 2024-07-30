@@ -16,9 +16,10 @@ const TrashcanBody = () => {
         <body>
             <div style={{
                 display: 'flex',
+                flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                flexDirection: 'column',
+                gap: '0.69rem'
             }}>
                 <MapAnswerBox className="MapAnswerBox">
                     <div style={{
@@ -49,8 +50,8 @@ const TrashcanBody = () => {
                     </div>
                     <Tail className="Tail"><img src = {ChatTail}/></Tail>
                 </MapAnswerBox>
+                <CustomSpacer height="0.69rem"/>
                 <EwooContainer>
-                    <CustomSpacer height="1.69rem"/>
                     <EwooImage src="/ewoo.png"/>
                 </EwooContainer>
             </div>
@@ -61,7 +62,7 @@ const TrashcanBody = () => {
 const Tail = styled.div`
 position: absolute;
 bottom: -1.5rem;
-right : 2.94rem;
+left : 2.66rem;
 width: 1.3125rem;
 height: 1.625rem;
 flex-shrink: 0;
@@ -70,7 +71,7 @@ align-self: end;
 `;
 const EwooContainer = styled.div`
 align-items: right;
-width: 19.4375rem;
+width: 22.38rem;
 height: 28.3125rem;
 
 display: flex;
@@ -80,11 +81,11 @@ flex-shrink: 0;
 `;
 
 const EwooImage = styled.img`
-width: 13.9375rem;
-height: 8.8125rem;
+width: 8.6925rem;
+height: 5.48625rem;
 flex-shrink: 0;
 
-align-self: end;
+align-self: start;
 object-fit: contain;
 `;
 
