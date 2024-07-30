@@ -66,6 +66,7 @@ const TrashcanBody = () => {
             </EwooContainer>
             <CustomSpacer height="0.3rem"/>
             <ChatInputField isActive={false} />
+            <CustomSpacer height="0.05rem" />
         </div>
     )
 }
