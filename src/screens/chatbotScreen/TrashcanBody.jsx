@@ -4,13 +4,13 @@ import styled from 'styled-components';
 import ChatTail from '../../assets/icons/ChatTail.svg';
 import UnionIcon from '../../assets/icons/UnionMark.svg';
 
-// import { ReactComponent as ChevronRight } from '../../assets/ChevronRight.svg'
+import ChevronRight from '../../assets/images/ChevronRight.svg?react'
 
 import TrashMap from './TrashMap';
 
 
 const TrashcanBody = () => {
-    const answerText = "가장 가까운 쓰레기통 위치에요. \n";
+    const answerText = "근처에 있는 쓰레기통 위치에요. \n";
     const answerText2 = " 떨어져 있네요!";
     return (
         <body>
@@ -19,42 +19,38 @@ const TrashcanBody = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexDirection: 'column',
-                boxSizing: 'border-box',
             }}>
-                <MapAnswer className="MapAnswer">
-                    {/* <ChevronRight style={{
-                        width: '1.5rem',
-                        height: '1.5rem',
-                    }} /> */}
-                    <MapAnswerTitle className="MapAnswerTitle">
-                        가까운 쓰레기통 위치
-                    </MapAnswerTitle>
+                <MapAnswerBox className="MapAnswerBox">
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'flex-start',
+                        gap: '0.46rem'
+                    }}>
+                        <ChevronRight />
+                        <MapAnswerTitle> 가까운 쓰레기통 위치 </MapAnswerTitle>
+                    </div>
                     <CustomSpacer height="1rem"/>
                     <MapBox>
                         <TrashMap/>
                     </MapBox>
                     <CustomSpacer height="0.75rem"/>
-                    <AnswerTextStyle className="가장 가까운 쓰레기통 위치에요.">
-                        {answerText}
-                    </AnswerTextStyle>
-                    <div style={{
-                        textAlign: 'left',
-                    }}>
-                        <AnswerDistanceStyle>
-                            175m 
-                        </AnswerDistanceStyle>
-                        <AnswerTextStyle className="떨어져 있네요!">
-                            {answerText2}
-                        </AnswerTextStyle>
+                    <div>
+                        <AnswerTextStyle>
+                                {answerText}
+                                <AnswerDistanceStyle>175m</AnswerDistanceStyle>
+                                {answerText2}
+                            </AnswerTextStyle>
+                        <CustomSpacer height="1.31rem"/>
+                        <NavigateToNaverMap>
+                            <NavigateText>네이버 지도로 안내 </NavigateText>
+                        </NavigateToNaverMap>
                     </div>
-                    <CustomSpacer height="1.31rem"/>
-                    <NavigateToNaverMap>
-                        <NavigateText>네이버 지도로 안내 </NavigateText>
-                    </NavigateToNaverMap>
                     <Tail className="Tail"><img src = {ChatTail}/></Tail>
-                </MapAnswer>
+                </MapAnswerBox>
                 <EwooContainer>
-                <CustomSpacer height="1.69rem"/>
+                    <CustomSpacer height="1.69rem"/>
                     <EwooImage src="/ewoo.png"/>
                 </EwooContainer>
             </div>
@@ -119,36 +115,27 @@ white-space: pre-wrap;
 text-align: left;
 `;
 
-const AnswerDistanceStyle = styled.text`
+const AnswerDistanceStyle = styled.span`
 color: #00BE35;
-font-family: "AppleSDGothicNeoM";
-font-size: 0.9375rem;
-font-style: normal;
-font-weight: 400;
-line-height: 1.5625rem;
-letter-spacing: -0.01875rem;
-white-space: pre-wrap;
-text-align: left;
 `;
 
-const MapAnswer = styled.div`
+const MapAnswerBox = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: left;
-    width: 19.4375rem;
-    height: 28.3125rem;
-    padding: 1.25rem;
+    width: 22.5rem;
+    height: 30.3125rem;
+    padding: 2rem;
     flex-shrink: 0;
     border-radius: 1.5625rem;
+    box-sizing: border-box;
     background: #FFF;
     filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.3));
-
 `;
 
 const MapBox = styled.div`
-align-self: center;
-width: 16.1875rem;
-height: 14.1875rem;
+align-items: center;
+width: 18.4375rem;
+height: 15.75rem;
 flex-shrink: 0;
 border-radius: 1.25rem;
 overflow: hidden;
@@ -164,6 +151,7 @@ flex-shrink: 0;
 
 border-radius: 1.5625rem;
 border: 1px solid #777;
+background: #FFF;
 `;
 
 const NavigateText = styled.text`
