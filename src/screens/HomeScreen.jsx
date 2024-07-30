@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import coinIcon from '../assets/icons/coin.svg'
+import notifi from '../assets/icons/notifications.svg'
 import { useState } from 'react'
 
 
@@ -17,57 +18,56 @@ export default function HomeScreen() {
   return (
     <>
       <HeadBox>
-        <HeadDetail1 onClick = {handleClick}/>
+
+        <HeadButton onClick = {handleClick}>
+          <img src = {notifi} alt=" " style={{width: "2rem", height: "2rem", position : 'absolute', top : '0rem', left : '0rem' }}/>
+        </HeadButton>  
+
+        {/* <HeadDetail1 onClick = {handleClick}/>
         <HeadDetail2>
-          <img src={coinIcon} alt="coin" style={{width: "1.25rem", height: "1.25rem", position: "absolute", top: "0.12rem", left: "0.44rem"}}/>
+          <img src={coinIcon} alt=" " style={{width: "1.25rem", height: "1.25rem", position: "absolute", top: "0.12rem", left: "0.44rem"}}/>
           <ButtonText>
             {coin}
           </ButtonText>
         </HeadDetail2> 
-        <HeadDetail3 onClick = {handleClick}/>
+        <HeadDetail3 onClick = {handleClick}/> */}
       </HeadBox>
     <body>
+        <CustomSpacer height="1.63rem"/>
 
-        <CustomSpacer height="2.63rem"/>
+        <MoneyBar>
 
-        <Text1>
+        </MoneyBar>
+
+        <CustomSpacer height="1.19rem"/>
+
+        <BigMenu>
+
+          <CustomSpacer height="1.81rem"/>
+
+          <Body1>
+          </Body1>
+
+
+          <CustomSpacer height="1.25rem"/>
+
+          <Body2>
+          </Body2>
+
+          <CustomSpacer height="1.25rem"/>
+
+          <Body3>
+          </Body3>
+
+          <CustomSpacer height="10.25rem"/>
+
+        </BigMenu>
+
+        {/* <Text1>
           {main_text}
-        </Text1>
+        </Text1> */}
         
-        <CustomSpacer height="1.25rem"/>
 
-        <Body1>
-        </Body1>
-
-        <CustomSpacer height="0.63rem"/>
-
-        <Body2>
-        </Body2>
-
-        <CustomSpacer height="0.63rem"/>
-        
-        <Body3>
-        </Body3>
-
-        <CustomSpacer height="0.63rem"/>
-
-        <Body3>
-        </Body3>
-
-        <CustomSpacer height="0.63rem"/>
-
-        <Body3>
-        </Body3>
-
-        <CustomSpacer height="0.63rem"/>
-
-        <Body3>
-        </Body3>
-
-        <CustomSpacer height="0.63rem"/>
-
-        <Body3>
-        </Body3>
       </body>
     </>
   );
@@ -79,6 +79,22 @@ flex-shrink: 0;
 background: #FFF;
 fill: #FFF;box-shadow: 0rem 0.125rem 0.25rem 0px rgba(0, 0, 0, 0.2), 0rem 0.125rem 0.25rem 0px rgba(0, 0, 0, 0.1);
 `;
+
+const HeadButton = styled.button`
+  position: absolute;
+  top: 0.94rem;
+  left: 22.37rem;
+
+  width: 2rem;
+  height: 2rem;
+  color : white;
+  background: #FFF;
+  border : none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  box-shadow: none;
+`;
+
 
 const HeadDetail1 = styled.button`
 width: 77px;
@@ -145,46 +161,65 @@ letter-spacing: -0.03988rem;
 white-space: pre-wrap;
 `;
 
+const MoneyBar = styled.div`
+width: 22.625rem;
+height: 3.5rem;
+flex-shrink: 0;
+border-radius: 1.25rem;
+background: #FFF;
+`;
+
+const BigMenu = styled.div`
+width: 25.75rem;
+height: fit-content;
+min-height: 10rem;
+
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+
+flex-shrink: 0;
+border-radius: 1.25rem;
+background: #FFF;
+`;
+
 const Body1 = styled.div`
 display: flex;
 flex-direction: column;
 
 width: 22.5rem;
-height: 9.5625rem;
-flex-shrink: 0;
-border-radius: 20px;
-background: #FFF;
-
+height: 10.8125rem;
+flex-shrink: 0;border-radius: 1.25rem;
+background: var(--white, #FFF);
 
 /* blurbox */
 box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 0.50), 0px 1px 40px 0px rgba(144, 164, 140, 0.10);
-
 `;
 
 const Body2= styled.div`
 display: flex;
 flex-direction: column;
 
-width: 360px;
-height: 122px;
+width: 22.5rem;
+height: 7.625rem;
 flex-shrink: 0;
-border-radius: 20px;
-background: #FFF;
+border-radius: 1.25rem;
+background: var(--white, #FFF);
 
 /* blurbox */
-box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 0.50), 0px 1px 4px 0px rgba(144, 164, 140, 0.10);
-
+box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 0.50), 0px 1px 40px 0px rgba(144, 164, 140, 0.10);
 `;
 
 const Body3 = styled.div`
 display: flex;
 flex-direction: column;
 
-width: 360px;
-height: 126px;
+width: 22.5rem;
+height: 13.0625rem;
 flex-shrink: 0;
 border-radius: 1.25rem;
-background: #FFF;
+background: var(--white, #FFF);
 
 /* blurbox */
 box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 0.50), 0px 1px 40px 0px rgba(144, 164, 140, 0.10);

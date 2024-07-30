@@ -8,10 +8,9 @@ export default function TrashMap() {
 
   // useRef 대신 useState를 통해 ref를 가져옵니다.
     const [map, setMap] = useState(null)
-//   const [infowindow, setInfoWindow] = useState(null)
     const [location, setLocation] = useState(new navermaps.LatLng(null))//new navermaps.LatLng(37.5666805, 126.9784147))
     const TrashLocation1 = new navermaps.LatLng(36.3753485, 127.3654857)
-    const TrashLocation2 = new navermaps.LatLng(36.3793485, 127.3604857)
+    const TrashLocation2 = new navermaps.LatLng(36.3793485, 127.364857)
 
 //   const [marker, setMarker] = useState(null)
   // const [MyMarker] = useState(null)
@@ -20,7 +19,7 @@ export default function TrashMap() {
 //   }
 
   function onSuccessGeolocation(position) {
-    if (!map /*|| !infowindow */|| !location) {
+    if (!map || !location) {
         console.log("!!!!")
         return
     }
@@ -31,26 +30,8 @@ export default function TrashMap() {
     setLocation( now_location)
     console.log("location: ", location)
     console.log("now_location: ", now_location)
-    // if (!marker2Ref.current) {
-    //     marker2Ref.current = new navermaps.Marker({
-    //       position: { lat: 37.5657259, lng: 126.97547 },
-    //     })
-    //   }
     map.setCenter(now_location)
     map.setZoom(16)
-
-    //marker.setPosition(location)
-    
-
-    // marker.setPosition(location)
-    // marker.setIcon({markicon})
-    
-    // infowindow.setContent(
-    //   '<div style="padding:20px;">' +
-    //     '내 위치' +
-    //     '</div>',
-    // )
-    // infowindow.open(map, now_location)
     console.log('Coordinates: ' + location.toString())
   }
 
@@ -84,7 +65,7 @@ export default function TrashMap() {
   }
 
   useEffect(() => {
-    if (!map || !location) {
+    if (!map ) {
         console.log("?????")
         return
     }
@@ -106,7 +87,7 @@ export default function TrashMap() {
       )
       infowindow.open(map, center)
     }
-  }, [map])//, infowindow])
+  }, [map])
 
   return (
     <MapDiv

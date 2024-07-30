@@ -141,7 +141,9 @@ const Navibutton = styled.button`
   flex-direction: column;
   justify-content : space-between;
   align-items: center;
-  width: auto;
+  padding: 0.6em 1.2em;
+//  width: auto;
+  width : 4.5rem;
   height : 4rem;
   background: #FFFFFF;
   border : none;
