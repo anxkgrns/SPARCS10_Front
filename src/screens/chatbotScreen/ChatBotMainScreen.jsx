@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import Meatball from '../../assets/icons/custom_meatball.svg?react';
 import {EwooImage} from './ChatBotMapAnswerScreen';
-import {ChatInputField, QuestionButton} from './util.jsx';
+import {ChatInputField, QuestionButton, ChatBotHeader} from './util.jsx';
 
 const ChatBotMainScreen = () => {
   // const [messages, setMessages] = useState([]);
@@ -19,10 +18,7 @@ const ChatBotMainScreen = () => {
       justifyContent: 'start',
       alignItems: 'center',
     }}>
-    <HeaderBox>
-      <HeaderText> 이우랑 대화하기  </HeaderText>
-      <MeatballContainer> <Meatball /> </MeatballContainer>
-    </HeaderBox>
+    <ChatBotHeader />
     <CustomSpacer height="2.31rem" /> {/* 나중에 수정 필요 */}
     <body>
       <div style={{
@@ -128,45 +124,6 @@ export default ChatBotMainScreen;
 //     </div>
 //   );
 // }
-
-const HeaderBox = styled.header`
-width: 25.75rem;
-height: 3.9375rem;
-flex-shrink: 0;
-
-display: flex;
-align-items: center;
-justify-content: space-between;
-
-background: #FFF;
-`;
-
-const HeaderText = styled.text`
-width: 9.1875rem;
-flex-shrink: 0;
-
-padding-left: 1.56rem;
-
-color: var(--black, #101210);
-font-family: AppleSDGothicNeoB;
-font-size: 1.25rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-letter-spacing: -0.025rem;
-`;
-
-const MeatballContainer = styled.div`
-width: 1.26563rem;
-height: 0.84375rem;
-flex-shrink: 0;
-
-padding-right: 2rem;
-
-display: flex;
-align-items: center;
-justify-content: center;
-`;
 
 const MainEWContainer = styled.div`
 width: 13.9375rem;

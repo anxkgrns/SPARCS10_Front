@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import TextareaAutosize from 'react-textarea-autosize';
+import Meatball from '../../assets/icons/custom_meatball.svg?react';
 import { useState } from 'react';
 
 const InputField = styled.div`
@@ -77,6 +78,32 @@ const QuestionButton = ({ width, text }) => {
     );
 }
 
+const ChatBotHeader = () => {
+    return (
+    <HeaderBox>
+        <HeaderText> 이우랑 대화하기  </HeaderText>
+        <MeatballContainer> <Meatball /> </MeatballContainer>
+  </HeaderBox>
+    )
+}
+
+export { ChatInputField, QuestionButton, ChatBotHeader };
+
+const SendButtonContainer = styled.div`
+    width: 3.9375rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 0.44rem;
+
+    border-radius: 1.25rem;
+    background: ${props => props.active ? 'url(/send_button_active.svg) center' : 'url(/send_button_inactive.svg) center'};
+`;
+
 const QuestionButtonStyle = styled.button`
 display: flex;
 justify-content: center;
@@ -103,19 +130,39 @@ font-weight: 400;
 line-height: normal;
 `;
 
-export { ChatInputField, QuestionButton };
+const HeaderBox = styled.header`
+width: 25.75rem;
+height: 3.9375rem;
+flex-shrink: 0;
 
-const SendButtonContainer = styled.div`
-    width: 3.9375rem;
-    height: 2.5rem;
-    flex-shrink: 0;
+display: flex;
+align-items: center;
+justify-content: space-between;
+`;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+const HeaderText = styled.text`
+width: 9.1875rem;
+flex-shrink: 0;
+padding-left: 1.56rem;
+padding-top: 0.25rem;
 
-    margin-right: 0.44rem;
+color: var(--black, #101210);
+font-family: AppleSDGothicNeoB;
+font-size: 1.25rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: -0.025rem;
+`;
 
-    border-radius: 1.25rem;
-    background: ${props => props.active ? 'url(/send_button_active.svg) center' : 'url(/send_button_inactive.svg) center'};
+const MeatballContainer = styled.div`
+width: 1.26563rem;
+height: 0.84375rem;
+flex-shrink: 0;
+
+padding-right: 1.56rem;
+
+display: flex;
+align-items: center;
+justify-content: center;
 `;
