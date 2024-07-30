@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 
 import AioffIcon from '../assets/icons/aioff.svg'
 import Aion from '../assets/icons/aion.svg'
@@ -18,19 +18,17 @@ import HomeScreen from '../screens/HomeScreen';
 import MyPage from '../screens/MyPage';
 import PlantScreen from '../screens/PlantScreen';
 import ShoppingScreen from '../screens/ShoppingScreen';
-import ChatBotScreen from '../screens/chatbotScreen/ChatBotMapAnswerScreen';
-
+import {ChatBotBaseScreen} from '../screens/chatbotScreen/ChatBotBaseScreen';
 import styled from 'styled-components';
 
 export default function LabelBottomNavigation() {
   const [value, setValue] = React.useState('홈');
   
-
   return (
     <>
       {value === '홈' && <HomeScreen />}
       {value === '식물원' && <PlantScreen />}
-      {value === '챗봇' && <ChatBotScreen />}
+      {value === '챗봇' && <ChatBotBaseScreen />}
       {value === '쇼핑' && <ShoppingScreen />}
       {value === '마이' && <MyPage />}   
       <NaviBarBottom> 
@@ -71,51 +69,6 @@ export default function LabelBottomNavigation() {
           > 내 정보 </TextButton>
         </Navibutton> 
       </NaviBarBottom>
-
-      {/* <BottomNavigation sx={{ width: 1 }} value={value} showLabels onChange={handleChange} >
-        <BottomNavigationAction
-          label="홈"
-          value="홈"
-          icon={<HomeIcon />}
-//          sx={{ minWidth: 0, maxWidth: '100%' }}
-        />
-        <BottomNavigationAction
-          label="식물원"
-          value="식물원"
-          icon={<ForestIcon />}
-          // onClick={() => {
-          //   location.href = '/plant';
-          // }}
-        />
-        <BottomNavigationAction
-          label="챗봇"
-          value="챗봇"
-          icon={<EmojiEventsIcon 
-          // sx={{color: 'black' }}
-          />}
-          // onClick={() => {
-          //   location.href = '/challenge';
-          // }}
-        />
-        <BottomNavigationAction 
-          label="쇼핑" 
-          value="쇼핑" 
-          icon={<ShoppingCartIcon />} 
-          
-          // onClick={() => {
-          //   location.href = '/shop';
-          // }}
-        />
-        <BottomNavigationAction 
-          label="마이"   
-          value="마이" 
-          icon={<PersonIcon />} 
-          // onClick = {() => {
-          //   location.href = '/mypage';
-          // }}
-        />
-        
-      </BottomNavigation> */}
     </>
   );
 }
@@ -141,7 +94,7 @@ const Navibutton = styled.button`
   flex-direction: column;
   justify-content : space-between;
   align-items: center;
-  padding: 0.6em 1.2em;
+  padding: 0.6rem 1.2rem;
 //  width: auto;
   width : 4.5rem;
   height : 4rem;
@@ -163,7 +116,7 @@ const TextButton = styled.text`
   font-style: normal;
   font-weight: 400;
   line-height: 122%; /* 0.86925rem */
-  etter-spacing: -0.0285rem;
+  letter-spacing: -0.0285rem;
 `;
 
 const CustomSpacer = styled.div`
