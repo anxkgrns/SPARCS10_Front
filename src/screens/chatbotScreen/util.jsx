@@ -120,9 +120,10 @@ letter-spacing: -0.01875rem;
 white-space: pre-wrap;
 `;
 
-const MainEwoo = () => {
+const MainEwoo = ({image}) => {
+    const EwooImageUrl = image ? image : '/largeEwoo.png';
     return (
-        <MainEWContainer><EwooImage src="/largeEwoo.png"/> </MainEWContainer>
+        <MainEWContainer><EwooImage src={EwooImageUrl}/> </MainEWContainer>
     )
 }
 
