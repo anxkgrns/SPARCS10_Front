@@ -1,9 +1,12 @@
 import { IconButton,Button } from '@mui/material';
 import React from 'react';
-import RoomIcon from '@mui/icons-material/Room';
 import styled from 'styled-components';
-import ChatTail from '../../assets/images/chatTail.svg?react';
+import ChatTail from '../../assets/icons/ChatTail.svg';
+import UnionIcon from '../../assets/icons/UnionMark.svg';
+
 // import { ReactComponent as ChevronRight } from '../../assets/ChevronRight.svg'
+
+import TrashMap from './TrashMap';
 
 
 export default function ChatBotMapAnswerScreen() {
@@ -28,7 +31,9 @@ export default function ChatBotMapAnswerScreen() {
                         가까운 쓰레기통 위치
                     </MapAnswerTitle>
                     <CustomSpacer height="1rem"/>
-                    <MapBox/>
+                    <MapBox>
+                        <TrashMap/>
+                    </MapBox>
                     <CustomSpacer height="0.75rem"/>
                     <AnswerTextStyle className="가장 가까운 쓰레기통 위치에요.">
                         {answerText}
@@ -49,12 +54,13 @@ export default function ChatBotMapAnswerScreen() {
                             네이버 지도로 안내
                         </NavigateText>
                     </NavigateToNaverMap>
+                    <Tail className="Tail">
+                        <img src = {ChatTail}/>
+                    </Tail>
                 </MapAnswer>
                 <EwooContainer>
-                <Tail className="Tail">
-                    <ChatTail/>
-                </Tail>
-                <CustomSpacer height="0.69rem"/>
+                
+                <CustomSpacer height="1.69rem"/>
                     <EwooImage src="/ewoo.png"/>
                 </EwooContainer>
             </div>
@@ -63,10 +69,12 @@ export default function ChatBotMapAnswerScreen() {
 }
 
 const Tail = styled.div`
+position: absolute;
+bottom: -1.5rem;
+right : 2.94rem;
 width: 1.3125rem;
 height: 1.625rem;
 flex-shrink: 0;
-margin-right: 2.94rem;
 
 align-self: end;
 `;
@@ -139,7 +147,8 @@ const MapAnswer = styled.div`
     flex-shrink: 0;
     border-radius: 1.5625rem;
     background: #FFF;
-    filter: drop-shadow(var(--sds-size-depth-0) var(--sds-size-depth-025) var(--sds-size-depth-100) var(--sds-color-black-100));
+    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.3));
+
 `;
 
 const MapBox = styled.div`
@@ -148,6 +157,7 @@ width: 16.1875rem;
 height: 14.1875rem;
 flex-shrink: 0;
 border-radius: 1.25rem;
+overflow: hidden;
 background: #D9D9D9;
 `;
 
@@ -156,7 +166,7 @@ width: 9.375rem;
 height: 2.625rem;
 flex-shrink: 0;
 
-padding: 0.56rem 1.25rem;
+//padding: 0.56rem 1.25rem;
 
 border-radius: 1.5625rem;
 border: 1px solid #777;
@@ -171,4 +181,16 @@ font-weight: 400;
 line-height: normal;
 letter-spacing: -0.01875rem;
 -webkit-text-size-adjust: auto;
+`;
+
+const UnionButton = styled.button`
+display: inline-flex;
+padding: 0.625rem;
+align-items: center;
+gap: 0.625rem;
+border-radius: 6.25rem;
+background: var(--white, #FFF);
+
+/* blurbox */
+box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 0.50), 0px 1px 40px 0px rgba(144, 164, 140, 0.10);
 `;
