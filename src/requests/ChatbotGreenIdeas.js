@@ -93,16 +93,15 @@ const data = {
       content: "오늘의 환경 상식을 알려줘."
     },
   ],
-  topP: 0.8,
-  topK: 0,
   maxTokens: 256,
-  temperature: 0.5,
-  repeatPenalty: 5.0,
+  temperature: 1,
+  repeatPenalty: 10.0,
   stopBefore: [],
   includeAiFilters: true,
   seed: 0
 };
 
+console.log(data.messages);
 const headers = {
     'X-NCP-CLOVASTUDIO-API-KEY': import.meta.env.VITE_NCP_CLOVASTUDIO_API_KEY,
     'X-NCP-APIGW-API-KEY': import.meta.env.VITE_NCP_APIGW_API_KEY,

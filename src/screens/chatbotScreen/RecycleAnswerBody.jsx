@@ -1,18 +1,41 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {ChatInputField, QuestionButton, ChatBotHeader, CustomSpacer, QuestionButtonFlexer, ChatCloudContainer, EwooChatStyle, MainEwoo, MyChatCloud, YourChatCloud, QuestionButtonContainer} from './util.jsx';
 import { MyContext } from './ChatBotBaseScreen.jsx';
 import EwooProfile from '../../assets/images/EwooProfile.svg?react';
 
-const ChatBody = () => { // recycle, greenIdea 분리하기.
-    const answerText = 'AI 환경 지킴이 이우가 오늘의 환경 상식을 소개해드릴게요!  일회용 비닐봉지 대신 장바구니를 사용한다면 매년 약 63억 개의 비닐봉지를 아낄 수 있고, 원유 약 1,500만 톤을 절약하며 온실가스 약 6,700만 톤을 감축시킬 수 있다고 해요. 조금 불편하더라도 가방 속에 장바구니를 넣고 다니는 습관을 가져보는 건 어떨까요?AI 환경 지킴이 이우가 오늘의 환경 상식을 소개해드릴게요!  일회용 비닐봉지 대신 장바구니를 사용한다면 매년 약 63억 개의 비닐봉지를 아낄 수 있고, 원유 약 1,500만 톤을 절약하며 온실가스 약 6,700만 톤을 감축시킬 수 있다고 해요. 조금 불편하더라도 가방 속에 장바구니를 넣고 다니는 습관을 가져보는 건 어떨까요?';
-    const {page, setPage} = useContext(MyContext);
+import GetRecycleTip from '../../requests/ChatbotRecycleTip';
+
+const RecycleAnswerBody = () => { // recycle, greenIdea 분리하기.
+    const {recycleAsk, setRecycleAsk} = useContext(MyContext);
+    const [answerText, setAnswerText] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState();
+
+    const ask = recycleAsk ? recycleAsk : '분리수거가 어려운 품목을 하나 골라서 분리수거 방법을 설명해줘.';
+
+    useEffect(() => {
+        const fetchRecycleTip = async () => {
+            try {
+                setLoading(true);
+                const tip = await GetRecycleTip(ask);
+                setAnswerText(tip);
+            } catch (error) {
+                setError('Failed to fetch recycle tip');
+                console.error('Failed to fetch recycle tip:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchRecycleTip();
+    }, [ask]);
+
     return (
         <>
             <div style={{
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'space-between',
                 width: '100%',
                 paddingTop: '1.4rem',
                 paddingLeft: '1.63rem',
@@ -29,7 +52,7 @@ const ChatBody = () => { // recycle, greenIdea 분리하기.
                         justifyContent: 'end',
                         width: '100%',
                     }}>
-                        <MyChatCloud text='환경 상식 알려줘' />
+                        <MyChatCloud text={ask} />
                     </div>
                     <div style={{
                         display: 'flex',
@@ -41,7 +64,11 @@ const ChatBody = () => { // recycle, greenIdea 분리하기.
                         padding: '0.4rem',
                     }}>
                         <EwooProfile />
-                        <YourChatCloud text={answerText} />
+                        {
+                            loading ? <YourChatCloud text='잠시만 기다려주세요...'/> : 
+                            error ? <YourChatCloud text='죄송합니다. 재활용 정보를 불러오지 못했습니다.'/> :
+                            <YourChatCloud text={answerText} />
+                        }
                         <CustomSpacer height="1rem" />
                     </div>
             </div>
@@ -55,4 +82,4 @@ const ChatBody = () => { // recycle, greenIdea 분리하기.
     )
 }
 
-export default ChatBody;
+export default RecycleAnswerBody;
