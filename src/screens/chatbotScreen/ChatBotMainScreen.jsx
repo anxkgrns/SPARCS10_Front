@@ -185,7 +185,7 @@ height: 2.82256rem;
 flex-shrink: 0;
 
 flex-direction: column;
-margin-bottom: 1.21rem;
+margin-bottom: 1rem;
 `;
 
 const EwooChat = styled.text`
