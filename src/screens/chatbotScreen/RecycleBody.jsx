@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 import {ChatInputField, QuestionButton, ChatBotHeader, CustomSpacer, ChatCloudContainer, EwooChatStyle, MainEwoo} from './util.jsx';
+import { MyContext } from './ChatBotBaseScreen.jsx';
 
 const RecycleBody = () => {
     const ewooChat = "어떤 쓰레기인지 말해주세요.\n분리수거 방법을 알려드릴게요!";
+    const {page, setPage} = useContext(MyContext);
 
     return (
         <body>
@@ -21,7 +23,7 @@ const RecycleBody = () => {
                     justifyContent: 'center',
                 }}>
                     <CustomSpacer height="2.56rem" />
-                    <QuestionButton width='7.88rem' text='분리수거 방법' activated={true} />
+                    <QuestionButton width='7.88rem' text='분리수거 방법' activated='true' />
                     <CustomSpacer height="1.94rem" />
                     <MainEwoo/>
                     <ChatCloudContainer>
@@ -38,7 +40,8 @@ const RecycleBody = () => {
                     gap: '0.3rem'
                 }}>
                     <HelpTextStyle>채팅 바를 눌러 쓰레기 종류 입력하기</HelpTextStyle>
-                    <ChatInputField isActive={true} />
+                    <ChatInputField isActive={true}
+                    focusFunction={()=>setPage("pend")} />
                 </div>
             </div>
         </body>

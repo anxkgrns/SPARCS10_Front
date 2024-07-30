@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ChatTail from '../../assets/icons/ChatTail.svg';
 import UnionIcon from '../../assets/icons/UnionMark.svg';
-import { MyContext } from './ChatBotMainScreen';
+import { MyContext } from './ChatBotBaseScreen';
 
 import ChevronRight from '../../assets/images/ChevronRight.svg?react'
 

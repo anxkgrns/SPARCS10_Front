@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
-import {ChatInputField, QuestionButton, ChatBotHeader, CustomSpacer, ChatCloudContainer, EwooChatStyle, MainEwoo} from './util.jsx';
-import { MyContext } from './ChatBotMainScreen.jsx';
+import {ChatInputField, QuestionButton, ChatBotHeader, CustomSpacer, QuestionButtonFlexer, QuestionButtonContainer, ChatCloudContainer, EwooChatStyle, MainEwoo} from './util.jsx';
+import { MyContext } from './ChatBotBaseScreen.jsx';
 
 
 
@@ -38,32 +38,17 @@ const {page, setPage} = useContext(MyContext);
             </EwooChatBox>
             </ChatCloudContainer>
           </div>
-          <div style={{
+          <QuestionButtonFlexer style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'start',
             gap: '0.69rem',
           }}>
-            <div style={{
-              display: 'flex',
-              flexDirection: 'row',
-              gap: '0.5rem'
-            }}>
-            <QuestionButton width='9.06rem' text='오늘의 환경 상식' onClickFuntion={()=>setPage("환경 상식")} />
-            <QuestionButton width='5.75rem' text='문의 사항' onClickFuntion={()=>setPage("문의 사항")} />
-            </div>
-            <div style={{
-              display: 'flex',
-              flexDirection: 'row',
-              gap: '0.5rem'
-            }}>
-              <QuestionButton width='10.94rem' text='가까운 쓰레기통 위치' onClickFuntion={()=>setPage("쓰레기통")}/>
-              <QuestionButton width='7.88rem' text='분리수거 방법' onClickFuntion={()=>setPage("분리수거")} />
-            </div>
-          <ChatInputField isActive={false} style={{
-            position: 'fixed',
-          }}/>
-          </div>
+            <QuestionButtonContainer/>
+            <ChatInputField isActive={false} style={{
+              position: 'fixed',
+            }}/>
+          </QuestionButtonFlexer>
         </div>
       </body>
     )

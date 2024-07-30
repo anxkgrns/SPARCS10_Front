@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import TextareaAutosize from 'react-textarea-autosize';
 import Meatball from '../../assets/icons/custom_meatball.svg?react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { MyContext } from './ChatBotBaseScreen';
 
 const InputField = styled.div`
     width: 22.625rem;
@@ -17,9 +18,10 @@ const InputField = styled.div`
     justify-content: space-between;
 `;
 
-const ChatInputField = ({isActive}) => {
+const ChatInputField = ({isActive, focusFunction, sendFunction}) => {
     const [inputText, setInputText] = useState('');
     const [inputHeight, setInputHeight] = useState(3.1875);
+    focusFunction = focusFunction ? focusFunction : () => {};
 
     return (
         <div>
@@ -36,6 +38,7 @@ const ChatInputField = ({isActive}) => {
                 onInput={(e) => {
                     setInputText(e.target.value);
                 }}
+                onFocus={focusFunction}
                 disabled={!isActive}
                 placeholder={isActive ? '' : '채팅을 입력할 수 없습니다.'}
                 style={{
@@ -55,6 +58,9 @@ const ChatInputField = ({isActive}) => {
                 <SendButtonContainer
                     style={{cursor: 'pointer'}}
                     active={isActive}
+                    onClick={() => {
+                        sendFunction();
+                    }}
                 />
             </InputField>
         </div>
@@ -81,6 +87,36 @@ const QuestionButton = ({ width, text, activated, onClickFuntion }) => {
     );
 }
 
+const QuestionButtonFlexer = styled.div`
+display: flex;
+flex-direction: column;
+align-items: start;
+gap: 0.69rem;
+`;
+
+const QuestionButtonContainer = () => {
+    const {page, setPage} = useContext(MyContext);
+    return (
+        <>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'row',
+                gap: '0.5rem'
+            }}>
+            <QuestionButton width='9.06rem' text='오늘의 환경 상식' onClickFuntion={()=>setPage("환경 상식")} />
+            <QuestionButton width='5.75rem' text='문의 사항' onClickFuntion={()=>setPage("문의 사항")} />
+            </div>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'row',
+                gap: '0.5rem'
+            }}>
+                <QuestionButton width='10.94rem' text='가까운 쓰레기통 위치' onClickFuntion={()=>setPage("쓰레기통")}/>
+                <QuestionButton width='7.88rem' text='분리수거 방법' onClickFuntion={()=>setPage("분리수거")} />
+            </div>
+        </>
+    )
+}
 const ChatBotHeader = () => {
     return (
     <HeaderBox>
@@ -127,7 +163,52 @@ const MainEwoo = ({image}) => {
     )
 }
 
-export { ChatInputField, QuestionButton, ChatBotHeader, CustomSpacer, ChatCloudContainer, EwooChatStyle, MainEwoo  };
+const MyChatCloud = ({text}) => {
+    return (
+        <MyChatCloudContainer>
+            <MyChatTextStyle>{text}</MyChatTextStyle>
+        </MyChatCloudContainer>
+    )
+}
+
+const YourChatCloud = ({text}) => {
+    
+    const [inputHeight, setInputHeight] = useState(3.1875);
+
+    return (
+        <YourChatCloudContainer>
+            <TextareaAutosize
+                type="text"
+                disabled={true}
+                defaultValue={text}
+                onHeightChange={(height, instance) => {
+                    setInputHeight(height);
+                }}
+                style={{
+                    display: 'flex',
+                    padding: '0.625rem',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    gap: '0.625rem',
+                    flexShrink: 0,
+                    borderRadius: '1.25rem',
+                    background: 'var(--white, #FFF)',
+                    maxWidth: '12.8125rem',
+                    border: 'none',
+                    color: '#1E1E1E',
+                    fontFamily: 'AppleSDGothicNeoM',
+                    fontSize: '1.06875rem',
+                    fontStyle: 'normal',
+                    fontWeight: 400,
+                    lineHeight: '1.6875rem',
+                    letterSpacing: '-0.02138rem',
+                    whiteSpace: 'pre-wrap',
+                }}/>
+        </YourChatCloudContainer>
+    )
+}
+
+export { ChatInputField, QuestionButton, ChatBotHeader, CustomSpacer, QuestionButtonFlexer, QuestionButtonContainer, ChatCloudContainer, EwooChatStyle, MainEwoo, MyChatCloud, YourChatCloud  };
 
 const SendButtonContainer = styled.div`
     width: 3.9375rem;
@@ -225,4 +306,47 @@ flex-shrink: 0;
 
 align-self: end;
 object-fit: contain;
+`;
+
+const MyChatCloudContainer = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+flex-shrink: 0;
+width: 9.0625rem;
+padding: 0.375rem 0.625rem 0.5rem 0.625rem;
+gap: 0.625rem;
+
+border-radius: 1.25rem;
+background: var(--green3, #8DD40E);
+`;
+
+const MyChatTextStyle = styled.text`
+color: var(--black, #101210);
+text-align: right;
+
+/* 15 */
+font-family: AppleSDGothicNeoM;
+font-size: 1.06875rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.6875rem; /* 157.895% */
+letter-spacing: -0.02138rem;
+
+white-space: pre-wrap;
+`;
+
+const YourChatCloudContainer = styled.div`
+display: flex;
+max-width: 12.8125rem;
+padding: 0.625rem;
+justify-content: center;
+align-items: center;
+gap: 0.625rem;
+flex-shrink: 0;
+border-radius: 1.25rem;
+background: var(--white, #FFF);
+
+/* blurbox */
+box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 0.50), 0px 1px 40px 0px rgba(144, 164, 140, 0.10);
 `;

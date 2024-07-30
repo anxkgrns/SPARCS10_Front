@@ -4,10 +4,12 @@ import {ChatInputField, QuestionButton, ChatBotHeader, CustomSpacer, ChatCloudCo
 import MainBody from './MainBody.jsx';
 import { TrashcanBody } from './TrashcanBody.jsx';
 import  RecycleBody from './RecycleBody.jsx';
+import PendingBody from './PendingBody.jsx';
+import ChatBody from './ChatBody.jsx';
 
 const MyContext = React.createContext();
 
-const ChatBotMainScreen = () => {
+const ChatBotBaseScreen = () => {
   const [page, setPage] = useState('main');
 
   return (
@@ -25,9 +27,12 @@ const ChatBotMainScreen = () => {
           {page === '문의 사항' && <AskBody />} */}
           {page === '쓰레기통' && <TrashcanBody />}
           {page === '분리수거' && <RecycleBody />}
+          {page === 'pend' && <PendingBody />}
+          {page === 'chat' && <ChatBody />}
+
         </MyContext.Provider>
     </div>
   );
 };
 
-export {ChatBotMainScreen, MyContext};
+export {ChatBotBaseScreen, MyContext};
