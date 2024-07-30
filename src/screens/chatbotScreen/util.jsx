@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import TextareaAutosize from 'react-textarea-autosize';
 import Meatball from '../../assets/icons/custom_meatball.svg?react';
+import {EwooImage} from './ChatBotMapAnswerScreen';
 import { useState } from 'react';
 
 const InputField = styled.div`
@@ -61,9 +62,11 @@ const ChatInputField = ({isActive}) => {
     );
 }
 
-const QuestionButton = ({ width, text }) => {
-    const [clicked, setClicked] = useState(false);
-    const [textColor, setTextColor] = useState('#8DD40E');
+const QuestionButton = ({ width, text, activated }) => {
+    var isClicked = activated ? activated : false;
+    var initialTextColor = isClicked ? '#FFFFFF' : '#8DD40E';
+    const [clicked, setClicked] = useState(isClicked);
+    const [textColor, setTextColor] = useState(initialTextColor);
 
     return (
         <QuestionButtonStyle
@@ -87,7 +90,43 @@ const ChatBotHeader = () => {
     )
 }
 
-export { ChatInputField, QuestionButton, ChatBotHeader };
+const CustomSpacer = styled.div`
+height: ${props => props.height};
+`;
+
+
+const ChatCloudContainer = styled.div`
+width: 17.99394rem;
+height: 5.85688rem;
+flex-shrink: 0;
+
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: end;
+
+background: url(/chatCloud.svg) center;
+`;
+
+const EwooChatStyle = styled.text`
+color: var(--black, #101210);
+text-align: center;
+font-family: AppleSDGothicNeoM;
+font-size: 0.9375rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: -0.01875rem;
+white-space: pre-wrap;
+`;
+
+const MainEwoo = () => {
+    return (
+        <MainEWContainer><EwooImage src="/largeEwoo.png"/> </MainEWContainer>
+    )
+}
+
+export { ChatInputField, QuestionButton, ChatBotHeader, CustomSpacer, ChatCloudContainer, EwooChatStyle, MainEwoo  };
 
 const SendButtonContainer = styled.div`
     width: 3.9375rem;
@@ -161,6 +200,17 @@ height: 0.84375rem;
 flex-shrink: 0;
 
 padding-right: 1.56rem;
+
+display: flex;
+align-items: center;
+justify-content: center;
+`;
+
+
+const MainEWContainer = styled.div`
+width: 13.9375rem;
+height: 8.8125rem;
+flex-shrink: 0;
 
 display: flex;
 align-items: center;

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import {EwooImage} from './ChatBotMapAnswerScreen';
-import {ChatInputField, QuestionButton, ChatBotHeader} from './util.jsx';
+import {ChatInputField, QuestionButton, ChatBotHeader, CustomSpacer, ChatCloudContainer, EwooChatStyle, MainEwoo} from './util.jsx';
 
 const ChatBotMainScreen = () => {
   // const [messages, setMessages] = useState([]);
@@ -33,14 +32,14 @@ const ChatBotMainScreen = () => {
           flexDirection: 'column',
           alignItems: 'center',
         }}>
-        <MainEWContainer><EwooImage src="/largeEwoo.png"/> </MainEWContainer>
+          <MainEwoo/>
           <ChatCloudContainer>
             <EwooChatBox>
-              <EwooChat>
+              <EwooChatStyle>
                 {hello1}
                 <EwooName> {name}</EwooName>
                 {hello2}
-              </EwooChat>
+              </EwooChatStyle>
             </EwooChatBox>
             </ChatCloudContainer>
           </div>
@@ -64,7 +63,7 @@ const ChatBotMainScreen = () => {
               gap: '0.5rem'
             }}>
               <QuestionButton width='10.94rem' text='가까운 쓰레기통 위치' />
-              <QuestionButton width='7.88rem' text='분리수거 방식' />
+              <QuestionButton width='7.88rem' text='분리수거 방법' />
             </div>
           <ChatInputField isActive={false} style={{
             position: 'fixed',
@@ -125,16 +124,6 @@ export default ChatBotMainScreen;
 //   );
 // }
 
-const MainEWContainer = styled.div`
-width: 13.9375rem;
-height: 8.8125rem;
-flex-shrink: 0;
-
-display: flex;
-align-items: center;
-justify-content: center;
-`;
-
 const EwooChatBox = styled.div`
 display: flex;
 width: 15.3125rem;
@@ -145,36 +134,6 @@ flex-direction: column;
 margin-bottom: 1rem;
 `;
 
-const EwooChat = styled.text`
-color: var(--black, #101210);
-text-align: center;
-font-family: AppleSDGothicNeoM;
-font-size: 0.9375rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-letter-spacing: -0.01875rem;
-white-space: pre-wrap;
-`;
-
 const EwooName = styled.span`
 color: var(--black, #42650F);
-`;
-
-
-const CustomSpacer = styled.div`
-height: ${props => props.height};
-`;
-
-const ChatCloudContainer = styled.div`
-width: 17.99394rem;
-height: 5.85688rem;
-flex-shrink: 0;
-
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: end;
-
-background: url(/chatCloud.svg) center;
 `;
