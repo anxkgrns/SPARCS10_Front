@@ -45,8 +45,9 @@ body {
   flex-direction: column;
   box-sizing: border-box;
   margin-top: 2rem;
-  background-color : #E2E53F;
+  /* background-color : #E2E53F; */
   /* background-color : rgba(188, 188, 188, 1); */
+  background-color:  #ffffff;
   margin-bottom: 2.125rem;
 
   width: 100%;

@@ -62,7 +62,7 @@ const ChatInputField = ({isActive}) => {
 }
 
 const QuestionButton = ({ width, text, activated, onClickFuntion }) => {
-    var isClicked = activated ? activated : false;
+    const  isClicked = activated ? activated : false;
     var initialTextColor = isClicked ? '#FFFFFF' : '#8DD40E';
     const [clicked, setClicked] = useState(isClicked);
     const [textColor, setTextColor] = useState(initialTextColor);
@@ -155,8 +155,8 @@ width: ${props => props.width ? props.width : '25.75rem'};
 height: 2rem;
 
 border-radius: 1.5625rem;
-border: ${props => props.clicked ? 'none' : '1.5px solid #8DD40E'};
-background: ${props => props.clicked ? '#8DD40E' : '#FFFFFF'};
+border: ${props => props.clicked=='true' ? 'none' : '1.5px solid #8DD40E'};
+background: ${props => props.clicked=='true' ? '#8DD40E' : '#FFFFFF'};
 -webkit-tap-highlight-color : transparent;
 outline: none;
 `;

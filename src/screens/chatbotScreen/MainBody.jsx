@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-// import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import {ChatInputField, QuestionButton, ChatBotHeader, CustomSpacer, ChatCloudContainer, EwooChatStyle, MainEwoo} from './util.jsx';
 import { MyContext } from './ChatBotMainScreen.jsx';
@@ -16,7 +15,7 @@ const {page, setPage} = useContext(MyContext);
 
   return (
     <body>
-      <div style={{
+    <div style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -65,8 +64,8 @@ const {page, setPage} = useContext(MyContext);
             position: 'fixed',
           }}/>
           </div>
-          </div>
-          </body>
+        </div>
+      </body>
     )
 }
 

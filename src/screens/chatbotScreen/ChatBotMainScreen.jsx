@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import {ChatInputField, QuestionButton, ChatBotHeader, CustomSpacer, ChatCloudContainer, EwooChatStyle, MainEwoo} from './util.jsx';
 import MainBody from './MainBody.jsx';
@@ -20,13 +19,13 @@ const ChatBotMainScreen = () => {
     }}>
       <ChatBotHeader />
       <CustomSpacer height="2.31rem" />
-      <MyContext.Provider value={{page, setPage}}>
-        {page === 'main' && <MainBody />}
-        {/* {page === '환경 상식' && <GreenIdeaBody />}
-        {page === '문의 사항' && <AskBody />} */}
-        {page === '쓰레기통' && <TrashcanBody />}
-        {page === '분리수거' && <RecycleBody />}
-      </MyContext.Provider>
+        <MyContext.Provider value={{page, setPage}}>
+          {page === 'main' && <MainBody />}
+          {/* {page === '환경 상식' && <GreenIdeaBody />}
+          {page === '문의 사항' && <AskBody />} */}
+          {page === '쓰레기통' && <TrashcanBody />}
+          {page === '분리수거' && <RecycleBody />}
+        </MyContext.Provider>
     </div>
   );
 };
