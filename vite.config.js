@@ -10,4 +10,13 @@ export default defineConfig({
     tsconfigPaths(),
     svgrPlugin(),
   ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://clovastudio.stream.ntruss.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 });
