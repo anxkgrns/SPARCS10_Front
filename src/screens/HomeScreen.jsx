@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import coinIcon from '../assets/icons/coin.svg'
 import notifi from '../assets/icons/notifications.svg'
+import Right from '../assets/icons/ChevronRight.svg'
+
 import { useState } from 'react'
 
 
@@ -14,7 +16,11 @@ export default function HomeScreen() {
   }
   var gap = "0.63rem";
   const [coin] = useState(1000);
-    
+
+  const [task, setTask] = useState(['AI 챗봇에게 오늘의 환경 상식 듣기 ', '실내 적정 온도 설정하기', '텀블러 사용 인증하기' ]);
+  const [taskReward, setTaskReward] = useState([10, 20, 30]);
+  const [taskComplete, setTaskComplete] = useState([true, false, false]);
+
   return (
     <>
       <HeadBox>
@@ -36,7 +42,6 @@ export default function HomeScreen() {
         <CustomSpacer height="1.63rem"/>
 
         <MoneyBar>
-
         </MoneyBar>
 
         <CustomSpacer height="1.19rem"/>
@@ -46,12 +51,68 @@ export default function HomeScreen() {
           <CustomSpacer height="1.81rem"/>
 
           <Body1>
+
+            <img src = {Right} alt=" " style={{width: "2.125rem", height: "2.125rem", position : 'absolute', top : '0.94rem', right : '0.44rem' }}/>
+
+            <Body1_text1>
+              일일 환경 추천
+            </Body1_text1>
+
+            <Quest top= "3.75rem">
+              <Body1_subtext>
+                {task[0]}
+              </Body1_subtext>
+
+                {taskComplete[0] ? <Body1_complete_text> 완료! </Body1_complete_text> 
+                : 
+                <Body1_reward>
+                <CoinImg src={coinIcon} alt=" " />
+                  <Body1_reward_text>
+                    {taskReward[0]}
+                  </Body1_reward_text>
+              </Body1_reward>
+                }
+            </Quest>
+
+            <Quest top= "5.81rem">
+              <Body1_subtext>
+                {task[1]}
+              </Body1_subtext>
+
+                {taskComplete[1] ? <Body1_complete_text> 완료! </Body1_complete_text>
+                : 
+                <Body1_reward>
+                  <CoinImg src={coinIcon} alt=" " />
+                    <Body1_reward_text>
+                      {taskReward[1]}
+                    </Body1_reward_text>
+                </Body1_reward>
+                }
+            </Quest>
+
+            <Quest top= "7.88rem">
+              <Body1_subtext>
+                {task[2]}
+              </Body1_subtext>
+
+                {taskComplete[1] ? <Body1_complete_text> 완료! </Body1_complete_text>
+                : 
+                <Body1_reward>
+                    <CoinImg src={coinIcon} alt=" " />
+                    <Body1_reward_text>
+                      {taskReward[2]}
+                    </Body1_reward_text>
+                </Body1_reward>
+                }     
+            </Quest>
+            
           </Body1>
 
 
           <CustomSpacer height="1.25rem"/>
 
           <Body2>
+            <img src = {Right} alt=" " style={{width: "2.125rem", height: "2.125rem", position : 'absolute', top : '0.94rem', right : '0.44rem' }}/>
           </Body2>
 
           <CustomSpacer height="1.25rem"/>
@@ -184,9 +245,9 @@ border-radius: 1.25rem;
 background: #FFF;
 `;
 
-const Body1 = styled.div`
-display: flex;
-flex-direction: column;
+
+const Body1 = styled.button`
+position : relative;
 
 width: 22.5rem;
 height: 10.8125rem;
@@ -195,11 +256,99 @@ background: var(--white, #FFF);
 
 /* blurbox */
 box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 0.50), 0px 1px 40px 0px rgba(144, 164, 140, 0.10);
+&:hover {
+  background: rgba(226, 229, 63, 1);
+  transition: 0.5s;
+}
 `;
 
-const Body2= styled.div`
+const CoinImg = styled.img`
+
+width: 1.34rem;
+height: 1.34rem;
+`;
+
+const Quest = styled.div`
 display: flex;
-flex-direction: column;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+
+position : absolute;
+
+top : ${props => props.top};
+left : 1.25rem;
+right : 1.06rem;
+`;
+
+const Body1_reward = styled.div`
+
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+
+width: 2.5625rem;
+height: 1.34413rem;
+flex-shrink: 0;
+`;
+
+const Body1_text1 = styled.text`
+
+position : absolute;
+top : 0.94rem;
+left : 1.25rem;
+
+color: var(--black, #101210);
+font-family: AppleSDGothicNeoB;
+font-size: 1.425rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: -0.0285rem;
+`;
+
+const Body1_complete_text = styled.text`
+
+color: var(--black, #101210);
+text-align: right;
+font-family: AppleSDGothicNeoEB;
+font-size: 1.03125rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: -0.02063rem;
+`;
+
+
+
+const Body1_reward_text = styled.text`
+
+
+color: var(--black, #101210);
+font-family: AppleSDGothicNeoEB;
+font-size: 0.9375rem;
+font-style: normal;
+font-weight: 400;
+line-height: 140.041%; /* 1.31288rem */
+`;
+
+
+
+const Body1_subtext = styled.text`
+
+color: var(--black, #101210);
+font-family: AppleSDGothicNeoR;
+font-size: 1.03125rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.875rem; /* 181.818% */
+letter-spacing: -0.02063rem;
+`;
+
+
+const Body2= styled.div`
+display: relative;
 
 width: 22.5rem;
 height: 7.625rem;
