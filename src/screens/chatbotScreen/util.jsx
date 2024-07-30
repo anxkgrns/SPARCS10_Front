@@ -59,7 +59,40 @@ const ChatInputField = () => {
     );
 }
 
-export { ChatInputField };
+const QuestionButton = ({ width, text }) => {
+    return (
+        <QuestionButtonStyle width={width}>
+            <QuestionButtonText>{text}</QuestionButtonText>
+        </QuestionButtonStyle>
+    );
+}
+
+const QuestionButtonStyle = styled.button`
+display: flex;
+justify-content: center;
+align-items: center;
+padding-top: 0.25rem;
+padding-bottom: 0.25rem;
+
+width: ${props => props.width ? props.width : '25.75rem'};
+height: 2rem;
+
+border-radius: 1.5625rem;
+border: 1.5px solid #8DD40E;
+
+background: #FFFFFF;
+`;
+
+const QuestionButtonText = styled.text`
+color: var(--green3, #8DD40E);
+font-family: AppleSDGothicNeoM;
+font-size: 1.06875rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+`;
+
+export { ChatInputField, QuestionButton };
 
 const SendButtonContainer = styled.div`
     width: 3.9375rem;

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Meatball from '../../assets/icons/custom_meatball.svg?react';
 import {EwooImage} from './ChatBotMapAnswerScreen';
-import {ChatInputField} from './util.jsx';
+import {ChatInputField, QuestionButton} from './util.jsx';
 
 const ChatBotMainScreen = () => {
   // const [messages, setMessages] = useState([]);
@@ -48,9 +48,32 @@ const ChatBotMainScreen = () => {
             </EwooChatBox>
             </ChatCloudContainer>
           </div>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'start',
+            gap: '0.69rem',
+          }}>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '0.5rem'
+            }}>
+            <QuestionButton width='9.06rem' text='오늘의 환경 상식' />
+            <QuestionButton width='5.75rem' text='문의 사항' />
+            </div>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '0.5rem'
+            }}>
+              <QuestionButton width='10.94rem' text='가까운 쓰레기통 위치' />
+              <QuestionButton width='7.88rem' text='분리수거 방식' />
+            </div>
           <ChatInputField isActive={true} style={{
             position: 'fixed',
           }}/>
+          </div>
           </div>
           </body>
       </div>
