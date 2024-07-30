@@ -9,12 +9,11 @@ import UnionIcon from '../../assets/icons/UnionMark.svg';
 import TrashMap from './TrashMap';
 
 
-export default function ChatBotMapAnswerScreen() {
-
+const TrashcanBody = () => {
     const answerText = "가장 가까운 쓰레기통 위치에요. \n";
     const answerText2 = " 떨어져 있네요!";
     return (
-        <>
+        <body>
             <div style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -50,21 +49,16 @@ export default function ChatBotMapAnswerScreen() {
                     </div>
                     <CustomSpacer height="1.31rem"/>
                     <NavigateToNaverMap>
-                        <NavigateText>
-                            네이버 지도로 안내
-                        </NavigateText>
+                        <NavigateText>네이버 지도로 안내 </NavigateText>
                     </NavigateToNaverMap>
-                    <Tail className="Tail">
-                        <img src = {ChatTail}/>
-                    </Tail>
+                    <Tail className="Tail"><img src = {ChatTail}/></Tail>
                 </MapAnswer>
                 <EwooContainer>
-                
                 <CustomSpacer height="1.69rem"/>
                     <EwooImage src="/ewoo.png"/>
                 </EwooContainer>
             </div>
-        </>
+        </body>
     )
 }
 
@@ -104,7 +98,7 @@ height: ${props => props.height};
 
 const MapAnswerTitle = styled.div`
 color: var(--Schemes-Scrim, #000);
-font-family: "AppleSDGothicNeo";
+font-family: "AppleSDGothicNeoB";
 font-size: 1.25rem;
 font-style: normal;
 font-weight: 400;
@@ -115,7 +109,7 @@ text-align: left;
 
 const AnswerTextStyle = styled.text`
 color: #777;
-font-family: "AppleSDGothicNeo";
+font-family: "AppleSDGothicNeoM";
 font-size: 0.9375rem;
 font-style: normal;
 font-weight: 400;
@@ -127,7 +121,7 @@ text-align: left;
 
 const AnswerDistanceStyle = styled.text`
 color: #00BE35;
-font-family: "AppleSDGothicNeo";
+font-family: "AppleSDGothicNeoM";
 font-size: 0.9375rem;
 font-style: normal;
 font-weight: 400;
@@ -174,7 +168,7 @@ border: 1px solid #777;
 
 const NavigateText = styled.text`
 color: #777;
-font-family: "AppleSDGothicNeo";
+font-family: "AppleSDGothicNeoSB";
 font-size: 0.9375rem;
 font-style: normal;
 font-weight: 400;
@@ -183,7 +177,7 @@ letter-spacing: -0.01875rem;
 -webkit-text-size-adjust: auto;
 `;
 
-export {ChatBotMapAnswerScreen, EwooImage};
+export {TrashcanBody, EwooImage};
 
 const UnionButton = styled.button`
 display: inline-flex;

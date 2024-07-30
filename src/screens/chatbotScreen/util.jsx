@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import TextareaAutosize from 'react-textarea-autosize';
 import Meatball from '../../assets/icons/custom_meatball.svg?react';
-import {EwooImage} from './ChatBotMapAnswerScreen';
 import { useState } from 'react';
 
 const InputField = styled.div`
@@ -62,7 +61,7 @@ const ChatInputField = ({isActive}) => {
     );
 }
 
-const QuestionButton = ({ width, text, activated }) => {
+const QuestionButton = ({ width, text, activated, onClickFuntion }) => {
     var isClicked = activated ? activated : false;
     var initialTextColor = isClicked ? '#FFFFFF' : '#8DD40E';
     const [clicked, setClicked] = useState(isClicked);
@@ -75,6 +74,7 @@ const QuestionButton = ({ width, text, activated }) => {
             onClick={() => {
                 setClicked(!clicked);
                 setTextColor(!clicked ? '#FFFFFF' : '#8DD40E');
+                onClickFuntion();
             }}>
             <QuestionButtonText color={textColor}>{text}</QuestionButtonText>
         </QuestionButtonStyle>
@@ -216,4 +216,13 @@ flex-shrink: 0;
 display: flex;
 align-items: center;
 justify-content: center;
+`;
+
+const EwooImage = styled.img`
+width: 13.9375rem;
+height: 8.8125rem;
+flex-shrink: 0;
+
+align-self: end;
+object-fit: contain;
 `;

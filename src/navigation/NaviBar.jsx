@@ -18,15 +18,12 @@ import HomeScreen from '../screens/HomeScreen';
 import MyPage from '../screens/MyPage';
 import PlantScreen from '../screens/PlantScreen';
 import ShoppingScreen from '../screens/ShoppingScreen';
-import ChatBotMainScreen from '../screens/chatbotScreen/ChatBotMainScreen';
-import ChatBotRecycleScreen from '../screens/chatbotScreen/ChatBotRecycleScreen';
-import ChatBotLoadScreen from '../screens/chatbotScreen/ChatBotLoadScreen';
+import {ChatBotMainScreen} from '../screens/chatbotScreen/ChatBotMainScreen';
 import styled from 'styled-components';
 
 export default function LabelBottomNavigation() {
   const [value, setValue] = React.useState('홈');
   
-
   return (
     <>
       {value === '홈' && <HomeScreen />}

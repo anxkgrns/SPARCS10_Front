@@ -1,8 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/images/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import BottomNavi from './navigation/Screen'
 import NaviBar from './navigation/NaviBar'
 
 function App() {
@@ -10,7 +7,6 @@ function App() {
 
   return (
     <>
-      <BottomNavi/>
       <NaviBar/>
     </>
   )
