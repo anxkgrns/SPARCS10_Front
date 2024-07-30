@@ -60,9 +60,18 @@ const ChatInputField = () => {
 }
 
 const QuestionButton = ({ width, text }) => {
+    const [clicked, setClicked] = useState(false);
+    const [textColor, setTextColor] = useState('#8DD40E');
+
     return (
-        <QuestionButtonStyle width={width}>
-            <QuestionButtonText>{text}</QuestionButtonText>
+        <QuestionButtonStyle
+            width={width}
+            clicked={clicked}
+            onClick={() => {
+                setClicked(!clicked);
+                setTextColor(!clicked ? '#FFFFFF' : '#8DD40E');
+            }}>
+            <QuestionButtonText color={textColor}>{text}</QuestionButtonText>
         </QuestionButtonStyle>
     );
 }
@@ -78,13 +87,14 @@ width: ${props => props.width ? props.width : '25.75rem'};
 height: 2rem;
 
 border-radius: 1.5625rem;
-border: 1.5px solid #8DD40E;
-
-background: #FFFFFF;
+border: ${props => props.clicked ? 'none' : '1.5px solid #8DD40E'};
+background: ${props => props.clicked ? '#8DD40E' : '#FFFFFF'};
+-webkit-tap-highlight-color : transparent;
+outline: none;
 `;
 
 const QuestionButtonText = styled.text`
-color: var(--green3, #8DD40E);
+color: ${props => props.color ? props.color : '#8DD40E'};
 font-family: AppleSDGothicNeoM;
 font-size: 1.06875rem;
 font-style: normal;
