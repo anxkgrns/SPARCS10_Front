@@ -18,8 +18,7 @@ import HomeScreen from '../screens/HomeScreen';
 import MyPage from '../screens/MyPage';
 import PlantScreen from '../screens/PlantScreen';
 import ShoppingScreen from '../screens/ShoppingScreen';
-import ChatBotScreen from '../screens/chatbotScreen/ChatBotMapAnswerScreen';
-
+import ChatBotMainScreen from '../screens/chatbotScreen/ChatBotMainScreen';
 import styled from 'styled-components';
 
 export default function LabelBottomNavigation() {
@@ -30,7 +29,7 @@ export default function LabelBottomNavigation() {
     <>
       {value === '홈' && <HomeScreen />}
       {value === '식물원' && <PlantScreen />}
-      {value === '챗봇' && <ChatBotScreen />}
+      {value === '챗봇' && <ChatBotMainScreen />}
       {value === '쇼핑' && <ShoppingScreen />}
       {value === '마이' && <MyPage />}   
       <NaviBarBottom> 

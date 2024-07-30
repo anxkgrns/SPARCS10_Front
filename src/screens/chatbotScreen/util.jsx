@@ -9,7 +9,7 @@ const InputField = styled.div`
 
     border-radius: 1.5625rem;
     background: #FFFFFF;
-    box-shadow: 0 0 5 0 rgba(199, 199, 199, 0.50), 0 1 4 0 rgba(144, 164, 140, 0.10);
+    box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 0.50), 0px 1px 4px 0px rgba(144, 164, 140, 0.10);
 
     display: flex;
     align-items: center;
@@ -24,8 +24,8 @@ const ChatInputField = () => {
         <div>
             <InputField style={{
                 height: inputHeight,
-                paddingTop: '0.9rem',
-                paddingBottom: '0.9rem',
+                paddingTop: '1rem',
+                paddingBottom: '1rem',
             }}>
                 <TextareaAutosize type="text"
                 maxRows={3}
@@ -47,7 +47,6 @@ const ChatInputField = () => {
                     color: '#777',
                     wrap: 'on',
                     overflow: 'hidden',
-                    lineBreak: 'auto',
                     verticalAlign: 'middle',
                     border: 'none',
                     outline: 'none',
@@ -74,5 +73,5 @@ const SendButtonContainer = styled.div`
     margin-right: 0.44rem;
 
     border-radius: 1.25rem;
-    background: url(/sendButton.svg) center;
+    background: ${props => props.active ? 'url(/send_button_active.svg) center' : 'url(/send_button_inactive.svg) center'};
 `;

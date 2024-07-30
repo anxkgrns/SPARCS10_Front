@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import DrawerIcon from '../../assets/icons/custom_drawer.svg?react';
+import Meatball from '../../assets/icons/custom_meatball.svg?react';
 import {EwooImage} from './ChatBotMapAnswerScreen';
 import {ChatInputField} from './util.jsx';
 
@@ -8,7 +8,7 @@ const ChatBotMainScreen = () => {
   // const [messages, setMessages] = useState([]);
   // const [inputText, setInputText] = useState('');
 
-  const hello1 = "안녕하세요, AI 환경 지킴이 ";
+  const hello1 = "안녕하세요, AI 환경 지킴이";
   const name = "이우";
   const hello2 = "에요. \n무엇을 도와드릴까요?";
 
@@ -20,30 +20,40 @@ const ChatBotMainScreen = () => {
       alignItems: 'center',
     }}>
     <HeaderBox>
-      <HeaderText>
-        AI 챗봇과의 대화
-      </HeaderText>
-      <Drawer>
-        <DrawerIcon />
-      </Drawer>
+      <HeaderText> AI 챗봇과의 대화  </HeaderText>
+      <MeatballContainer> <Meatball /> </MeatballContainer>
     </HeaderBox>
     <CustomSpacer height="2.31rem" /> {/* 나중에 수정 필요 */}
-    <MainEWContainer>
-      <EwooImage src="/largeEwoo.png"/>
-    </MainEWContainer>
-        <ChatCloudContainer className="chatcloudcontainer">
-        <EwooChatBox>
-          <EwooChat>
-            {hello1}
-            <EwooName>
-              {name}
-            </EwooName>
-            {hello2}
-          </EwooChat>
-        </EwooChatBox>
-        </ChatCloudContainer>
-        <ChatInputField/>
-    </div>
+    <body>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        height: '77vh',
+      }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}>
+        <MainEWContainer><EwooImage src="/largeEwoo.png"/> </MainEWContainer>
+          <ChatCloudContainer>
+            <EwooChatBox>
+              <EwooChat>
+                {hello1}
+                <EwooName> {name}</EwooName>
+                {hello2}
+              </EwooChat>
+            </EwooChatBox>
+            </ChatCloudContainer>
+          </div>
+          <ChatInputField isActive={true} style={{
+            position: 'fixed',
+          }}/>
+          </div>
+          </body>
+      </div>
   );
 };
 
@@ -96,7 +106,7 @@ export default ChatBotMainScreen;
 //   );
 // }
 
-const HeaderBox = styled.div`
+const HeaderBox = styled.header`
 width: 25.75rem;
 height: 3.9375rem;
 flex-shrink: 0;
@@ -106,16 +116,13 @@ align-items: center;
 justify-content: space-between;
 
 background: #FFF;
-box-shadow: 0rem 0.125rem 0.25rem 0px rgba(0, 0, 0, 0.2), 0rem 0.125rem 0.25rem 0px rgba(0, 0, 0, 0.1);
 `;
 
 const HeaderText = styled.text`
+width: 9.1875rem;
+flex-shrink: 0;
 
 padding-left: 1.56rem;
-
-width: 9.1875rem;
-height: 1.9375rem;
-flex-shrink: 0;
 
 color: var(--black, #101210);
 font-family: AppleSDGothicNeoB;
@@ -126,12 +133,12 @@ line-height: normal;
 letter-spacing: -0.025rem;
 `;
 
-const Drawer = styled.div`
+const MeatballContainer = styled.div`
 width: 1.26563rem;
 height: 0.84375rem;
 flex-shrink: 0;
 
-padding-right: 1.31rem;
+padding-right: 2rem;
 
 display: flex;
 align-items: center;
