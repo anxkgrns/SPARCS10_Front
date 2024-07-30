@@ -1,7 +1,7 @@
 import { IconButton,Button } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
-import ChatTail from '../../assets/images/chatTail.svg?react';
+import ChatTail from '../../assets/icons/ChatTail.svg';
 import UnionIcon from '../../assets/icons/UnionMark.svg';
 
 // import { ReactComponent as ChevronRight } from '../../assets/ChevronRight.svg'

@@ -71,51 +71,6 @@ export default function LabelBottomNavigation() {
           > 내 정보 </TextButton>
         </Navibutton> 
       </NaviBarBottom>
-
-      {/* <BottomNavigation sx={{ width: 1 }} value={value} showLabels onChange={handleChange} >
-        <BottomNavigationAction
-          label="홈"
-          value="홈"
-          icon={<HomeIcon />}
-//          sx={{ minWidth: 0, maxWidth: '100%' }}
-        />
-        <BottomNavigationAction
-          label="식물원"
-          value="식물원"
-          icon={<ForestIcon />}
-          // onClick={() => {
-          //   location.href = '/plant';
-          // }}
-        />
-        <BottomNavigationAction
-          label="챗봇"
-          value="챗봇"
-          icon={<EmojiEventsIcon 
-          // sx={{color: 'black' }}
-          />}
-          // onClick={() => {
-          //   location.href = '/challenge';
-          // }}
-        />
-        <BottomNavigationAction 
-          label="쇼핑" 
-          value="쇼핑" 
-          icon={<ShoppingCartIcon />} 
-          
-          // onClick={() => {
-          //   location.href = '/shop';
-          // }}
-        />
-        <BottomNavigationAction 
-          label="마이"   
-          value="마이" 
-          icon={<PersonIcon />} 
-          // onClick = {() => {
-          //   location.href = '/mypage';
-          // }}
-        />
-        
-      </BottomNavigation> */}
     </>
   );
 }
@@ -141,7 +96,7 @@ const Navibutton = styled.button`
   flex-direction: column;
   justify-content : space-between;
   align-items: center;
-  padding: 0.6em 1.2em;
+  padding: 0.6rem 1.2rem;
 //  width: auto;
   width : 4.5rem;
   height : 4rem;
@@ -163,7 +118,7 @@ const TextButton = styled.text`
   font-style: normal;
   font-weight: 400;
   line-height: 122%; /* 0.86925rem */
-  etter-spacing: -0.0285rem;
+  letter-spacing: -0.0285rem;
 `;
 
 const CustomSpacer = styled.div`
