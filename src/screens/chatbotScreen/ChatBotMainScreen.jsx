@@ -70,7 +70,7 @@ const ChatBotMainScreen = () => {
               <QuestionButton width='10.94rem' text='가까운 쓰레기통 위치' />
               <QuestionButton width='7.88rem' text='분리수거 방식' />
             </div>
-          <ChatInputField isActive={true} style={{
+          <ChatInputField isActive={false} style={{
             position: 'fixed',
           }}/>
           </div>

@@ -16,7 +16,7 @@ const InputField = styled.div`
     justify-content: space-between;
 `;
 
-const ChatInputField = () => {
+const ChatInputField = ({isActive}) => {
     const [inputText, setInputText] = useState('');
     const [inputHeight, setInputHeight] = useState(3.1875);
 
@@ -35,6 +35,8 @@ const ChatInputField = () => {
                 onInput={(e) => {
                     setInputText(e.target.value);
                 }}
+                disabled={!isActive}
+                placeholder={isActive ? '' : '채팅을 입력할 수 없습니다.'}
                 style={{
                     width: '22.625rem',
                     height: '1.5rem',
@@ -46,14 +48,13 @@ const ChatInputField = () => {
                     fontFamily: 'AppleSDGothicNeoR',
                     color: '#777',
                     wrap: 'on',
-                    overflow: 'hidden',
-                    verticalAlign: 'middle',
                     border: 'none',
                     outline: 'none',
                 }}  />
-                <SendButtonContainer style={{
-                    cursor: 'pointer',
-                }} />
+                <SendButtonContainer
+                    style={{cursor: 'pointer'}}
+                    active={isActive}
+                />
             </InputField>
         </div>
     );
