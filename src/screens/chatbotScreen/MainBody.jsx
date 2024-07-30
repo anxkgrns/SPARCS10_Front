@@ -45,9 +45,8 @@ const {page, setPage} = useContext(MyContext);
             gap: '0.69rem',
           }}>
             <QuestionButtonContainer/>
-            <ChatInputField isActive={false} style={{
-              position: 'fixed',
-            }}/>
+            <ChatInputField isActive={false}/>
+            <CustomSpacer height="0.66rem"/>
           </QuestionButtonFlexer>
         </div>
       </body>

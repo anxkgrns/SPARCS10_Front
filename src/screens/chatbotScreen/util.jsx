@@ -88,10 +88,15 @@ const QuestionButton = ({ width, text, activated, onClickFuntion }) => {
 }
 
 const QuestionButtonFlexer = styled.div`
+position: fixed;
+bottom: 70px;
 display: flex;
 flex-direction: column;
 align-items: start;
+justify-content: end;
 gap: 0.69rem;
+
+background: #FFFFFF;
 `;
 
 const QuestionButtonContainer = () => {
@@ -186,23 +191,20 @@ const YourChatCloud = ({text}) => {
                 }}
                 style={{
                     display: 'flex',
-                    padding: '0.625rem',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    gap: '0.625rem',
                     flexShrink: 0,
-                    borderRadius: '1.25rem',
-                    background: 'var(--white, #FFF)',
-                    maxWidth: '12.8125rem',
                     border: 'none',
+                    width: '100%',
                     color: '#1E1E1E',
                     fontFamily: 'AppleSDGothicNeoM',
-                    fontSize: '1.06875rem',
+                    fontSize: '1.03125rem',
                     fontStyle: 'normal',
                     fontWeight: 400,
                     lineHeight: '1.6875rem',
                     letterSpacing: '-0.02138rem',
                     whiteSpace: 'pre-wrap',
+                    background: 'none',
                 }}/>
         </YourChatCloudContainer>
     )
@@ -259,6 +261,8 @@ flex-shrink: 0;
 display: flex;
 align-items: center;
 justify-content: space-between;
+
+box-shadow: 0rem 0.125rem 0.25rem 0px rgba(0, 0, 0, 0.2), 0rem 0.125rem 0.25rem 0px rgba(0, 0, 0, 0.1);
 `;
 
 const HeaderText = styled.text`
@@ -269,7 +273,7 @@ padding-top: 0.25rem;
 
 color: var(--black, #101210);
 font-family: AppleSDGothicNeoB;
-font-size: 1.25rem;
+font-size: 1.4375rem;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -327,7 +331,7 @@ text-align: right;
 
 /* 15 */
 font-family: AppleSDGothicNeoM;
-font-size: 1.06875rem;
+font-size: 1.03125rem;
 font-style: normal;
 font-weight: 400;
 line-height: 1.6875rem; /* 157.895% */
@@ -338,14 +342,18 @@ white-space: pre-wrap;
 
 const YourChatCloudContainer = styled.div`
 display: flex;
-max-width: 12.8125rem;
-padding: 0.625rem;
+width: 14.81rem;
 justify-content: center;
 align-items: center;
 gap: 0.625rem;
 flex-shrink: 0;
 border-radius: 1.25rem;
 background: var(--white, #FFF);
+
+padding-top: 0.44rem;
+padding-left: 0.75rem;
+padding-right: 0.75rem;
+box-sizing: border-box;
 
 /* blurbox */
 box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 0.50), 0px 1px 40px 0px rgba(144, 164, 140, 0.10);
