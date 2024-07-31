@@ -1,4 +1,3 @@
-
 import React, { useContext } from 'react';
 
 import AioffIcon from '../assets/icons/aioff.svg'
@@ -16,23 +15,18 @@ import './NaviBar.css'
 
 import HomeScreen from '../screens/HomeScreen';
 import MyPage from '../screens/MyPage';
-import PlantScreen from '../screens/PlantScreen';
+
+import ForestScreen from '../screens/ForestScreen';
 import ShoppingScreen from '../screens/ShoppingScreen';
 import {ChatBotBaseScreen} from '../screens/chatbotScreen/ChatBotBaseScreen';
 import styled from 'styled-components';
 
-import QuestMainScreen from '../screens/questScreen/QuestMainScreen';
-
-export default function LabelBottomNavigation() {
+const NaviBar = () => {
   const [value, setValue] = React.useState('홈');
-  
-  return (
-    <>
-      {value === '홈' && <QuestMainScreen />}
-      {value === '식물원' && <PlantScreen />}
-      {value === '챗봇' && <ChatBotBaseScreen />}
-      {value === '쇼핑' && <ShoppingScreen />}
-      {value === '마이' && <MyPage />}   
+  const [insidePage, setInsidePage] = React.useState('main');
+
+  function BarBottom(){
+    return (
       <NaviBarBottom> 
         <Navibutton onClick={() => { setValue('홈'); }}>
           <img src = {value === '홈' ? Menuon : Menuoff}/>
@@ -71,9 +65,76 @@ export default function LabelBottomNavigation() {
           > 내 정보 </TextButton>
         </Navibutton> 
       </NaviBarBottom>
-    </>
+    )
+  }
+
+  return (
+
+    <NaviContext.Provider value={{insidePage,setInsidePage}}>
+      {value === '홈' && (
+        <>
+          {insidePage === 'main' &&
+          (<>
+          <HomeScreen />
+          <BarBottom />
+          </>)
+          }
+          {(insidePage === 'MyPlant1'|| 
+            insidePage === 'MyPlant2'||
+            insidePage === 'MyPlant3'||
+            insidePage === 'PlantShop1'||
+            insidePage === 'PlantShop2'||
+            insidePage === 'PlantShop3'        
+            ) &&
+          <HomeScreen/>}
+
+        </>
+      )}
+      {value === '식물원' && (
+        <>
+       { insidePage === 'main' &&
+          (<>
+          <ForestScreen />
+          <BarBottom />
+          </>)}
+          
+          {(insidePage === 'MyPlant1'|| 
+            insidePage === 'MyPlant2'||
+            insidePage === 'MyPlant3'||
+            insidePage === 'PlantShop1'||
+            insidePage === 'PlantShop2'||
+            insidePage === 'PlantShop3'         
+            ) &&
+            <HomeScreen/>}
+        </>
+      )}
+
+      {value === '챗봇' && (
+        <>
+          <ChatBotBaseScreen />
+          <BarBottom />
+        </>
+      )}
+      {value === '쇼핑' && (
+        <>
+          <ShoppingScreen />
+          <BarBottom />
+        </>
+      )}
+      {value === '마이' &&(
+        <>
+          <MyPage />
+          <BarBottom />
+        </>
+      )}
+    </NaviContext.Provider>
   );
-}
+};
+
+
+const NaviContext = React.createContext();
+
+export { NaviBar, NaviContext };
 
 const NaviBarBottom = styled.footer`
   display: flex;
