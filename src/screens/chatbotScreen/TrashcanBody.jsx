@@ -7,6 +7,7 @@ import UnionIcon from '../../assets/icons/UnionMark.svg';
 import { MyContext, GeoContext } from './ChatBotBaseScreen';
 
 import ChevronRight from '../../assets/icons/ChevronRightIcon.svg?react'
+import EwooProfile from '../../assets/images/EwooProfile.svg';
 
 import TrashMap from './TrashMap';
 import { ChatInputField } from './util';
@@ -104,7 +105,10 @@ const TrashcanBody = () => {
             </MapAnswerBox>
             <CustomSpacer height="0.69rem"/>
             <EwooContainer>
-                <EwooImage src="/ewoo.png"/>
+                <EwooImage src={EwooProfile} style={{
+                    width: '3.5625rem',
+                    height: '3.5625rem',
+                }}/>
             </EwooContainer>
             <CustomSpacer height="0.3rem"/>
             <ChatInputField isActive={false} />
@@ -116,7 +120,7 @@ const TrashcanBody = () => {
 const Tail = styled.div`
 position: absolute;
 bottom: -1.5rem;
-left : 2.66rem;
+left : 1.41rem;
 width: 1.3125rem;
 height: 1.625rem;
 flex-shrink: 0;
