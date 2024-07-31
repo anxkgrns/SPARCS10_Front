@@ -19,6 +19,7 @@ import MeMark from '../assets/icons/MeMark.svg'
 
 
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Friend_Div(i){
 
@@ -134,7 +135,13 @@ export default function HomeScreen() {
 
           <CustomSpacer height="1.81rem"/>
 
-          <Body1>
+          <Body1 onClick={
+            () => {
+              //! go to QuestMainScreen
+              const navigate = useNavigate();
+              navigate("/quest");
+            }
+          }>
             <Body_first_line>
               <Body1_text1>
                 오늘의 환경 미션

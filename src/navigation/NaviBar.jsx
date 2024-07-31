@@ -21,12 +21,14 @@ import ShoppingScreen from '../screens/ShoppingScreen';
 import {ChatBotBaseScreen} from '../screens/chatbotScreen/ChatBotBaseScreen';
 import styled from 'styled-components';
 
+import QuestMainScreen from '../screens/questScreen/QuestMainScreen';
+
 export default function LabelBottomNavigation() {
   const [value, setValue] = React.useState('홈');
   
   return (
     <>
-      {value === '홈' && <HomeScreen />}
+      {value === '홈' && <QuestMainScreen />}
       {value === '식물원' && <PlantScreen />}
       {value === '챗봇' && <ChatBotBaseScreen />}
       {value === '쇼핑' && <ShoppingScreen />}
