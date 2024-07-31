@@ -11,6 +11,7 @@ font-style: normal;
 font-weight: 400;
 
 vertical-align: middle;
+text-align: right;
 line-height: 140.041%; /* 1.31288rem */
 `;
 

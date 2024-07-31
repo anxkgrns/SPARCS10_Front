@@ -24,7 +24,7 @@ position: relative;
 display: flex;
 flex-direction: row;
 align-items: center;
-justify-content: space-between;
+justify-content: center;
 width: 7.0625rem;
 height: 2.0625rem;
 padding: 0.375rem 0.75rem;

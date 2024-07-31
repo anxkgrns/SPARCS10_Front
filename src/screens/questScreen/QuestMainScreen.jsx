@@ -40,35 +40,35 @@ const QuestMainScreen = () => {
             type: "trashcan",
             content: "AI 이우와 함께  쓰레기통 위치 찾고 쓰레기 버리기",
             state: "미완료",
-            reward_type: "leaf",
+            reward_type: "coin",
             reward: 5
         },
         {
             type: "greenIdea",
             content: "AI 이우에게 오늘의 환경 상식 듣기",
             state: "진행중",
-            reward_type: "leaf",
+            reward_type: "coin",
             reward: 5
         },
         {
             type: "recycle",
             content: "AI 이우와 함께 쓰레기 분리수거하기",
             state: "미완료",
-            reward_type: "leaf",
+            reward_type: "coin",
             reward: 5
         },
         {
             type: "temperature",
             content: "실내 적정 온도 인증하기",
             state: "진행중",
-            reward_type: "leaf",
+            reward_type: "coin",
             reward: 5
         },
         {
             type: "bus",
             content: "대중교통 이용하기",
             state: "완료",
-            reward_type: "leaf",
+            reward_type: "coin",
             reward: 5
         },
     ])
@@ -117,7 +117,7 @@ const QuestMainScreen = () => {
                 alignItems: "center",
                 justifyContent: "center",
             }}>
-            <MoneyHolder type="coin" value={1000} />
+            <MoneyHolder type="coin" value={10000} />
             <MoneyHolder type="leaf" value={1000} />
             </div>
         </div>
