@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import RightIcon from '../assets/icons/ChevronRight.svg'
+import RightIcon from '../assets/icons/ChevronRightIcon.svg'
 import LeafIcon from '../assets/icons/LeafIcon.svg'
 import CoinIcon from '../assets/icons/coin.svg'
 import Heartfull from '../assets/icons/HeartFill.svg'
