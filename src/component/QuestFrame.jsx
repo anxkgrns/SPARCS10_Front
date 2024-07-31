@@ -141,7 +141,7 @@ align-items: center;
 
 border-radius: 1.25rem;
 
-opacity: ${props => props.complete ? "1" : "0.5"};
+opacity : 1;
 filter: drop-shadow(0px 1px 40px rgba(144, 164, 140, 0.10)) drop-shadow(0px 0px 5px rgba(199, 199, 199, 0.50));
 background: ${props => props.complete ? "var(--green, #8CC42F)" : "var(--white, #FFFFFF)"};
 `;
