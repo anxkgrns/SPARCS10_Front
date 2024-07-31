@@ -1,9 +1,17 @@
+import React, { useContext } from 'react'
+import { NaviContext } from '../navigation/NaviBar';
+
 import styled from 'styled-components'
 import coinIcon from '../assets/icons/coin.svg'
 import notifi from '../assets/icons/notifications.svg'
-import Right from '../assets/icons/ChevronRight.svg'
+import Right from '../assets/icons/ChevronLeft.svg'
 import ExPlant from '../assets/icons/Explant.svg'
 import Leaf from '../assets/icons/leaf.svg'
+
+import MoneySpliter from '../assets/icons/MoneySpliter.svg'
+import AppName from '../assets/icons/AppName.svg'
+import AppNameDesign from '../assets/icons/AppNameDesign.svg'
+import water from '../assets/icons/water.svg'
 
 import friend1 from '../assets/icons/friend1.svg'
 import friend2 from '../assets/icons/friend2.svg'
@@ -13,31 +21,28 @@ import friend5 from '../assets/icons/friend5.svg'
 
 import Badge1 from '../assets/icons/badges/Badge1.svg'
 import Badge2 from '../assets/icons/badges/Badge2.svg'
+import Badge3 from '../assets/icons/badges/Badge3.svg'
 
 import KingMark from '../assets/icons/KingMark.svg'
 import MeMark from '../assets/icons/MeMark.svg'
+import PlantScreen from '../screens/PlantScreen';
+
+
 
 
 import { useState } from 'react'
 
-function Friend_Div(i){
-
-  return(
-    <Body3_friend>
-      <img src = {Friends[i]} alt=" " style={{width: "3.875rem", height: "3.875rem"}}/>
-    </Body3_friend>
-  );
-
-  
-}
 
 export default function HomeScreen() {
+
+  const {insidePage,setInsidePage} = useContext(NaviContext);
   
   function handleClick() {console.log('Viewport width: ' + window.innerWidth);
   console.log('Viewport height: ' + window.innerHeight);
   }
   var gap = "0.63rem";
   const [coin] = useState(1000);
+  const [Leafcoin] = useState(1000);
 
   const [task, setTask] = useState(['AI 챗봇에게 오늘의 환경 상식 듣기 ', '실내 적정 온도 설정하기', '텀블러 사용 인증하기' ]);
   const [taskReward, setTaskReward] = useState([10, 20, 30]);
@@ -50,7 +55,14 @@ export default function HomeScreen() {
   const [Friends, setFriends] = useState([friend1, friend2, friend3, friend4, friend5]);
   const [Friend_names,setNames] = useState(['지원이','춘식이','다붓이','넙죽이','라이언']);
   const [Friend_leafs,setLeafs] = useState([25,20,11,9,2]);
+
+  const BadgeNum = [0,1,2];
+
+  const[BadgeName, setBadgeName] = useState(['최초의 꽃','황금잎사귀','기부왕']);
+  const[BadgeImg, setBadgeImg] = useState([Badge1, Badge2, Badge3]);
+
   const my_name = '다붓이';
+
 
   const inset = [
     0,1,2,3,4
@@ -59,21 +71,26 @@ export default function HomeScreen() {
   function Friend_Div({i}){
     if(i == 0){
       return (
-        <Body3_friend_div>
-          <Body3_friend_king>
-            <img src = {Friends[i]} alt=" " style={{width: "4.1875rem", height: "4.1875rem"}}/>
-          </Body3_friend_king>
-          <Body3_friend_name>
-            {Friend_names[i]}
-          </Body3_friend_name>
-          <Body3_friend_leafs>
-            {Friend_leafs[i]+'개'}
-          </Body3_friend_leafs>
-        </Body3_friend_div>
+        <>
+          <img src={KingMark} alt=" " style={{position : 'absolute',top : '0rem',left : '0rem',zIndex :'1rem',  width: '1.43388rem', height: '1.19863rem'}}/>
+          <Body3_friend_div>
+            <Body3_friend_king>
+              <img src = {Friends[i]} alt=" " style={{width: "4.1875rem", height: "4.1875rem"}}/>
+            </Body3_friend_king>
+            <Body3_friend_name>
+              {Friend_names[i]}
+            </Body3_friend_name>
+            <Body3_friend_leafs>
+              {Friend_leafs[i]+'개'}
+            </Body3_friend_leafs>
+          </Body3_friend_div>
+        </>
       )
     }
     if( Friend_names[i] == my_name){
       return (
+      <>
+        <img src={MeMark} alt=" " style={{position : 'absolute',top : '0rem',left : `${4.2*i+2.0}rem`,zIndex :'1rem',  width: '1.6875rem', height: '1rem'}}/>
         <Body3_friend_div>
         <Body3_me>
           <img src = {Friends[i]} alt=" " style={{width: "4.1875rem", height: "4.1875rem"}}/>
@@ -85,228 +102,303 @@ export default function HomeScreen() {
           {Friend_leafs[i]+'개'}
         </Body3_friend_leafs>
       </Body3_friend_div>
+      </>
       )
     }
     else{
       return (
-        <Body3_friend_div>
-        <Body3_friend>
-          <img src = {Friends[i]} alt=" " style={{width: "4.1875rem", height: "4.1875rem"}}/>
-        </Body3_friend>
-        <Body3_friend_name>
-          {Friend_names[i]}
-        </Body3_friend_name>
-        <Body3_friend_leafs>
-          {Friend_leafs[i]+'개'}
-        </Body3_friend_leafs>
-      </Body3_friend_div>
+        
+          <Body3_friend_div>
+          <Body3_friend>
+            <img src = {Friends[i]} alt=" " style={{width: "4.1875rem", height: "4.1875rem"}}/>
+          </Body3_friend>
+          <Body3_friend_name>
+            {Friend_names[i]}
+          </Body3_friend_name>
+          <Body3_friend_leafs>
+            {Friend_leafs[i]+'개'}
+          </Body3_friend_leafs>
+        </Body3_friend_div>
+        
       )
     }
 
   }    
 
+  function Badge_Div({i}){
+    return(
+      <Body4_Badge_div>
+        <img src = {BadgeImg[i]} alt=" " style={{width: "4.6875rem", height: "4.6875rem"}}/>
+        <CustomSpacer height="0.5rem"/>
+        <Body4_Badge_name>
+          {BadgeName[i]}
+        </Body4_Badge_name>
+      </Body4_Badge_div>
+    )
+  }
+    
+  
   return (
-    <>
-      <HeadBox>
-      
-        <HeadButton onClick = {handleClick}>
-          <img src = {notifi} alt=" " style={{width: "2rem", height: "2rem", position : 'absolute', top : '0rem', left : '0rem' }}/>
-        </HeadButton>  
+    <NaviContext.Provider value={{insidePage,setInsidePage}}>
+      {insidePage === 'main' && 
+      <>
+        <HeadBox>
+          <img src= {AppName}
+            style={{
+              position: 'absolute',
+              top:'1.37rem',
+              left: '1.55rem',
+            }}
+          /> 
+          <img src= {AppNameDesign}
+            style={{
+              position: 'absolute',
+              top:'1.6rem',
+              left: '7.75rem',
+            }}
+          />
+        
+          <HeadButton onClick = {handleClick}>
+            <img src = {notifi} alt=" " style={{width: "2rem", height: "2rem", position : 'absolute', top : '0rem', left : '0rem' }}/>
+          </HeadButton>  
 
-        {/* <HeadDetail1 onClick = {handleClick}/>
-        <HeadDetail2>
-          <img src={coinIcon} alt=" " style={{width: "1.25rem", height: "1.25rem", position: "absolute", top: "0.12rem", left: "0.44rem"}}/>
-          <ButtonText>
-            {coin}
-          </ButtonText>
-        </HeadDetail2> 
-        <HeadDetail3 onClick = {handleClick}/> */}
-      </HeadBox>
-    <body>
-        <CustomSpacer height="1.63rem"/>
+        </HeadBox>
+        <div 
+          style={{
+            position: 'absolute',
+            top: '0rem',
 
-        <MoneyBar>
-        </MoneyBar>
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            width: '25.75rem',
+            height: '23.1875rem',
+            background: 'linear-gradient(180deg, #8DD40E 10%, #EFFEC9 76%)'
+          }}
+        >
+          <CustomSpacer height="5.37rem"/>
 
-        <CustomSpacer height="1.19rem"/>
+          <MoneyBar>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '0.5rem',
+                flexShrink: 0,
+              
+              }}
+            >
+              <img src={coinIcon} alt=" " style={{width: "1.5rem", height: "1.5rem"}}/>
+              <MoneyBarText>
+                {coin}
+              </MoneyBarText>
 
-        <BigMenu>
-
-          <CustomSpacer height="1.81rem"/>
-
-          <Body1>
-            <Body_first_line>
-              <Body1_text1>
-                오늘의 환경 미션
-              </Body1_text1>
-              <img src = {Right} alt=" " style={{width: "2.125rem", height: "2.125rem"}}/>
-            </Body_first_line>
+            </div>
+            <img src={MoneySpliter} alt=" " />
             
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '0.5rem',
+                flexShrink: 0,
+              
+              }}
+            >
+              <img src={Leaf} alt=" " style={{width: "1.31rem", height: "1.27rem"}}/>
+              <MoneyBarText>
+                {Leafcoin}
+              </MoneyBarText>
 
-            <Quest top= "3.75rem">
-              <Body1_subtext>
-                {task[0]}
-              </Body1_subtext>
+            </div>
 
-                {taskComplete[0] ? <Body1_complete_text> 완료! </Body1_complete_text> 
-                : 
-                <Body1_reward>
-                <CoinImg src={coinIcon} alt=" " />
-                  <Body1_reward_text>
-                    {taskReward[0]}
-                  </Body1_reward_text>
-              </Body1_reward>
-                }
-            </Quest>
 
-            <Quest top= "5.81rem">
-              <Body1_subtext>
-                {task[1]}
-              </Body1_subtext>
+          </MoneyBar>
 
-                {taskComplete[1] ? <Body1_complete_text> 완료! </Body1_complete_text>
-                : 
-                <Body1_reward>
+          <CustomSpacer height="1.19rem"/>
+          </div>
+
+          <BigMenu>
+
+            <CustomSpacer height="1.81rem"/>
+
+            <Body1>
+              <Body_first_line>
+                <Body1_text1>
+                  오늘의 환경 미션
+                </Body1_text1>
+                <img src = {Right} alt=" " style={{width: "2.125rem", height: "2.125rem"}}/>
+              </Body_first_line>
+              
+
+              <Quest top= "3.75rem">
+                <Body1_subtext>
+                  {task[0]}
+                </Body1_subtext>
+
+                  {taskComplete[0] ? <Body1_complete_text> 완료! </Body1_complete_text> 
+                  : 
+                  <Body1_reward>
                   <CoinImg src={coinIcon} alt=" " />
                     <Body1_reward_text>
-                      {taskReward[1]}
+                      {taskReward[0]}
                     </Body1_reward_text>
                 </Body1_reward>
-                }
-            </Quest>
+                  }
+              </Quest>
 
-            <Quest top= "7.88rem">
-              <Body1_subtext>
-                {task[2]}
-              </Body1_subtext>
+              <Quest top= "5.81rem">
+                <Body1_subtext>
+                  {task[1]}
+                </Body1_subtext>
 
-                {taskComplete[1] ? <Body1_complete_text> 완료! </Body1_complete_text>
-                : 
-                <Body1_reward>
+                  {taskComplete[1] ? <Body1_complete_text> 완료! </Body1_complete_text>
+                  : 
+                  <Body1_reward>
                     <CoinImg src={coinIcon} alt=" " />
-                    <Body1_reward_text>
-                      {taskReward[2]}
-                    </Body1_reward_text>
-                </Body1_reward>
-                }     
-            </Quest>
-            
-          </Body1>
+                      <Body1_reward_text>
+                        {taskReward[1]}
+                      </Body1_reward_text>
+                  </Body1_reward>
+                  }
+              </Quest>
+
+              <Quest top= "7.88rem">
+                <Body1_subtext>
+                  {task[2]}
+                </Body1_subtext>
+
+                  {taskComplete[1] ? <Body1_complete_text> 완료! </Body1_complete_text>
+                  : 
+                  <Body1_reward>
+                      <CoinImg src={coinIcon} alt=" " />
+                      <Body1_reward_text>
+                        {taskReward[2]}
+                      </Body1_reward_text>
+                  </Body1_reward>
+                  }     
+              </Quest>
+              
+            </Body1>
 
 
-          <CustomSpacer height="1.25rem"/>
+            <CustomSpacer height="1.25rem"/>
 
-          <Body2>
-            <Body_first_line>
-              <Body1_text1>
-                식물 가꾸기
-              </Body1_text1>
-              <img src = {Right} alt=" " style={{width: "2.125rem", height: "2.125rem" }}/>
-            
-            </Body_first_line>
+            <Body2 onClick={
+              () => {
+                setInsidePage('MyPlant1');
+            }}>
+              <Body_first_line>
+                <Body1_text1>
+                  식물 가꾸기
+                </Body1_text1>
+                <img src = {Right} alt=" " style={{width: "2.125rem", height: "2.125rem" }}/>
+              
+              </Body_first_line>
 
-            <Body2_panel>
-              <Body2_text>
-                {plant_text}
-              </Body2_text>
-            </Body2_panel>
+              <Body2_panel>
+                <CustomSpacer height="0.5rem"/>
+                <img src = {water} alt=" " style={{position: "absolute", top: "0.69rem", left: "1.12rem"}}/>
+                <Body2_text
+                  style={{
+                    position: "absolute",
+                    top: "0.5rem",
+                    left: "2.44rem",
+                  }}
+                >
+                  {plant_text}
+                </Body2_text>
+              </Body2_panel>
 
-            <img src = {ExPlant} alt=" " style={{width: "9.2rem", height: "7.06rem", position: "absolute", top: "1rem", right: "-0.32rem"}}/>
-            
-          </Body2>
+              <img src = {ExPlant} alt=" " style={{width: "9.2rem", height: "7.06rem", position: "absolute", top: "1rem", right: "-0.32rem"}}/>
+              
+            </Body2>
 
-          <CustomSpacer height="1.62rem"/>
+            <CustomSpacer height="1.75rem"/>
 
-            <Challenge_title>
-              챌린지
-            </Challenge_title>
+              <Challenge_title>
+                챌린지
+              </Challenge_title>
 
-          <CustomSpacer height="0.69rem"/>
+            <CustomSpacer height="1.25rem"/>
 
-          <Body3>
-            <Body_first_line>
-              <Body1_text1>
-                주간 챌린지
-              </Body1_text1>
-              <Time_left_box>
-                <Time_left>
-                  {Time_left_string}
-                </Time_left>
+            <Body3>
+              <Body_first_line>
+                <Body1_text1>
+                  주간 챌린지
+                </Body1_text1>
+                <Time_left_box>
+                  <Time_left>
+                    {Time_left_string}
+                  </Time_left>
+                  <img src = {Right} alt=" " style={{width: "2.125rem", height: "2.125rem"}}/>
+                </Time_left_box>
+              </Body_first_line>
+
+              <Body3_subline>
+              
+                <Body3_subtext>
+                  총 100개의 코인
+                </Body3_subtext>
+                <img src = {coinIcon} alt=" " style={{width: "1rem", height: "0.78rem"}}/>
+                <Body3_subtext>
+                  모으기
+                </Body3_subtext>
+              </Body3_subline>
+
+              
+              <Body3_friends>
+                {
+                  inset.map((i) => (
+                  <Friend_Div i = {i}/>
+                  ))
+                }
+
+              </Body3_friends>
+            </Body3>
+
+            <CustomSpacer height="1.25rem"/>
+
+            <Body4>
+              <Body_first_line>
+                <Body1_text1>
+                  배지
+                </Body1_text1>
                 <img src = {Right} alt=" " style={{width: "2.125rem", height: "2.125rem"}}/>
-              </Time_left_box>
-            </Body_first_line>
+              </Body_first_line>
+              
+              {/*배치 추가하고 싶으면 아래 형식으로 */}
+              <Body4_Badge>
+                {
+                  BadgeNum.map((i) => (
+                  <Badge_Div i = {i}/>
+                  ))
+                }
+              </Body4_Badge>
+            </Body4>
 
-            <Body3_subline>
-            
-              <Body3_subtext>
-                총 100개의 이파리
-              </Body3_subtext>
-              <img src = {Leaf} alt=" " style={{width: "1rem", height: "0.78rem"}}/>
-              <Body3_subtext>
-                 모으기
-              </Body3_subtext>
-            </Body3_subline>
+            <CustomSpacer height="12.69rem"/>
+          </BigMenu>
 
-            <img src={KingMark} alt=" " style={{position : 'absolute',top : '5.32rem',left : '1rem',zIndex :'1rem',  width: '1.43388rem', height: '1.19863rem'}}/>
-            <Body3_friends>
-              {/* <Body3_friend_div>
-                <Body3_friend_king>
-                  <img src = {Friends[0]} alt=" " style={{width: "4.1875rem", height: "4.1875rem"}}/>
-                </Body3_friend_king>
-                <Body3_friend_name>
-                  {Friend_names[0]}
-                </Body3_friend_name>
-                <Body3_friend_leafs>
-                  {Friend_leafs[0]+'개'}
-                </Body3_friend_leafs>
-              </Body3_friend_div> */}
-              {
-                inset.map((i) => (
-                <Friend_Div i = {i}/>
-                ))
-              }
-
-            </Body3_friends>
-          </Body3>
-
-          <CustomSpacer height="2.69rem"/>
-
-          <Body4>
-            <Body_first_line>
-              <Body1_text1>
-                배지
-              </Body1_text1>
-              <img src = {Right} alt=" " style={{width: "2.125rem", height: "2.125rem"}}/>
-            </Body_first_line>
-            
-            {/*배치 추가하고 싶으면 아래 형식으로 */}
-            <Body4_Badge>
-              <Body4_Badge_div>
-                <img src = {Badge1} alt=" " style={{width: "4.6875rem", height: "4.6875rem"}}/>
-                <Body4_Badge_name>
-                  최초의 꽃
-                </Body4_Badge_name>
-              </Body4_Badge_div>
-
-              <Body4_Badge_div>
-                <img src = {Badge1} alt=" " style={{width: "4.6875rem", height: "4.6875rem"}}/>
-                <Body4_Badge_name>
-                  최초의 꽃
-                </Body4_Badge_name>
-              </Body4_Badge_div>
-            </Body4_Badge>
-          </Body4>
-
-          <CustomSpacer height="12.69rem"/>
-        </BigMenu>
-
-        {/* <Text1>
-          {main_text}
-        </Text1> */}
-        
-
-      </body>
-    </>
+          {/* <Text1>
+            {main_text}
+          </Text1> */}
+      </>
+      }
+      {(insidePage === 'MyPlant1'||
+        insidePage === 'MyPlant2'||
+        insidePage === 'MyPlant3'|| 
+        insidePage === 'PlantShop1'||
+        insidePage === 'PlantShop2'||
+        insidePage === 'PlantShop3'
+        ) &&
+          <PlantScreen/>}
+    </NaviContext.Provider>
   );
 }
 
@@ -333,72 +425,14 @@ const HeadButton = styled.button`
 `;
 
 
-const HeadDetail1 = styled.button`
-width: 77px;
-height: 24px;
-flex-shrink: 0;
-border-radius: 25px;
-border: 1px solid #F4F4F4;
-background: #FFF;
-position: absolute;
-top : 1.28rem;
-left : 19.38rem;
-`;
-
-const HeadDetail2 = styled.button`
-width: 4.9375rem;
-height: 1.5rem;
-flex-shrink: 0;
-border-radius: 1.5625rem;
-border: 1px solid #F4F4F4;
-background: #FFF;
-position: absolute;
-top : 1.28rem;
-left : 13.38rem;
-`;
-
-const HeadDetail3 = styled.button`
-width: 2.5rem;
-height: 2.5rem;
-flex-shrink: 0;
-border-radius: 25px;
-border: 1px solid #F4F4F4;
-background: #D9D9D9;;
-position: absolute;
-top : 0.8rem;
-left : 1.56rem;
-`;
-
-const ButtonText = styled.text`
-font-family: AppleSDGothicNeoB;
-font-size: 0.9975rem;
-font-style: normal;
-font-weight: 400;
-line-height: 140.041%; /* 1.39694rem */
-letter-spacing: -0.01994rem;
-
-position: absolute;
-top: 0.12rem;
-left: 2.31rem;
-`;
-
-const Text1 = styled.text`
-display: flex;
-align-self: start;
-margin-left: 1.62rem;
-
-flex-direction: column;
-color: var(--black, #101210);
-font-family: AppleSDGothicNeoB;
-font-size: 1.995rem;
-font-style: normal;
-font-weight: 400;
-line-height: 2.875rem; /* 144.11% */
-letter-spacing: -0.03988rem;
-white-space: pre-wrap;
-`;
-
 const MoneyBar = styled.div`
+
+display : flex;
+flex-direction : row;
+justify-content : space-evenly;
+align-items : center;
+
+
 width: 22.625rem;
 height: 3.5rem;
 flex-shrink: 0;
@@ -406,7 +440,21 @@ border-radius: 1.25rem;
 background: #FFF;
 `;
 
+const MoneyBarText = styled.text`
+color: var(--black, #101210);
+text-align: right;
+font-family: AppleSDGothicNeoEB;
+font-size: 1.25rem;
+font-style: normal;
+font-weight: 400;
+line-height: 140.041%; /* 1.7505rem */
+`;
+
 const BigMenu = styled.div`
+
+position: absolute;
+top:10.25rem;
+
 width: 25.75rem;
 height: fit-content;
 min-height: 10rem;
@@ -553,23 +601,19 @@ box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 0.50), 0px 1px 40px 0px rgba(144
 const Body2_panel = styled.div`
 
 position: absolute;
-bottom: 1.13rem;
+bottom: 1.12rem;
 left: 1.13rem;
 
-display: inline-flex;
-height: 2.1875rem;
-// box-sizing: border-box;
-padding: 0rem 0.625rem 0rem 0.625rem;
-justify-content: center;
-align-items: center;
-gap: 0.625rem;
-flex-shrink: 0;
+height: 2.5rem;
+width: 10.31rem;
+
 
 border-radius: 6.25rem;
 background: rgba(226, 229, 63, 0.30);
 `;
 
 const Body2_text = styled.text`
+
 color: #52810A;
 
 font-family: AppleSDGothicNeoM;
@@ -615,7 +659,7 @@ box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 0.50), 0px 1px 40px 0px rgba(144
 const Time_left = styled.text`
 color: var(--green5, #52810A);
 text-align: right;
-font-family: AppleSDGothicNeoEB00;
+font-family: AppleSDGothicNeoEB;
 font-size: 0.9375rem;
 font-style: normal;
 font-weight: 400;
@@ -765,7 +809,7 @@ position: relative;
 display: flex;
 flex-direction: column;
 
-width: 22.5rem;
+width: 22.25rem;
 height: 11.4375rem;
 flex-shrink: 0;
 border-radius: 1.25rem;
@@ -802,7 +846,7 @@ left: 1.13rem;
 const Body4_Badge_name = styled.text`
 color: var(--black, #101210);
 text-align: center;
-font-family: AppleSDGothicNeoB00;
+font-family: AppleSDGothicNeoB;
 font-size: 0.855rem;
 font-style: normal;
 font-weight: 400;

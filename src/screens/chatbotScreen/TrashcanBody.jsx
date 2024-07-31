@@ -6,7 +6,7 @@ import ChatTail from '../../assets/icons/ChatTail.svg';
 import UnionIcon from '../../assets/icons/UnionMark.svg';
 import { MyContext } from './ChatBotBaseScreen';
 
-import ChevronRight from '../../assets/images/ChevronRight.svg?react'
+import ChevronRight from '../../assets/icons/ChevronRight.svg'
 
 import TrashMap from './TrashMap';
 import { ChatInputField } from './util';
