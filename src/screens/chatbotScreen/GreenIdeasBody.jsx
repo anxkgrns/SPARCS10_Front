@@ -12,7 +12,7 @@ const ChatBody = () => { // recycle, greenIdea 분리하기.
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
     
-    const mounted = useRef(false);
+    const mounted = useRef(true);
 
     useEffect(() => {
         const fetchGreenIdea = async () => {
