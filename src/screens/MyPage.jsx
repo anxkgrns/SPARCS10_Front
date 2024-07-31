@@ -4,6 +4,7 @@ import Image from './ImageManage';
 
 export default function MyScreen() {
     const [uploadImgUrl, setUploadImgUrl] = useState("");
+    const [task, setTask] = useState("1");
 
     const ImageUpload = ()=> {
     
@@ -27,8 +28,15 @@ export default function MyScreen() {
     return (
         <div>
             <h1>My Screen</h1>
+            <input
+                onChange={(e) => {
+                    setTask(e.target.value);
+                }}/>
+            <button onClick = {()=> setTask()}>Change</button>
+            {console.log("task: ", task)}
+            
             <ImageUpload/>
-            {uploadImgUrl !== "" && <Image x={uploadImgUrl}/>}
+            {uploadImgUrl !== "" && <Image i= {task} x={uploadImgUrl}/>}
         </div>
     )
 }
