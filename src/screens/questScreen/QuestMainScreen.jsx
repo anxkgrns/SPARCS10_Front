@@ -155,24 +155,29 @@ const QuestMainScreen = () => {
                 <QuestProgressBubble reward_type={"coin"} reward={5} progress={1} />
                 <QuestProgressBubble reward_type={"coin"} reward={5} progress={2} />
             </div>
+
         <div style={{
+            position: "fixed",
+            bottom: "2.19rem",
             display: "flex",
             flexDirection: "column",
             gap: "0.62rem",
             width: "100%",
+            height: "25.63rem",
+            padding: "0.75rem 1.25rem",
             boxSizing: "border-box",
-            overflowY: "scroll",
+            overflow: "auto",
         }} className="QuestListBox">
             {QuestList.map((quest, index) => {
                 return (
-                                <QuestFrame
-                                    key={index}
-                                    questType={quest.type}
-                                    content={quest.content}
-                                    state={quest.state}
-                                    reward_type={quest.reward_type}
-                                    reward={quest.reward}
-                                />
+                    <QuestFrame
+                        key={index}
+                        questType={quest.type}
+                        content={quest.content}
+                        state={quest.state}
+                        reward_type={quest.reward_type}
+                        reward={quest.reward}
+                    />
                 )
             })
             }
