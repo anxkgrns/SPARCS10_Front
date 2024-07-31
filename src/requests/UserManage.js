@@ -25,3 +25,5 @@ const getMoney = async (/*userName*/) => {
     const response = await axios.get(`/server/ewoo/user/money`, {params});
     return response.data.data; // {coin : int, leaf : int}
 }
+
+export { useMoney, getMoney };
