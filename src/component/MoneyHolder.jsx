@@ -4,6 +4,7 @@ import coin from '../assets/icons/coin.svg';
 import leaf from '../assets/icons/leaf.svg';
 
 import parsingMoneyValue from '../utils/ParseMoney';
+import MoneyValueTextStyle from './MoneyValueTextStyle';
 
 const MoneyHolder = ({type, value}) => { // 재화의 종류와 값
     var imgSrc = (type === "coin") ? coin : leaf;
@@ -33,19 +34,6 @@ box-sizing: border-box;
 
 border-radius: 6.25rem;
 background: rgba(255, 255, 255, 0.70);
-`;
-
-const MoneyValueTextStyle = styled.text`
-position: absolute;
-right: 0.7rem;
-bottom: 0.2rem;
-color: var(--black, #101210);
-text-align: right;
-font-family: AppleSDGothicNeoEB;
-font-size: 1rem;
-font-style: normal;
-font-weight: 400;
-line-height: 140.041%; /* 1.40044rem */
 `;
 
 export default MoneyHolder;

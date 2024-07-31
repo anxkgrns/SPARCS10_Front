@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import QuestCompleted from '../assets/icons/completed.svg?react';
+import QuestCompleted from '../assets/icons/completed_check.svg?react';
 import Coin from '../assets/icons/coin.svg?react';
 import Leaf from '../assets/icons/leaf.svg?react';
-
 
 import parsingMoneyValue from '../utils/ParseMoney';
 
