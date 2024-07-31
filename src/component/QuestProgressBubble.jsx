@@ -12,6 +12,45 @@ const QuestProgressBubble = ({ reward_type, reward, progress, state }) => {
     console.log(state);
     var imgSrc = (reward_type === "coin") ? coin : leaf;
 
+    if (state) {
+        return (
+            <div style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.375rem",
+            }}>
+            <div style={{
+                position: "relative",
+            }} className="Bubble">
+                <ProgressBubble style={{
+                    position: "absolute",
+                    bottom: 0,
+                    zIndex : -1,
+                }}/>
+                <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}>
+                    <BubbleContent className="BubbleContent">
+                    <QuestCompleted/>
+                    </BubbleContent>
+                </div>
+            </div>
+             {
+                state ?
+                <CompletedTextStyle>
+                    달성!
+                </CompletedTextStyle>
+                : null
+            }
+            </div>
+        )
+    } else {
+        
     if(progress===0 || progress === 1){ // 첫번째
         return (
             <div style={{
@@ -35,38 +74,25 @@ const QuestProgressBubble = ({ reward_type, reward, progress, state }) => {
                     alignItems: "center",
                     justifyContent: "center",
                 }}>
-                {
-                    state ?
-                    <BubbleContent className="BubbleContent">
-                    <QuestCompleted/>
-                    </BubbleContent>
-                    : <BubbleContent>
-                        <img src={imgSrc} alt="money" style={{
-                            verticalAlign: "middle"
-                        }} />
-                        <div style={{ width: "0.22rem" }}></div>
-                        <MoneyValueTextStyle margintop='0.33rem'>
-                            {parsingMoneyValue(reward)}
-                        </MoneyValueTextStyle>
-                    </BubbleContent>
-                }
+                <BubbleContent>
+                    <img src={imgSrc} alt="money" style={{
+                        verticalAlign: "middle"
+                    }} />
+                    <div style={{ width: "0.22rem" }}></div>
+                    <MoneyValueTextStyle margintop='0.33rem'>
+                        {parsingMoneyValue(reward)}
+                    </MoneyValueTextStyle>
+                </BubbleContent>
                 </div>
             </div>
-             {
-                state ?
-                <CompletedTextStyle>
-                    달성!
-                </CompletedTextStyle>
-                : null
-            }
-            </div>
+        </div>
         )
     } else { // 세번째
         return (
             <div style={{
                 position: "relative",
             }} className="Bubble">
-                <FinalProgressBubble style={{
+             <FinalProgressBubble style={{
                     position: "absolute",
                     bottom: 0,
                     zIndex : -1,
@@ -106,6 +132,7 @@ const QuestProgressBubble = ({ reward_type, reward, progress, state }) => {
                 </div>
             </div>
         )
+    }
     }
 }
 

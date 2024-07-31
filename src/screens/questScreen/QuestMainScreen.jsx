@@ -87,7 +87,7 @@ const QuestMainScreen = () => {
         {
             type: "bus",
             content: "대중교통 이용하기",
-            state: "미완료",
+            state: "완료",
             reward_type: "leaf",
             reward: 5
         },
@@ -114,7 +114,7 @@ const QuestMainScreen = () => {
 
           console.log(count);
     }
-    , [count]);
+    , [count, QuestList]);
     return (
     <>
     <QuestContext.Provider value={{typeOfGuideQuest, setTypeOfGuideQuest}}>
