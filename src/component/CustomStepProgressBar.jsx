@@ -5,6 +5,7 @@ import 'react-step-progress-bar/styles.css';
 const CustomStepProgressBar = ({ percent }) => {
 
   const DotSize = '1.25rem';
+  // console.log(percent);
 
   return (
     <ProgressBar

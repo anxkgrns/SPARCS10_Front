@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { QuestContext } from '../screens/questScreen/QuestMainScreen';
 import {getGuideJson} from './QuestGuideData';
 
+import {addSuccessQuest} from '../requests/QuestStateManage';
+
 const typeList = [
     "temperature", "bus", "tumbler", 'airconditioner', 'trashcan', 'greenIdea', 'recycle'
 ]
@@ -21,7 +23,7 @@ const QuestGuidePopup = () => {
     const [questGuidePhotoTag, setQuestGuidePhotoTag] = useState([]);
 
     useEffect(() => {
-        if (typeOfGuideQuest.questType !== 'success' && typeOfGuideQuest.questType !=='fail') {
+        if (typeOfGuideQuest.status !== 'success' && typeOfGuideQuest.status !=='fail') {
             console.log(typeOfGuideQuest);
             var response = getGuideJson(typeOfGuideQuest.questType); //! api 연결 필요
             response = JSON.parse(response);
@@ -36,11 +38,22 @@ const QuestGuidePopup = () => {
     
             setQuestGuidePhoto(guidePhotos); // This sets an array of photos
             setQuestGuidePhotoTag(guidePhotoTags); // This sets an array of tags
+        } else if (typeOfGuideQuest.status === 'success') {
+            const fetchSuccessQuest = async () => {
+               await addSuccessQuest(typeOfGuideQuest);
+            }
+            fetchSuccessQuest(typeOfGuideQuest);
+        } else {
+            setTypeOfGuideQuest(
+                {
+                    questType: typeOfGuideQuest.questType,
+                    status: 'fail'
+                }
+            )
         }
-
     }, [typeOfGuideQuest]);
 
-    if (typeOfGuideQuest.questType === 'success' ){
+    if (typeOfGuideQuest.status === 'success' ){
         return (<div style={{
             position: 'fixed',
             display: 'flex',
@@ -54,7 +67,10 @@ const QuestGuidePopup = () => {
         }} className='popup'
             onClick={() => {
                 setMounted(false);
-                setTypeOfGuideQuest(null);
+                setTypeOfGuideQuest({
+                    questType: null,
+                    status: null
+                });
             }}
          >
         <ContentBox>
@@ -65,12 +81,12 @@ const QuestGuidePopup = () => {
                 }} className="CheerEwoo">
                     <img src="/CheerfulEwoo.png" alt="cheerEwoo" />
                 </div>
-            <SubmitButton>
+            <SubmitButton onClick >
                 <SubmitButtonText>보상 수령하기</SubmitButtonText>
             </SubmitButton>
         </ContentBox>
         </div>)
-    } else if (typeOfGuideQuest.questType === 'fail'){
+    } else if (typeOfGuideQuest.status === 'fail'){
         return(<div style={{
             position: 'fixed',
             display: 'flex',
@@ -84,7 +100,10 @@ const QuestGuidePopup = () => {
         }} className='popup'
             onClick={() => {
                 setMounted(false);
-                setTypeOfGuideQuest(null);
+                setTypeOfGuideQuest({
+                    questType: null,
+                    status: null
+                });
             }}
          >
         <ContentBox>
@@ -115,9 +134,12 @@ const QuestGuidePopup = () => {
             background: 'rgba(83, 102, 56, 0.60)',
             zIndex: 1000
         }} className='popup'
-            onClick={() => {
+            onClick={() => { // 배경 터치하면 팝업 닫음.
                 setMounted(false);
-                setTypeOfGuideQuest(null);
+                setTypeOfGuideQuest({
+                    questType: null,
+                    status: null
+                });
             }}
          >
         <ContentBox>
@@ -146,7 +168,6 @@ const QuestGuidePopup = () => {
                     )
                 })
             }
-            
             </div>
             <SubmitButton>
                 <SubmitButtonText>사진 업로드하기</SubmitButtonText>

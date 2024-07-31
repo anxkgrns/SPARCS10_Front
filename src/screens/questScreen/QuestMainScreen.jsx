@@ -11,18 +11,16 @@ import CustomStepProgressBar from '../../component/CustomStepProgressBar'
 
 import { NaviContext } from '../../navigation/NaviBar.jsx';
 
+import {getQuestStateList, getSuccessQuestCount} from '../../requests/QuestStateManage'
+
 function countCompletedQuest(QuestList) {
     var count = 0;
     for (var i = 0; i < QuestList.length; i++) {
-        if (QuestList[i].state === "완료") {
+        if (QuestList[i].state === "success") {
             count++;
         }
     }
     return count;
-}
-
-function countTotalQuest(QuestList) {
-    return QuestList.length;
 }
 
 const QuestContext = React.createContext('nope');
@@ -32,48 +30,58 @@ const QuestMainScreen = () => {
         {
             type: "tumbler",
             content: "텀블러 혹은 컵 이용하기",
-            state: "미완료",
+            state: null,
             reward_type: "leaf",
             reward: 5
         },
         {
             type: "trashcan",
             content: "AI 이우와 함께  쓰레기통 위치 찾고 쓰레기 버리기",
-            state: "미완료",
+            state: null,
             reward_type: "coin",
             reward: 5
         },
         {
             type: "greenIdea",
             content: "AI 이우에게 오늘의 환경 상식 듣기",
-            state: "진행중",
+            state:  null,
             reward_type: "coin",
             reward: 5
         },
         {
             type: "recycle",
             content: "AI 이우와 함께 쓰레기 분리수거하기",
-            state: "미완료",
+            state: null,
             reward_type: "coin",
             reward: 5
         },
         {
             type: "temperature",
             content: "실내 적정 온도 인증하기",
-            state: "진행중",
+            state: null,
             reward_type: "coin",
             reward: 5
         },
         {
             type: "bus",
             content: "대중교통 이용하기",
-            state: "완료",
+            state: null,
             reward_type: "coin",
             reward: 5
         },
+        {
+            type: "bicycle",
+            content: "자전거 타기",
+            state: null,
+            reward_type: "coin",
+            reward: 5
+        }
     ])
 
-    const [typeOfGuideQuest, setTypeOfGuideQuest] = useState(null);
+    const [typeOfGuideQuest, setTypeOfGuideQuest] = useState({
+        questType: null,
+        status: null
+    });
     const {insidePage,setInsidePage} = React.useContext(NaviContext);
 
     const [progress, setProgress] = useState(0);
@@ -84,15 +92,31 @@ const QuestMainScreen = () => {
         if(!mounted.current){
             mounted.current = true;
           } else {
-            setCount(countCompletedQuest(QuestList));
-            if (count < 3) {
-                setProgress(count*33.33+1);
-            } else {
-                setProgress(100);
+            const fetchProgress = async () => {
+                const todayProgressList = await getQuestStateList();
+                var tempQuestList = QuestList;
+                todayProgressList.map((quest) => {
+                    for (var i = 0; i < tempQuestList.length; i++) {
+                        if (tempQuestList[i].content === quest.quest_name) {
+                            tempQuestList[i].state = "success";
+                        }
+                    } 
+                });
+                setQuestList(tempQuestList);
+
+                const countResponse = await getSuccessQuestCount();
+                setCount(countResponse);
+                if (countResponse < 3) {
+                    setProgress(countResponse*33.33+1);
+                } else if (countResponse >= 3) {
+                    setProgress(100);
+                } else{
+                    setProgress(0);
+                }
             }
-          }
-    }
-    , [count, QuestList]);
+            fetchProgress();
+        }}, [count, mounted]);
+
     return (
     <>
     <QuestContext.Provider value={{typeOfGuideQuest, setTypeOfGuideQuest}}>
@@ -146,7 +170,7 @@ const QuestMainScreen = () => {
                     </TitleTextStyle>
                     <div style={{ height: "1.1rem" }}></div>
                     <TitleProgressStyle>
-                        {countCompletedQuest(QuestList)}/3
+                        {count}/3
                         <TitleProgressSubStyle> 완료</TitleProgressSubStyle>
                     </TitleProgressStyle>
                 </div>
@@ -216,9 +240,8 @@ const QuestMainScreen = () => {
     </div>
         </BackGround>
         {
-            typeOfGuideQuest === null ? null : <QuestGuidePopup />
+            typeOfGuideQuest.questType === null ? null : <QuestGuidePopup />
         }
-        
         </QuestContext.Provider>
     </>
     )

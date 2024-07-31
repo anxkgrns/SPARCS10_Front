@@ -16,7 +16,7 @@ import QuestGuidePopup from "./QuestGuidePopup";
 import {QuestContext} from "../screens/questScreen/QuestMainScreen"
 
 const QuestFrame = ({ questType, content, state, reward_type, reward}) => {
-    var iscomplete = (state === "완료") ? true : false;
+    var iscomplete = (state === "success") ? true : false;
     var iscoin = (reward_type === "coin") ? true : false;
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -25,7 +25,10 @@ const QuestFrame = ({ questType, content, state, reward_type, reward}) => {
         <FrameStyle onClick={
             () => {
                 setModalIsOpen(true);
-                setTypeOfGuideQuest({questType});
+                setTypeOfGuideQuest({
+                    questType: questType,
+                    status: iscomplete ? 'pending' : null
+                });
             }
         }>
             <div style={{ // icon and text
