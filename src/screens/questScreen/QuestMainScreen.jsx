@@ -1,10 +1,13 @@
 import styled from 'styled-components'
 import React, {useState, useEffect} from 'react'
+import ProgressBar from 'react-step-progress-bar'
 import MoneyHolder from '../../component/MoneyHolder'
 import QuestFrame from '../../component/QuestFrame'
 import QuestProgressBubble from '../../component/QuestProgressBubble.jsx'
 
 import QuestGuidePopup from '../../component/QuestGuidePopup'
+import BackButton from '../../assets/icons/ChevronLeft.svg?react'
+import CustomStepProgressBar from '../../component/CustomStepProgressBar'
 
 function countCompletedQuest(QuestList) {
     var count = 0;
@@ -97,16 +100,23 @@ const QuestMainScreen = () => {
         <div style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "end",
+            justifyContent: "space-between",
             alignItems: "center",
+            padding: "1.875rem 1.25rem 0.5rem 1.25rem",
             width: "100%",
-            padding: "0.75rem 1.25rem",
-            gap: "0.63rem",
         }}>
+            <BackButton/>
+            <div style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "0.63rem",
+                alignItems: "center",
+                justifyContent: "center",
+            }}>
             <MoneyHolder type="coin" value={1000} />
             <MoneyHolder type="leaf" value={1000} />
+            </div>
         </div>
-
         <div style={{
             display: "flex",
             flexDirection: "column",
@@ -151,6 +161,7 @@ const QuestMainScreen = () => {
                 width: '22.6875rem',
                 height: '6.1875rem'
             }} className="progressBar">
+                <CustomStepProgressBar />
                 <QuestProgressBubble reward_type={"coin"} reward={5} progress={0} state="완료"/>
                 <QuestProgressBubble reward_type={"coin"} reward={5} progress={1} />
                 <QuestProgressBubble reward_type={"coin"} reward={5} progress={2} />
