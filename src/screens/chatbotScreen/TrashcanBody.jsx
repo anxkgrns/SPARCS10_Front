@@ -1,5 +1,5 @@
 import { IconButton,Button } from '@mui/material';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import React from 'react';
 import styled from 'styled-components';
 import ChatTail from '../../assets/icons/ChatTail.svg';
@@ -26,31 +26,32 @@ const TrashcanBody = () => {
     const {maxLatLng, setMaxLatLng} = useContext(GeoContext);
     const {minLatLng, setMinLatLng} = useContext(GeoContext);
     const {trashcanLatLng, setTrashcanLatLng} = useContext(GeoContext);
-    const [distance, setDistance] = React.useState(null);
+    const [distance, setDistance] = useState(null);
 
-    const [loading, setLoading] = React.useState(false);
-    const [error, setError] = React.useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchTrashCan = async () => {
+             setLoading(true);
             try{
-                setLoading(true);
-                const response = await getNearestTrashCan(currentLatLng.lat(), currentLatLng.lng());
-                if (response.data.length === 0) {
+                const responseData = await getNearestTrashCan(currentLatLng.lat(), currentLatLng.lng());
+                if (responseData ===null || responseData.length === 0) {
                     setDistance(null);
                 } else{
-                    setTrashcanLatLng(new navermap.LatLng(response.data[0].latitude, response.data[0].longitude));
-                    setDistance(response.data[0].distance);
+                    console.log(responseData[0]);
+                    setTrashcanLatLng(new navermap.LatLng(responseData[0].latitude, responseData[0].longitude));
+                    setDistance(responseData[0].distance);
                 }
             } catch (error) {
                 setError(error);
-                console.error('Failed to fetch trashcan:', error);
+                console.error('Failed to fetch trashcan:', error.message);
             } finally {
                 setLoading(false);
             }
         }
         fetchTrashCan();
-    }, [currentLatLng]);
+    }, [distance]);
 
     return (
         <div style={{
@@ -81,25 +82,23 @@ const TrashcanBody = () => {
                 </div>
                 <CustomSpacer height="0.8rem"/>
                 <MapBox>
-                    {/* <TrashMap/> */}
+                    <TrashMap/>
                 </MapBox>
                 <CustomSpacer height="0.57rem"/>
-                { loading ?
-                    <AnswerTextStyle>잠시만 기다려주세요...</AnswerTextStyle> :
+                { loading ? <AnswerTextStyle>잠시만 기다려주세요...약 1분 정도 소요됩니다.</AnswerTextStyle> :
                         error ? <AnswerTextStyle>{error.message}</AnswerTextStyle> :
-                        distance === null ?
-                        <AnswerTextStyle>근처에 쓰레기통이 없습니다.</AnswerTextStyle> :
-                            <>
-                                <AnswerTextStyle>
-                                    {answerText}
-                                    <AnswerDistanceStyle>{distance}m</AnswerDistanceStyle>
-                                    {answerText2}
-                                </AnswerTextStyle>
-                                <CustomSpacer height="0.56rem"/>
-                                <NavigateToNaverMap>
-                                    <NavigateText>네이버 지도로 안내 </NavigateText>
-                                </NavigateToNaverMap>
-                            </>
+                            distance === null ? <AnswerTextStyle>근처에 쓰레기통이 없습니다.</AnswerTextStyle> :
+                                <>
+                                    <AnswerTextStyle>
+                                        {answerText}
+                                        <AnswerDistanceStyle>{distance}m</AnswerDistanceStyle>
+                                        {answerText2}
+                                    </AnswerTextStyle>
+                                    <CustomSpacer height="0.56rem"/>
+                                    <NavigateToNaverMap>
+                                        <NavigateText>네이버 지도로 안내 </NavigateText>
+                                    </NavigateToNaverMap>
+                                </>
                 }
                 <Tail className="Tail"><img src = {ChatTail}/></Tail>
             </MapAnswerBox>
