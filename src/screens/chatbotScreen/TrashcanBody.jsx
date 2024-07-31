@@ -6,7 +6,7 @@ import ChatTail from '../../assets/icons/ChatTail.svg';
 import UnionIcon from '../../assets/icons/UnionMark.svg';
 import { MyContext, GeoContext } from './ChatBotBaseScreen';
 
-import ChevronRight from '../../assets/icons/ChevronRight.svg'
+import ChevronRight from '../../assets/icons/ChevronRightIcon.svg?react'
 
 import TrashMap from './TrashMap';
 import { ChatInputField } from './util';
@@ -80,7 +80,7 @@ const TrashcanBody = () => {
                 </div>
                 <CustomSpacer height="0.8rem"/>
                 <MapBox>
-                    <TrashMap/>
+                    {/* <TrashMap/> */}
                 </MapBox>
                 <CustomSpacer height="0.57rem"/>
                 { loading ?

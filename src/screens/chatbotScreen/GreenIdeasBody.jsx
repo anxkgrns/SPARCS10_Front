@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect,useRef } from 'react';
 import styled from 'styled-components';
 import {ChatInputField, QuestionButton, ChatBotHeader, CustomSpacer, QuestionButtonFlexer, ChatCloudContainer, EwooChatStyle, MainEwoo, MyChatCloud, YourChatCloud, QuestionButtonContainer} from './util.jsx';
 import { MyContext } from './ChatBotBaseScreen.jsx';
@@ -11,6 +11,8 @@ const ChatBody = () => { // recycle, greenIdea 분리하기.
     const [greenIdea, setGreenIdea] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
+    
+    const mounted = useRef(false);
 
     useEffect(() => {
         const fetchGreenIdea = async () => {
@@ -29,8 +31,11 @@ const ChatBody = () => { // recycle, greenIdea 분리하기.
         console.log("loading: ", loading);
         console.log("greenIdea: ", greenIdea);
     };
-
-    fetchGreenIdea();
+    if(!mounted.current){
+        mounted.current = true;
+      } else {
+        fetchGreenIdea();
+      }
   }, []);
 
     return (
