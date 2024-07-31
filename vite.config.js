@@ -29,6 +29,11 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/server/, ''),
+      },
+      '/imageApi' : {
+        target: `https://afcwx7ljke.apigw.ntruss.com/custom/v1/33177/e0496c07c9929bb6a11fdd55c2ee54beacda9103d6f81cf01129f3f810da7108/general`,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/imageApi/, ''),
       }
     }
   },

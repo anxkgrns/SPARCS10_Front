@@ -7,10 +7,10 @@ import GlobalStyle from './utils/global.ts'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   
-  <React.StrictMode>
+  //<React.StrictMode>
     <>
     <GlobalStyle />
     <NaviBar/>
     </>
- </React.StrictMode>
+ //</React.StrictMode>
 )
