@@ -321,17 +321,19 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-shrink: 0;
-width: 9.0625rem;
-padding: 0.375rem 0.625rem 0.5rem 0.625rem;
-gap: 0.625rem;
+
+max-width: 13.75rem;
+padding: 0.5rem 1.03rem 0.5rem 1.03rem;
 
 border-radius: 1.25rem;
 background: var(--green3, #8DD40E);
+box-sizing: border-box;
+height: auto;
 `;
 
 const MyChatTextStyle = styled.text`
 color: var(--black, #101210);
-text-align: right;
+text-align: left;
 
 /* 15 */
 font-family: AppleSDGothicNeoM;
@@ -354,9 +356,7 @@ flex-shrink: 0;
 border-radius: 1.25rem;
 background: var(--white, #FFF);
 
-padding-top: 0.44rem;
-padding-left: 0.75rem;
-padding-right: 0.75rem;
+padding: 0.5rem 1.03rem 0.5rem 1.03rem;
 box-sizing: border-box;
 
 /* blurbox */

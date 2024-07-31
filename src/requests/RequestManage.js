@@ -21,7 +21,14 @@ const getNearestTrashCan = async (latitude, longitude) => {
     }
 
     const response = await axios.get( '/server/ewoo/trashcan/nearest', {params});
-    return response.data;
+    var statusCode = response.status;
+    if (statusCode === 204) {
+        // return length=0 짜리 빈  리스트
+        console.log("No trashcan nearby");
+        return [];
+    } else {
+        return response.data;
+    } // list 반환
 }
 
 export { getTrashcanList, getNearestTrashCan };
