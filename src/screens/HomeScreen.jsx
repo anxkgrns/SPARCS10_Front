@@ -27,11 +27,10 @@ import KingMark from '../assets/icons/KingMark.svg'
 import MeMark from '../assets/icons/MeMark.svg'
 import PlantScreen from '../screens/PlantScreen';
 
-
-
-
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
+import QuestMainScreen from '../screens/questScreen/QuestMainScreen';
 
 export default function HomeScreen() {
 
@@ -227,7 +226,12 @@ export default function HomeScreen() {
 
             <CustomSpacer height="1.81rem"/>
 
-            <Body1>
+            <Body1 onClick={
+              () => {
+                //! go to QuestMainScreen
+                setInsidePage('QuestMainScreen');
+              }
+            }>
               <Body_first_line>
                 <Body1_text1>
                   오늘의 환경 미션
@@ -398,7 +402,12 @@ export default function HomeScreen() {
         insidePage === 'PlantShop3'
         ) &&
           <PlantScreen/>}
+        {
+          (insidePage === 'QuestMainScreen')
+          && <QuestMainScreen/>
+        }
     </NaviContext.Provider>
+
   );
 }
 

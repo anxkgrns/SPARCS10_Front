@@ -21,7 +21,6 @@ import ShoppingScreen from '../screens/ShoppingScreen';
 import {ChatBotBaseScreen} from '../screens/chatbotScreen/ChatBotBaseScreen';
 import styled from 'styled-components';
 
-
 const NaviBar = () => {
   const [value, setValue] = React.useState('홈');
   const [insidePage, setInsidePage] = React.useState('main');
@@ -85,7 +84,8 @@ const NaviBar = () => {
             insidePage === 'MyPlant3'||
             insidePage === 'PlantShop1'||
             insidePage === 'PlantShop2'||
-            insidePage === 'PlantShop3'        
+            insidePage === 'PlantShop3'||
+            insidePage === 'QuestMainScreen'
             ) &&
           <HomeScreen/>}
 
@@ -104,7 +104,7 @@ const NaviBar = () => {
             insidePage === 'MyPlant3'||
             insidePage === 'PlantShop1'||
             insidePage === 'PlantShop2'||
-            insidePage === 'PlantShop3'         
+            insidePage === 'PlantShop3'
             ) &&
             <HomeScreen/>}
         </>
