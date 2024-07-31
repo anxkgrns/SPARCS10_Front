@@ -1,8 +1,6 @@
 import React from 'react';
 import { ProgressBar, Step } from 'react-step-progress-bar';
 import 'react-step-progress-bar/styles.css';
-import AccomplishedDot from './AccomplishedDot.svg';
-import zIndex from '@mui/material/styles/zIndex';
 
 const CustomStepProgressBar = ({ percent }) => {
 
