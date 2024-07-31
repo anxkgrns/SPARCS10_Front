@@ -84,7 +84,8 @@ const NaviBar = () => {
             insidePage === 'MyPlant3'||
             insidePage === 'PlantShop1'||
             insidePage === 'PlantShop2'||
-            insidePage === 'PlantShop3'        
+            insidePage === 'PlantShop3'||
+            insidePage === 'QuestMainScreen'
             ) &&
           <HomeScreen/>}
 
@@ -103,7 +104,7 @@ const NaviBar = () => {
             insidePage === 'MyPlant3'||
             insidePage === 'PlantShop1'||
             insidePage === 'PlantShop2'||
-            insidePage === 'PlantShop3'         
+            insidePage === 'PlantShop3'
             ) &&
             <HomeScreen/>}
         </>

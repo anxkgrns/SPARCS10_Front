@@ -6,8 +6,10 @@ import QuestFrame from '../../component/QuestFrame'
 import QuestProgressBubble from '../../component/QuestProgressBubble.jsx'
 
 import QuestGuidePopup from '../../component/QuestGuidePopup'
-import BackButton from '../../assets/icons/ChevronLeft.svg?react'
+import BackButton from '../../assets/icons/ChevronRight.svg'
 import CustomStepProgressBar from '../../component/CustomStepProgressBar'
+
+import { NaviContext } from '../../navigation/NaviBar.jsx';
 
 function countCompletedQuest(QuestList) {
     var count = 0;
@@ -92,6 +94,7 @@ const QuestMainScreen = () => {
     ])
 
     const [typeOfGuideQuest, setTypeOfGuideQuest] = useState(null);
+    const {insidePage,setInsidePage} = React.useContext(NaviContext);
 
     return (
     <>
@@ -105,7 +108,12 @@ const QuestMainScreen = () => {
             padding: "1.875rem 1.25rem 0.5rem 1.25rem",
             width: "100%",
         }}>
-            <BackButton/>
+            {/* <BackButton/> */}
+            <div onClick={() => 
+                setInsidePage('main')
+            }>
+                <img src={BackButton} alt="backButton" />
+            </div>
             <div style={{
                 display: "flex",
                 flexDirection: "row",
@@ -161,7 +169,7 @@ const QuestMainScreen = () => {
                 width: '22.6875rem',
                 height: '6.1875rem'
             }} className="progressBar">
-                <CustomStepProgressBar />
+                {/* <CustomStepProgressBar /> */}
                 <QuestProgressBubble reward_type={"coin"} reward={5} progress={0} state="완료"/>
                 <QuestProgressBubble reward_type={"coin"} reward={5} progress={1} />
                 <QuestProgressBubble reward_type={"coin"} reward={5} progress={2} />
