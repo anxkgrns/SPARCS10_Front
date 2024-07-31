@@ -8,8 +8,6 @@ import parsingMoneyValue from '../utils/ParseMoney';
 import QuestCompleted from '../assets/icons/completed_check.svg?react';
 
 const QuestProgressBubble = ({ reward_type, reward, progress, state }) => {
-    console.log("my progress is " + progress);
-    console.log(state);
     var imgSrc = (reward_type === "coin") ? coin : leaf;
 
     if (state) {

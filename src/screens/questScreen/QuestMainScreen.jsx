@@ -30,13 +30,6 @@ const QuestContext = React.createContext('nope');
 const QuestMainScreen = () => {
     const [QuestList, setQuestList] = useState([
         {
-            type: "bicycle",
-            content: "자전거 타기",
-            state: "미완료",
-            reward_type: "coin",
-            reward: 5
-        },
-        {
             type: "temperature",
             content: "실내 적정 온도 인증하기",
             state: "미완료",
@@ -48,13 +41,6 @@ const QuestMainScreen = () => {
             content: "대중교통 이용하기",
             state: "미완료",
             reward_type: "leaf",
-            reward: 5
-        },
-        {
-            type: "bicycle",
-            content: "자전거 타기",
-            state: "완료",
-            reward_type: "coin",
             reward: 5
         },
         {
@@ -69,12 +55,6 @@ const QuestMainScreen = () => {
             content: "대중교통 이용하기",
             state: "미완료",
             reward_type: "leaf",
-            reward: 5
-        },{
-            type: "bicycle",
-            content: "자전거 타기",
-            state: "완료",
-            reward_type: "coin",
             reward: 5
         },
         {
@@ -111,8 +91,6 @@ const QuestMainScreen = () => {
                 setProgress(100);
             }
           }
-
-          console.log(count);
     }
     , [count, QuestList]);
     return (

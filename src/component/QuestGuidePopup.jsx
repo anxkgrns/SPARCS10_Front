@@ -2,10 +2,16 @@ import { useEffect, useContext, useState } from 'react';
 import styled from 'styled-components';
 
 import { QuestContext } from '../screens/questScreen/QuestMainScreen';
+import {getGuideJson} from './QuestGuideData';
+
+const typeList = [
+    "temperature", "bus", "tumbler", 'airconditioner', 'trashcan', 'greenIdea', 'recycle'
+]
 
 const QuestGuidePopup = () => {
     const { typeOfGuideQuest, setTypeOfGuideQuest } = useContext(QuestContext);
 
+    const [mounted, setMounted] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -15,17 +21,20 @@ const QuestGuidePopup = () => {
     const [questGuidePhotoTag, setQuestGuidePhotoTag] = useState([]);
 
     useEffect(() => {
-        // const response = fetch(typeOfGuideQuest); //! api 연결 필요
-        const response = {
-            guideTitle: '퀘스트 가이드',
-            guideContent: '퀘스트를 클리어하면 포인트를 획득할 수 있어요! 포인트로 다양한 혜택을 받아보세요.',
-            guidePhoto: ['../assets/icons/questIcon/bicycle.svg', '../assets/icons/questIcon/bicycle.svg'],
-            guidePhotoTag: ['자전거 타기', '자전거 타기']
-        };
-        setQuestGuideTitle(response.guideTitle);
-        setQuestGuideContent(response.guideContent);
-        setQuestGuidePhoto(response.guidePhoto); //? 순서 보장 되나?
-        setQuestGuidePhotoTag(response.guidePhotoTag);
+        console.log(typeOfGuideQuest);
+        var response = getGuideJson(typeOfGuideQuest.questType); //! api 연결 필요
+        response = JSON.parse(response);
+        response = response[0];
+        console.log(response);
+        setQuestGuideTitle(response.title);
+        setQuestGuideContent(response.content);
+        
+        // Handling the guide_photo array
+        const guidePhotos = response.guide_photo.map(photoObj => photoObj.photo);
+        const guidePhotoTags = response.guide_photo.map(photoObj => photoObj.tag);
+
+        setQuestGuidePhoto(guidePhotos); // This sets an array of photos
+        setQuestGuidePhotoTag(guidePhotoTags); // This sets an array of tags
     }, []);
 
     return (
@@ -41,6 +50,7 @@ const QuestGuidePopup = () => {
             zIndex: 1000
         }} className='popup'
             onClick={() => {
+                setMounted(false);
                 setTypeOfGuideQuest(null);
             }}
          >

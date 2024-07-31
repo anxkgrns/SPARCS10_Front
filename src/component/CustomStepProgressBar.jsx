@@ -7,7 +7,6 @@ import zIndex from '@mui/material/styles/zIndex';
 const CustomStepProgressBar = ({ percent }) => {
 
   const DotSize = '1.25rem';
-  console.log(percent);
 
   return (
     <ProgressBar
