@@ -1,7 +1,9 @@
-import { useState, useRef, useEffect, Array } from 'react';
+import { useState, useRef, useEffect, Array, useContext } from 'react';
 import { Container as MapDiv, NaverMap, useNavermaps, InfoWindow, Overlay, Marker } from 'react-naver-maps';
 import MarkIcon from '../../assets/icons/MyMark.svg';
 import TrashMark from '../../assets/icons/TrashMark.png';
+
+import { GeoContext } from './ChatBotBaseScreen';
 
 export default function TrashMap() {
     const navermaps = useNavermaps()
@@ -9,14 +11,13 @@ export default function TrashMap() {
   // useRef 대신 useState를 통해 ref를 가져옵니다.
     const [map, setMap] = useState(null)
     const [location, setLocation] = useState(new navermaps.LatLng(null))//new navermaps.LatLng(37.5666805, 126.9784147))
-    const TrashLocation1 = new navermaps.LatLng(36.3753485, 127.3654857)
-    const TrashLocation2 = new navermaps.LatLng(36.3793485, 127.364857)
+    // const TrashLocation1 = new navermaps.LatLng(36.3753485, 127.3654857)
+    // const TrashLocation2 = new navermaps.LatLng(36.3793485, 127.364857)
 
-//   const [marker, setMarker] = useState(null)
-  // const [MyMarker] = useState(null)
-//   for(var i = 0; i < 10; i++){
-//     console.log(i);
-//   }
+    const { currentLatLng, setCurrentLatLng } = useContext(GeoContext);
+    const { trashcanLatLng, setTrashcanLatLng } = useContext(GeoContext);
+    const { maxLatLng, setMaxLatLng } = useContext(GeoContext);
+    const { minLatLng, setMinLatLng } = useContext(GeoContext);
 
   function onSuccessGeolocation(position) {
     if (!map || !location) {
@@ -28,6 +29,7 @@ export default function TrashMap() {
       position.coords.longitude,
     )
     setLocation( now_location)
+    setCurrentLatLng(now_location)
     console.log("location: ", location)
     console.log("now_location: ", now_location)
     map.setCenter(now_location)
@@ -103,11 +105,13 @@ export default function TrashMap() {
         // defaultMapTypeId={navermaps.MapTypeId.NORMAL}
             ref={setMap}
         >
-            <Marker position= {TrashLocation1} icon = {{content: `<img src="${TrashMark}" alt="Custom Marker" style="width: 40px; height: 40px;" />`,
+            {/* <Marker position= {TrashLocation1} icon = {{content: `<img src="${TrashMark}" alt="Custom Marker" style="width: 40px; height: 40px;" />`,
             }}/>
             <Marker position= {TrashLocation2} icon = {{content: `<img src="${TrashMark}" alt="Custom Marker" style="width: 40px; height: 40px;" />`,
+            }}/> */}
+            <Marker position= {trashcanLatLng} icon = {{content: `<img src="${TrashMark}" alt="Custom Marker" style="width: 40px; height: 40px;" />`,
             }}/>
-            <Marker position= {location} icon = {{
+            <Marker position= {location} icon = {{ // 현재 위치
               content: `<img src="${MarkIcon}" alt="Custom Marker" style="width: 25px; height: 25px;" />`,
             }}/>
             {/* <Overlay element = {marker}/> */}
