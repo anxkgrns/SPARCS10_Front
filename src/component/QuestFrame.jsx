@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import QuestCompleted from '../assets/icons/completed_check.svg?react';
 import Coin from '../assets/icons/coin.svg?react';
 import Leaf from '../assets/icons/leaf.svg?react';
@@ -12,14 +12,23 @@ import TemperatureIcon from '../assets/icons/questIcon/temperature.svg?react'
 import TumblerIcon from '../assets/icons/questIcon/tumbler.svg?react'
 import WithEwooIcon from '../assets/icons/questIcon/withEwoo.svg?react'
 
+import QuestGuidePopup from "./QuestGuidePopup";
+import {QuestContext} from "../screens/questScreen/QuestMainScreen"
 
 const QuestFrame = ({ questType, content, state, reward_type, reward}) => {
     var iscomplete = (state === "완료") ? true : false;
     var iscoin = (reward_type === "coin") ? true : false;
 
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const {typeOfGuideQuest, setTypeOfGuideQuest} = useContext(QuestContext);
     return (
-        <FrameStyle>
-            <div style={{
+        <FrameStyle onClick={
+            () => {
+                setModalIsOpen(true);
+                setTypeOfGuideQuest({questType});
+            }
+        }>
+            <div style={{ // icon and text
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
@@ -69,7 +78,7 @@ const QuestIcon =({type}) => {
 
 export default QuestFrame;
 
-const FrameStyle = styled.div`
+const FrameStyle = styled.button`
 display: flex;
 flex-direction: row;
 padding: 0.875rem 0.75rem;
@@ -96,6 +105,7 @@ width: 12.625rem;
 
 display: flex;
 flex-direction: column;
+align-items: start;
 `;
 
 const TextStyle = styled.text`

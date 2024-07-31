@@ -1,8 +1,10 @@
 import styled from 'styled-components'
-import {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import MoneyHolder from '../../component/MoneyHolder'
 import QuestFrame from '../../component/QuestFrame'
 import QuestProgressBubble from '../../component/QuestProgressBubble.jsx'
+
+import QuestGuidePopup from '../../component/QuestGuidePopup'
 
 function countCompletedQuest(QuestList) {
     var count = 0;
@@ -17,6 +19,8 @@ function countCompletedQuest(QuestList) {
 function countTotalQuest(QuestList) {
     return QuestList.length;
 }
+
+const QuestContext = React.createContext('nope');
 
 const QuestMainScreen = () => {
     const [QuestList, setQuestList] = useState([
@@ -83,7 +87,12 @@ const QuestMainScreen = () => {
             reward: 5
         },
     ])
+
+    const [typeOfGuideQuest, setTypeOfGuideQuest] = useState(null);
+
     return (
+    <>
+    <QuestContext.Provider value={{typeOfGuideQuest, setTypeOfGuideQuest}}>
         <BackGround>
         <div style={{
             display: "flex",
@@ -146,7 +155,6 @@ const QuestMainScreen = () => {
                 <QuestProgressBubble reward_type={"coin"} reward={5} progress={1} />
                 <QuestProgressBubble reward_type={"coin"} reward={5} progress={2} />
             </div>
-
         <div style={{
             display: "flex",
             flexDirection: "column",
@@ -157,25 +165,31 @@ const QuestMainScreen = () => {
         }} className="QuestListBox">
             {QuestList.map((quest, index) => {
                 return (
-                    <QuestFrame
-                        key={index}
-                        questType={quest.type}
-                        content={quest.content}
-                        state={quest.state}
-                        reward_type={quest.reward_type}
-                        reward={quest.reward}
-                    />
+                                <QuestFrame
+                                    key={index}
+                                    questType={quest.type}
+                                    content={quest.content}
+                                    state={quest.state}
+                                    reward_type={quest.reward_type}
+                                    reward={quest.reward}
+                                />
                 )
-            })}
-            
-            
+            })
+            }
         </div>
     </div>
-    </BackGround>
+        </BackGround>
+        {
+            typeOfGuideQuest === null ? null : <QuestGuidePopup />
+        }
+        
+        </QuestContext.Provider>
+    </>
     )
 }
 
 export default QuestMainScreen;
+export {QuestContext};
 
 const BackGround = styled.div`
 position: fixed;
