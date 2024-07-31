@@ -1,22 +1,56 @@
 import { IconButton,Button } from '@mui/material';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import React from 'react';
 import styled from 'styled-components';
 import ChatTail from '../../assets/icons/ChatTail.svg';
 import UnionIcon from '../../assets/icons/UnionMark.svg';
-import { MyContext } from './ChatBotBaseScreen';
+import { MyContext, GeoContext } from './ChatBotBaseScreen';
 
 import ChevronRight from '../../assets/images/ChevronRight.svg?react'
 
 import TrashMap from './TrashMap';
 import { ChatInputField } from './util';
-
+import { useNavermaps } from 'react-naver-maps';
+import { getNearestTrashCan } from '../../requests/RequestManage';
 
 const TrashcanBody = () => {
     const answerText = "근처에 있는 쓰레기통 위치에요. \n";
     const answerText2 = " 떨어져 있네요!";
 
     const {page, setPage} = useContext(MyContext);
+
+    const navermap = useNavermaps();
+
+    const {currentLatLng, setCurrentLatLng} = useContext(GeoContext);
+    const {maxLatLng, setMaxLatLng} = useContext(GeoContext);
+    const {minLatLng, setMinLatLng} = useContext(GeoContext);
+    const {trashcanLatLng, setTrashcanLatLng} = useContext(GeoContext);
+    const [distance, setDistance] = React.useState(null);
+
+    const [loading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState(null);
+
+    useEffect(() => {
+        const fetchTrashCan = async () => {
+            try{
+                setLoading(true);
+                const response = await getNearestTrashCan(currentLatLng.lat(), currentLatLng.lng());
+                if (response.data.length === 0) {
+                    setDistance(null);
+                } else{
+                    setTrashcanLatLng(new navermap.LatLng(response.data[0].latitude, response.data[0].longitude));
+                    setDistance(response.data[0].distance);
+                }
+            } catch (error) {
+                setError(error);
+                console.error('Failed to fetch trashcan:', error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchTrashCan();
+    }, [currentLatLng]);
+
     return (
         <div style={{
             display: 'flex',
@@ -49,15 +83,23 @@ const TrashcanBody = () => {
                     <TrashMap/>
                 </MapBox>
                 <CustomSpacer height="0.57rem"/>
-                <AnswerTextStyle>
-                        {answerText}
-                        <AnswerDistanceStyle>175m</AnswerDistanceStyle>
-                        {answerText2}
-                    </AnswerTextStyle>
-                <CustomSpacer height="0.56rem"/>
-                <NavigateToNaverMap>
-                    <NavigateText>네이버 지도로 안내 </NavigateText>
-                </NavigateToNaverMap>
+                { loading ?
+                    <AnswerTextStyle>잠시만 기다려주세요...</AnswerTextStyle> :
+                        error ? <AnswerTextStyle>{error.message}</AnswerTextStyle> :
+                        distance === null ?
+                        <AnswerTextStyle>근처에 쓰레기통이 없습니다.</AnswerTextStyle> :
+                            <>
+                                <AnswerTextStyle>
+                                    {answerText}
+                                    <AnswerDistanceStyle>{distance}m</AnswerDistanceStyle>
+                                    {answerText2}
+                                </AnswerTextStyle>
+                                <CustomSpacer height="0.56rem"/>
+                                <NavigateToNaverMap>
+                                    <NavigateText>네이버 지도로 안내 </NavigateText>
+                                </NavigateToNaverMap>
+                            </>
+                }
                 <Tail className="Tail"><img src = {ChatTail}/></Tail>
             </MapAnswerBox>
             <CustomSpacer height="0.69rem"/>

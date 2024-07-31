@@ -23,6 +23,8 @@ const ChatInputField = ({isActive, focusFunction, sendFunction}) => {
     const [inputHeight, setInputHeight] = useState(3.1875);
     focusFunction = focusFunction ? focusFunction : () => {};
 
+    const {recycleAsk, setRecycleAsk} = useContext(MyContext);
+
     return (
         <div>
             <InputField style={{
@@ -59,6 +61,8 @@ const ChatInputField = ({isActive, focusFunction, sendFunction}) => {
                     style={{cursor: 'pointer'}}
                     active={isActive}
                     onClick={() => {
+                        setInputText(inputText);
+                        setRecycleAsk(inputText);
                         sendFunction();
                     }}
                 />
