@@ -71,7 +71,11 @@ const QuestIcon =({type}) => {
             return <TemperatureIcon/>;
         case "tumbler":
             return <TumblerIcon/>;
-        case "withEwoo":
+        case "recycle":
+            return <WithEwooIcon/>;
+        case "greenIdea":
+            return <WithEwooIcon/>;
+        case "trashcan":
             return <WithEwooIcon/>;
     }
 }
@@ -118,6 +122,8 @@ font-style: normal;
 font-weight: 400;
 line-height: 1.6875rem; /* 157.895% */
 letter-spacing: -0.02138rem;
+
+text-align: left;
 `;
 
 const  StateOrReward = styled.div`

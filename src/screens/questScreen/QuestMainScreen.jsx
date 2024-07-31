@@ -30,29 +30,29 @@ const QuestContext = React.createContext('nope');
 const QuestMainScreen = () => {
     const [QuestList, setQuestList] = useState([
         {
-            type: "temperature",
-            content: "실내 적정 온도 인증하기",
+            type: "tumbler",
+            content: "텀블러 혹은 컵 이용하기",
             state: "미완료",
             reward_type: "leaf",
             reward: 5
         },
         {
-            type: "bus",
-            content: "대중교통 이용하기",
+            type: "trashcan",
+            content: "AI 이우와 함께  쓰레기통 위치 찾고 쓰레기 버리기",
             state: "미완료",
             reward_type: "leaf",
             reward: 5
         },
         {
-            type: "temperature",
-            content: "실내 적정 온도 인증하기",
+            type: "greenIdea",
+            content: "AI 이우에게 오늘의 환경 상식 듣기",
             state: "진행중",
             reward_type: "leaf",
             reward: 5
         },
         {
-            type: "bus",
-            content: "대중교통 이용하기",
+            type: "recycle",
+            content: "AI 이우와 함께 쓰레기 분리수거하기",
             state: "미완료",
             reward_type: "leaf",
             reward: 5
@@ -189,12 +189,12 @@ const QuestMainScreen = () => {
 
         <div style={{
             position: "fixed",
-            bottom: "2.19rem",
+            bottom: "2rem",
             display: "flex",
             flexDirection: "column",
             gap: "0.62rem",
             width: "100%",
-            height: "25.63rem",
+            height: "24.63rem",
             padding: "0.75rem 1.25rem",
             boxSizing: "border-box",
             overflow: "auto",

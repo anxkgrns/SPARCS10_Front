@@ -9,7 +9,7 @@ const typeList = [
 ]
 
 const QuestGuidePopup = () => {
-    const { typeOfGuideQuest, setTypeOfGuideQuest } = useContext(QuestContext);
+    const { typeOfGuideQuest, setTypeOfGuideQuest } = useContext(QuestContext); // success 혹은 fail 로 돌아옴!
 
     const [mounted, setMounted] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -21,22 +21,89 @@ const QuestGuidePopup = () => {
     const [questGuidePhotoTag, setQuestGuidePhotoTag] = useState([]);
 
     useEffect(() => {
-        console.log(typeOfGuideQuest);
-        var response = getGuideJson(typeOfGuideQuest.questType); //! api 연결 필요
-        response = JSON.parse(response);
-        response = response[0];
-        console.log(response);
-        setQuestGuideTitle(response.title);
-        setQuestGuideContent(response.content);
-        
-        // Handling the guide_photo array
-        const guidePhotos = response.guide_photo.map(photoObj => photoObj.photo);
-        const guidePhotoTags = response.guide_photo.map(photoObj => photoObj.tag);
+        if (typeOfGuideQuest.questType !== 'success' && typeOfGuideQuest.questType !=='fail') {
+            console.log(typeOfGuideQuest);
+            var response = getGuideJson(typeOfGuideQuest.questType); //! api 연결 필요
+            response = JSON.parse(response);
+            response = response[0];
+            console.log(response);
+            setQuestGuideTitle(response.title);
+            setQuestGuideContent(response.content);
+            
+            // Handling the guide_photo array
+            const guidePhotos = response.guide_photo.map(photoObj => photoObj.photo);
+            const guidePhotoTags = response.guide_photo.map(photoObj => photoObj.tag);
+    
+            setQuestGuidePhoto(guidePhotos); // This sets an array of photos
+            setQuestGuidePhotoTag(guidePhotoTags); // This sets an array of tags
+        }
 
-        setQuestGuidePhoto(guidePhotos); // This sets an array of photos
-        setQuestGuidePhotoTag(guidePhotoTags); // This sets an array of tags
-    }, []);
+    }, [typeOfGuideQuest]);
 
+    if (typeOfGuideQuest.questType === 'success' ){
+        return (<div style={{
+            position: 'fixed',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100%',
+            width: '100%',
+            background: 'rgba(83, 102, 56, 0.60)',
+            // color: 'black',
+            zIndex: 1000
+        }} className='popup'
+            onClick={() => {
+                setMounted(false);
+                setTypeOfGuideQuest(null);
+            }}
+         >
+        <ContentBox>
+            <QuestGuideTitle>미션 성공!{'\n'}오늘도 환경을 위해 한 발짝 양보했네요!</QuestGuideTitle>
+            <div style={{
+                    width: '13.4375rem',
+                    height: '8.625rem',
+                }} className="CheerEwoo">
+                    <img src="/CheerfulEwoo.png" alt="cheerEwoo" />
+                </div>
+            <SubmitButton>
+                <SubmitButtonText>보상 수령하기</SubmitButtonText>
+            </SubmitButton>
+        </ContentBox>
+        </div>)
+    } else if (typeOfGuideQuest.questType === 'fail'){
+        return(<div style={{
+            position: 'fixed',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100%',
+            width: '100%',
+            background: 'rgba(83, 102, 56, 0.60)',
+            // color: 'black',
+            zIndex: 1000
+        }} className='popup'
+            onClick={() => {
+                setMounted(false);
+                setTypeOfGuideQuest(null);
+            }}
+         >
+        <ContentBox>
+            <QuestGuideTitle>미션 인증에 실패했어요.{'\n'}다시 한번 도전해주세요.</QuestGuideTitle>
+            <div style={{
+                    width: '13.4375rem',
+                    height: '8.625rem',
+                }} className="SadEwoo">
+                    <img src="/sadEwoo.png" alt="sadEwoo" />
+                </div>
+                
+            <div height='2rem'></div>
+            <SubmitButton>
+                <SubmitButtonText>다시 도전하기</SubmitButtonText>
+            </SubmitButton>
+        </ContentBox>
+        </div>
+        )
+    } else {
     return (
         <div style={{
             position: 'fixed',
@@ -46,7 +113,6 @@ const QuestGuidePopup = () => {
             height: '100%',
             width: '100%',
             background: 'rgba(83, 102, 56, 0.60)',
-            // color: 'black',
             zIndex: 1000
         }} className='popup'
             onClick={() => {
@@ -89,6 +155,7 @@ const QuestGuidePopup = () => {
         </div>
     );
 }
+}
 
 export default QuestGuidePopup;
 
@@ -97,6 +164,8 @@ export default QuestGuidePopup;
 const ContentBox = styled.div`
 display: flex;
 flex-direction: column;
+justify-content: start;
+align-items: center;
 gap: 1.5rem;
 
 width: 22.625rem;
@@ -119,6 +188,8 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 letter-spacing: -0.025rem;
+
+white-space: pre-wrap;
 `;
 
 const QuestGuideContent = styled.text`
