@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import ProgressBar from 'react-step-progress-bar'
 import MoneyHolder from '../../component/MoneyHolder'
 import QuestFrame from '../../component/QuestFrame'
 import QuestProgressBubble from '../../component/QuestProgressBubble.jsx'
 
 import QuestGuidePopup from '../../component/QuestGuidePopup'
-import BackButton from '../../assets/icons/ChevronRight.svg'
+import BackButton from '../../assets/icons/ChevronRightIcon.svg'
 import CustomStepProgressBar from '../../component/CustomStepProgressBar'
 
 import { NaviContext } from '../../navigation/NaviBar.jsx';
@@ -32,14 +32,14 @@ const QuestMainScreen = () => {
         {
             type: "bicycle",
             content: "자전거 타기",
-            state: "완료",
+            state: "미완료",
             reward_type: "coin",
             reward: 5
         },
         {
             type: "temperature",
             content: "실내 적정 온도 인증하기",
-            state: "진행중",
+            state: "미완료",
             reward_type: "leaf",
             reward: 5
         },
@@ -96,6 +96,25 @@ const QuestMainScreen = () => {
     const [typeOfGuideQuest, setTypeOfGuideQuest] = useState(null);
     const {insidePage,setInsidePage} = React.useContext(NaviContext);
 
+    const [progress, setProgress] = useState(0);
+    const [count, setCount] = useState(0);
+    const mounted = useRef(false);
+
+    useEffect(() => {
+        if(!mounted.current){
+            mounted.current = true;
+          } else {
+            setCount(countCompletedQuest(QuestList));
+            if (count < 3) {
+                setProgress(count*33.33+1);
+            } else {
+                setProgress(100);
+            }
+          }
+
+          console.log(count);
+    }
+    , [count]);
     return (
     <>
     <QuestContext.Provider value={{typeOfGuideQuest, setTypeOfGuideQuest}}>
@@ -108,11 +127,10 @@ const QuestMainScreen = () => {
             padding: "1.875rem 1.25rem 0.5rem 1.25rem",
             width: "100%",
         }}>
-            {/* <BackButton/> */}
             <div onClick={() => 
                 setInsidePage('main')
             }>
-                <img src={BackButton} alt="backButton" />
+                <img src={BackButton} alt="backButton" style={{fill: '#ffffff'}}/>
             </div>
             <div style={{
                 display: "flex",
@@ -150,7 +168,7 @@ const QuestMainScreen = () => {
                     </TitleTextStyle>
                     <div style={{ height: "1.1rem" }}></div>
                     <TitleProgressStyle>
-                        {countCompletedQuest(QuestList)}/{countTotalQuest(QuestList)}
+                        {countCompletedQuest(QuestList)}/3
                         <TitleProgressSubStyle> 완료</TitleProgressSubStyle>
                     </TitleProgressStyle>
                 </div>
@@ -163,16 +181,32 @@ const QuestMainScreen = () => {
             </div>
             <div style={{
                 display: "flex",
-                flexDirection: "row",
-                justifyContent: "start",
+                flexDirection: "column",
+                gap: "0.25rem",
                 alignItems: "center",
-                width: '22.6875rem',
-                height: '6.1875rem'
-            }} className="progressBar">
-                {/* <CustomStepProgressBar /> */}
-                <QuestProgressBubble reward_type={"coin"} reward={5} progress={0} state="완료"/>
-                <QuestProgressBubble reward_type={"coin"} reward={5} progress={1} />
-                <QuestProgressBubble reward_type={"coin"} reward={5} progress={2} />
+                justifyContent: "start",
+                boxSizing: "border-box",
+            }}>
+                <div style={{
+                        width: '19.12rem', // 22.6875 - (0.625*2) - 1.8 - 0.53, 0.625는 step 반지름 길이. 1.8은 말풍선 오른쪽 끝부터 말풍선 꼬리 위치까지 거리. ... 이하 눈떼중.
+                        height: '1.3rem',
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }} className="customprogressbar">
+                        <CustomStepProgressBar percent={progress} />
+                </div>
+                <div style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "end",
+                    alignItems: "start",
+                    width: '22.6875rem', 
+                    gap: "2.9rem",
+                }} className="progress bubble">
+                    <QuestProgressBubble reward_type={"coin"} reward={5} progress={0} state={count>=1}/>
+                    <QuestProgressBubble reward_type={"coin"} reward={5} progress={1} state={count>=2}/>
+                    <QuestProgressBubble reward_type={"coin"} reward={5} progress={2} state={count >=3}/>
+                </div>
             </div>
 
         <div style={{

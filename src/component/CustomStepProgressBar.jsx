@@ -1,35 +1,85 @@
-import React from "react";
-import "react-step-progress-bar/styles.css";
-import { ProgressBar, Step } from "react-step-progress-bar";
+import React from 'react';
+import { ProgressBar, Step } from 'react-step-progress-bar';
+import 'react-step-progress-bar/styles.css';
+import AccomplishedDot from './AccomplishedDot.svg';
+import zIndex from '@mui/material/styles/zIndex';
 
-class CustomStepProgressBar extends React.Component {
-  render() {
-    return (
-        <ProgressBar percent={25}>
-        <Step>
-          {({ accomplished, index }) => (
-            <div className={`indexedStep ${accomplished ? "accomplished" : ""}`}>
-              {index + 1}
-            </div>
-          )}
-        </Step>
-        <Step>
-          {({ accomplished, index }) => (
-            <div className={`indexedStep ${accomplished ? "accomplished" : ""}`}>
-              {index + 1}
-            </div>
-          )}
-        </Step>
-        <Step>
-          {({ accomplished, index }) => (
-            <div className={`indexedStep ${accomplished ? "accomplished" : ""}`}>
-              {index + 1}
-            </div>
-          )}
-        </Step>
-      </ProgressBar>
-    );
-  }
-}
+const CustomStepProgressBar = ({ percent }) => {
+
+  const DotSize = '1.25rem';
+  console.log(percent);
+
+  return (
+    <ProgressBar
+      percent={percent}
+      filledBackground="#E2E53F"
+    >
+      <Step transition="scale">
+        {({ accomplished }) => (
+          <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: DotSize,
+            height: DotSize,
+            color: 'white',
+            borderRadius: '50%',
+            backgroundColor: accomplished ? '#E2E53F' : '#d9d9d9',
+          }}
+        />
+        )}
+      </Step>
+      <Step transition="scale">
+        {({ accomplished }) => (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: DotSize,
+              height: DotSize,
+              color: 'white',
+              borderRadius: '50%',
+              backgroundColor: accomplished ? '#E2E53F' : '#c7d78f',
+            }}
+          />
+        )}
+      </Step>
+      <Step transition="scale">
+        {({ accomplished }) => (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: DotSize,
+              height: DotSize,
+              color: 'white',
+              borderRadius: '50%',
+              backgroundColor: accomplished ? '#E2E53F' : '#c7d78f',
+            }}
+          />
+        )}
+      </Step>
+      <Step transition="scale">
+        {({ accomplished }) => (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: DotSize,
+              height: DotSize,
+              color: 'white',
+              borderRadius: '50%',
+              backgroundColor: accomplished ? '#E2E53F' : '#c7d78f',
+            }}
+          />
+        )}
+      </Step>
+    </ProgressBar>
+  );
+};
 
 export default CustomStepProgressBar;
