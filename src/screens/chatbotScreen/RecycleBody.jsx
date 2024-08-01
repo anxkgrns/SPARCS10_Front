@@ -14,7 +14,7 @@ const RecycleBody = () => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                height: '76vh',
+                height: '70vh',
             }}>
                 <div style={{
                     display: 'flex',
