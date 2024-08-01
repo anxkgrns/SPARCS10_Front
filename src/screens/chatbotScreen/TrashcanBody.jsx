@@ -23,10 +23,8 @@ const TrashcanBody = () => {
     const navermap = useNavermaps();
 
     const {currentLatLng, setCurrentLatLng} = useContext(GeoContext);
-    const {maxLatLng, setMaxLatLng} = useContext(GeoContext);
-    const {minLatLng, setMinLatLng} = useContext(GeoContext);
     const {trashcanLatLng, setTrashcanLatLng} = useContext(GeoContext);
-    const [distance, setDistance] = useState(null);
+    const [distance, setDistance] = useState(0);
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -36,6 +34,7 @@ const TrashcanBody = () => {
              setLoading(true);
             try{
                 const responseData = await getNearestTrashCan(currentLatLng.lat(), currentLatLng.lng());
+                console.log(responseData);
                 if (responseData ===null || responseData.length === 0) {
                     setDistance(null);
                 } else{

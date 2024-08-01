@@ -16,8 +16,6 @@ export default function TrashMap() {
 
     const { currentLatLng, setCurrentLatLng } = useContext(GeoContext);
     const { trashcanLatLng, setTrashcanLatLng } = useContext(GeoContext);
-    const { maxLatLng, setMaxLatLng } = useContext(GeoContext);
-    const { minLatLng, setMinLatLng } = useContext(GeoContext);
 
   function onSuccessGeolocation(position) {
     if (!map || !location) {
@@ -89,7 +87,15 @@ export default function TrashMap() {
       )
       infowindow.open(map, center)
     }
+
   }, [map])
+
+  useEffect(() => {
+    if (map && trashcanLatLng) {
+        map.setCenter(trashcanLatLng);
+        map.setZoom(16);
+    }
+}, [map, trashcanLatLng]);
 
   return (
     <MapDiv
@@ -99,26 +105,21 @@ export default function TrashMap() {
             height: '100%',
         }}>
         <NaverMap
-        // uncontrolled
-        // defaultCenter={new navermaps.LatLng(37.5666805, 126.9784147)}
-        // defaultZoom={10}
-        // defaultMapTypeId={navermaps.MapTypeId.NORMAL}
             ref={setMap}
         >
             {/* <Marker position= {TrashLocation1} icon = {{content: `<img src="${TrashMark}" alt="Custom Marker" style="width: 40px; height: 40px;" />`,
             }}/>
             <Marker position= {TrashLocation2} icon = {{content: `<img src="${TrashMark}" alt="Custom Marker" style="width: 40px; height: 40px;" />`,
             }}/> */}
-            <Marker position= {trashcanLatLng} icon = {{content: `<img src="${TrashMark}" alt="Custom Marker" style="width: 40px; height: 40px;" />`,
-            }}/>
+            <Marker position= {trashcanLatLng}
+              icon = {{content: `<img src="${TrashMark}" alt="Custom Marker" style="width: 40px; height: 40px;" />`,}}
+              
+              />
             <Marker position= {location} icon = {{ // 현재 위치
-              content: `<img src="${MarkIcon}" alt="Custom Marker" style="width: 25px; height: 25px;" />`,
+              content: `<img src="${MarkIcon}" alt="Custom Marker" style="width: 25px; height: 25px;" />`,  
             }}/>
             {/* <Overlay element = {marker}/> */}
         </NaverMap>
     </MapDiv>
   )
 }
-
-//lat:36.3743485,lng:127.3653857
-//lat:36.37837837837838,lng:127.36093541357357

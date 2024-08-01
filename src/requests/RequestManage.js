@@ -27,7 +27,7 @@ const getNearestTrashCan = async (latitude, longitude) => {
         console.log("No trashcan nearby");
         return [];
     } else {
-        return response.data;
+        return response.data.data;
     } // list 반환
 }
 
