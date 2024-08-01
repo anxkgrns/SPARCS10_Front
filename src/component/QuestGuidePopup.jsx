@@ -6,6 +6,10 @@ import {getGuideJson} from './QuestGuideData';
 
 import {addSuccessQuest} from '../requests/QuestStateManage';
 
+import MyScreen from '../screens/MyPage.jsx';
+
+import Image from '../screens/ImageManage';
+
 const typeList = [
     "temperature", "bus", "tumbler", 'airconditioner', 'trashcan', 'greenIdea', 'recycle'
 ]
@@ -21,6 +25,42 @@ const QuestGuidePopup = () => {
     const [questGuideContent, setQuestGuideContent] = useState('');
     const [questGuidePhoto, setQuestGuidePhoto] = useState([]);
     const [questGuidePhotoTag, setQuestGuidePhotoTag] = useState([]);
+    const [uploadImgUrl, setUploadImgUrl] = useState("");
+    const [task, setTask] = useState(1);
+    const [success, setSuccess] = useState(false);
+
+    const onchangeImageUpload = (e)=> {
+        const {files} = e.target;
+        const uploadFile = files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(uploadFile);
+        reader.onloadend = ()=> {
+        setUploadImgUrl(reader.result);
+        }
+        if(typeOfGuideQuest.questionType === "tumbler"){
+            setTask(1);
+        }
+        if(typeOfGuideQuest.questionType === "airconditioner"){
+            setTask(2);
+        }
+        if(typeOfGuideQuest.questionType === "bus"){
+            setTask(3);
+        }
+    }
+    const handleImageResult = (isSuccess) => {
+        setSuccess(isSuccess);
+        if (isSuccess) {
+            setTypeOfGuideQuest({
+                questType: typeOfGuideQuest.questType,
+                status: 'success'
+            });
+        } else {
+            setTypeOfGuideQuest({
+                questType: typeOfGuideQuest.questType,
+                status: 'fail'
+            });
+        }
+    }
 
     useEffect(() => {
         if (typeOfGuideQuest.status !== 'success' && typeOfGuideQuest.status !=='fail') {
@@ -43,14 +83,15 @@ const QuestGuidePopup = () => {
                await addSuccessQuest(typeOfGuideQuest);
             }
             fetchSuccessQuest(typeOfGuideQuest);
-        } else {
-            setTypeOfGuideQuest(
-                {
-                    questType: typeOfGuideQuest.questType,
-                    status: 'fail'
-                }
-            )
         }
+        // } else {
+        //     setTypeOfGuideQuest(
+        //         {
+        //             questType: typeOfGuideQuest.questType,
+        //             status: 'fail'
+        //         }
+        //     )
+        // }
     }, [typeOfGuideQuest]);
 
     if (typeOfGuideQuest.status === 'success' ){
@@ -116,7 +157,15 @@ const QuestGuidePopup = () => {
                 </div>
                 
             <div height='2rem'></div>
-            <SubmitButton>
+            <SubmitButton
+            onClick={() => {
+                setMounted(false);
+                setTypeOfGuideQuest({
+                    questType: typeOfGuideQuest.questType,
+                    status: 'pending'
+                });
+            }}
+            >
                 <SubmitButtonText>다시 도전하기</SubmitButtonText>
             </SubmitButton>
         </ContentBox>
@@ -134,13 +183,13 @@ const QuestGuidePopup = () => {
             background: 'rgba(83, 102, 56, 0.60)',
             zIndex: 1000
         }} className='popup'
-            onClick={() => { // 배경 터치하면 팝업 닫음.
-                setMounted(false);
-                setTypeOfGuideQuest({
-                    questType: null,
-                    status: null
-                });
-            }}
+            // onClick={() => { // 배경 터치하면 팝업 닫음.
+            //     setMounted(false);
+            //     setTypeOfGuideQuest({
+            //         questType: null,
+            //         status: null
+            //     });
+            // }}
          >
         <ContentBox>
             <QuestGuideTitle>{questGuideTitle}</QuestGuideTitle>
@@ -170,10 +219,35 @@ const QuestGuidePopup = () => {
             }
             </div>
             <SubmitButton>
-                <SubmitButtonText>사진 업로드하기</SubmitButtonText>
-            </SubmitButton>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={onchangeImageUpload}
+                        id="imageUpload"
+                        style={{ display: 'none' }}
+                    />
+                    <label htmlFor="imageUpload" style={{ display : 'flex'
+                    , justifyContent: 'center', alignItems: 'center',
+                    flexDirection: 'column',
+
+                    cursor: 'pointer', width: '100%', height: '100%' }}>
+                        <SubmitButtonText>이미지 업로드</SubmitButtonText>
+                    {uploadImgUrl !== "" && <Image i={task} x={uploadImgUrl} onResult={handleImageResult} />}
+                    </label>
+                </SubmitButton>
+            {}
+            {/* <SubmitButtonText>
+                success? {success ? 'success' : 'fail'}
+            </SubmitButtonText> */}
+            {/* {setTypeOfGuideQuest(
+                {
+                questType: typeOfGuideQuest.questType,
+                status: Image(task, uploadImgUrl)
+                }
+            )} */}
         </ContentBox>
         </div>
+
     );
 }
 }
@@ -238,18 +312,24 @@ letter-spacing: -0.01713rem;
 `;
 
 const QuestGuidePhotoBox = styled.div`
-width: 8.0625rem;
+width:17.7625rem;
 height: 8.0625rem;
-transform: rotate(90deg);
+transform: rotate(0deg);
 flex-shrink: 0;
 
 border-radius: 1.25rem;
 background: url(${props => props.imgurl ? props.imgurl : null}) lightgray -8.733px -23.839px / 118.113% 118.113% no-repeat;
 `;
 
-const SubmitButton = styled.button`
+const SubmitButton = styled.div`
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+
 width: 19.6875rem;
-height: 3.4375rem;
+height: 4.4375rem;
 flex-shrink: 0;
 
 border-radius: 1.25rem;

@@ -89,12 +89,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { GetImage } from '../requests/ImagesManage.js';
+import styled from 'styled-components';
 
-const Image = ({ x,i }) => {
+const Image = ({ x,i,onResult }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [fields, setFields] = useState([]);
-  const [success, setSuccess] = useState(false);
 
     const SubString1 = ['개인컵할인', '컵 할인', '텀블러할인', '텀블러 할인', '컵할인' ];
     const SubString2 = [26];
@@ -129,50 +129,52 @@ const Image = ({ x,i }) => {
     };
 
     fetchResponse();
-  }, [x]);
+  }, [x, onResult]);
 
   // 필드 데이터가 업데이트될 때 서브 문자열 포함 여부 검사
   useEffect(() => {
     if (fields.length > 0) {
-        console.log("i",i);
-        if(i === '1'){
+        console.log("i!!!",i);
+        if(i === 1){
             console.log("task1");
             const result = containsSubstring(fields, SubString1);
-            setSuccess(result);
+            console.log("fields: ", fields);
+            console.log("result: ", result);
+            onResult(result);
         }
-        else if(i === '2'){
+        else if(i === 2){
             console.log("task2");
             const result = hasValueGreaterThanOrEqualTo26(fields);
-            setSuccess(result);
+            console.log("fields: ", fields);
+            console.log("result: ", result);
+            onResult(result);
         }
-        else if(i === '3'){
+        else if(i === 3){
             console.log("task3");
             const result = containsSubstring(fields, SubString3);
-            setSuccess(result);
+            console.log("fields: ", fields);
+            console.log("result: ", result);
+            onResult(result);
         }
     }
   }, [fields]);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (loading) return <SubmitButtonText>Loading...</SubmitButtonText>;
+  if (error) return <SubmitButtonText>{error}</SubmitButtonText>;
 
   return (
-    <div>
-      <h1>Infer responses</h1>
-      <ul>
-        {fields.map((field, index) => (
-          <li key={index}>{field}</li>
-        ))}
-      </ul>
-      <div
-        style={{
-          color: success ? 'green' : 'red',
-          fontWeight: 'bold',
-          marginBottom :'30rem'
-        }}
-      >Success: {success ? 'True' : 'False'}</div>
-    </div>
+    <>
+    </>
   );
 };
+const SubmitButtonText = styled.text`
+color: var(--white, #FFF);
+font-family: AppleSDGothicNeoEB;
+font-size: 1.06875rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.6875rem; /* 157.895% */
+letter-spacing: -0.02138rem;
+`;
 
 export default Image;

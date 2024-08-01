@@ -1,3 +1,5 @@
+import recipt from '../assets/icons/recipt.svg';
+
 
 const typeList = [
     "temperature", "bus", "tumbler", 'airconditioner', 'trashcan', 'greenIdea', 'recycle'
@@ -22,8 +24,8 @@ const guideJson = [
         'title': '카페에서 텀블러 할인받고 영수증 인증하기',
         'content' : '인증 방법을 알려드릴게요! 텀블러를 들고 있는 사진을 업로드해 주세요.',
         'guide_photo' : [{
-            'photo' : null,
-            'tag' : '텀블러 사진'
+            'photo' : recipt,
+            'tag' : '텀블러 할인 영수증 사진'
         }],
     },
     {

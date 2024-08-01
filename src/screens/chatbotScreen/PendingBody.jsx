@@ -11,7 +11,7 @@ const PendingBody = () => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                height: '80vh',
+                height: '75vh',
             }}>
                 <div style={{
                     display: 'flex',
