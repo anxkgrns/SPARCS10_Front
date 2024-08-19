@@ -172,6 +172,7 @@ export default function HomeScreen() {
             alignItems: 'center',
             justifyContent: 'flex-start',
             width: '25.75rem',
+            //width : '100%',
             height: '23.1875rem',
             background: 'linear-gradient(180deg, #8DD40E 10%, #EFFEC9 76%)'
           }}
@@ -421,7 +422,8 @@ fill: #FFF;box-shadow: 0rem 0.125rem 0.25rem 0px rgba(0, 0, 0, 0.2), 0rem 0.125r
 const HeadButton = styled.button`
   position: absolute;
   top: 0.94rem;
-  left: 22.37rem;
+// left: 22.37rem;
+  right : 1.25rem;
 
   width: 2rem;
   height: 2rem;
